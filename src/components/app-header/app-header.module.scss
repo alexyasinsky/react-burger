@@ -2,7 +2,6 @@ header {
     display: flex;
     width: 100vw;
     height: 88px;
-    padding: 16px;
     justify-content: center;
     align-items: center;
     flex-shrink: 0;
@@ -15,12 +14,12 @@ nav {
     width: 1280px;
     .link {
         display: flex;
-        padding: 16px 20px;
         align-items: center;
         gap: 8px;
     }
     .logo {
-        margin: 8px 277px 8px 132px;
+        margin-left: 132px;
+        margin-right: 277px;
     }
 }
 

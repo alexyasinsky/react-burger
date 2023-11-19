@@ -5,7 +5,12 @@
 }
 
 #root {
-  width: max-content;
   height: 100vh;
+}
+
+main {
+  width: 1280px;
   margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
 }
