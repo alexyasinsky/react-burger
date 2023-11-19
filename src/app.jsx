@@ -1,8 +1,8 @@
 import AppHeader from './components/app-header/app-header';
-import BurgerIngredients from "./components/burger-ingredients/burger-ingredients";
+import BurgerIngredientList from "./components/burger-ingredient-list/burger-ingredient-list";
 import BurgerConstructor from "./components/burger-constructor/burger-constructor";
-import {bun, ingredients} from "./utils/data";
-
+import {list} from "./utils/list";
+import {cart} from "./utils/cart";
 
 
 export default function App() {
@@ -11,8 +11,8 @@ export default function App() {
     <>
       <AppHeader />
       <main>
-        <BurgerIngredients/>
-        <BurgerConstructor bun={bun} ingredients={ingredients}/>
+        <BurgerIngredientList list={list} cart={cart}/>
+        <BurgerConstructor cart={cart}/>
       </main>
     </>
   );
