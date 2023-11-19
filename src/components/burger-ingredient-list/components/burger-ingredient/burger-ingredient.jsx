@@ -1,5 +1,6 @@
 import styles from './burger-ingredient.module.scss';
 import {Counter, CurrencyIcon} from "@ya.praktikum/react-developer-burger-ui-components";
+import {ingredientPropType} from "../../../../utils/prop-types";
 
 
 export default function BurgerIngredient({ingredient}) {
@@ -13,4 +14,8 @@ export default function BurgerIngredient({ingredient}) {
         <figcaption className="text text_type_main-default">{ingredient.name}</figcaption>
       </figure>
   )
+}
+
+BurgerIngredient.propTypes = {
+  ingredient: ingredientPropType
 }

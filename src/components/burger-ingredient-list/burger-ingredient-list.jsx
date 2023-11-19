@@ -2,6 +2,8 @@ import styles from './burger-ingredient-list.module.scss';
 import {Tab} from "@ya.praktikum/react-developer-burger-ui-components";
 import {useMemo, useState} from "react";
 import BurgerIngredient from "./components/burger-ingredient/burger-ingredient";
+import PropTypes from "prop-types";
+import {ingredientPropType} from "../../utils/prop-types";
 
 export default function BurgerIngredientList({list}) {
 
@@ -56,3 +58,12 @@ export default function BurgerIngredientList({list}) {
     </section>
   )
 }
+
+BurgerIngredientList.propTypes = {
+  list: PropTypes.arrayOf(ingredientPropType).isRequired,
+  cart: PropTypes.shape({
+    bun: ingredientPropType.isRequired,
+    filling: PropTypes.arrayOf(ingredientPropType).isRequired,
+  })
+}
+

@@ -1,11 +1,14 @@
 import styles from './burger-constructor.module.scss';
 import {Button, ConstructorElement, CurrencyIcon, DragIcon} from "@ya.praktikum/react-developer-burger-ui-components";
+import {useMemo} from "react";
+import PropTypes from "prop-types";
+import {ingredientPropType} from "../../utils/prop-types";
 
 
 export default function BurgerConstructor({cart}) {
 
   const {bun, filling} = cart;
-  const sum = bun.price * 2 + filling.reduce((acc, item) => acc + item.price, 0);
+  const sum = useMemo(() => bun.price * 2 + filling.reduce((acc, item) => acc + item.price, 0), [bun, filling]);
 
   return (
     <section className='pt-20'>
@@ -52,4 +55,11 @@ export default function BurgerConstructor({cart}) {
       </div>
     </section>
   )
+}
+
+BurgerConstructor.propTypes = {
+  cart: PropTypes.shape({
+    bun: ingredientPropType.isRequired,
+    filling: PropTypes.arrayOf(ingredientPropType).isRequired,
+  })
 }
