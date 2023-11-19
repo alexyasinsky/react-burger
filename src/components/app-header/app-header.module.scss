@@ -1,0 +1,26 @@
+header {
+    display: flex;
+    width: 100vw;
+    height: 88px;
+    padding: 16px;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    background: #1C1C21;
+    box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.04), 0 4px 8px 0 rgba(0, 0, 0, 0.04), 0 16px 24px 0 rgba(0, 0, 0, 0.04), 0 24px 32px 0 rgba(0, 0, 0, 0.04);
+}
+
+nav {
+    display: flex;
+    width: 1280px;
+    .link {
+        display: flex;
+        padding: 16px 20px;
+        align-items: center;
+        gap: 8px;
+    }
+    .logo {
+        margin: 8px 277px 8px 132px;
+    }
+}
+
