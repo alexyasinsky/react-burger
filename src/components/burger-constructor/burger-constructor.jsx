@@ -3,6 +3,8 @@ import {Button, ConstructorElement, CurrencyIcon, DragIcon} from "@ya.praktikum/
 import {useMemo} from "react";
 import PropTypes from "prop-types";
 import {ingredientPropType} from "../../utils/prop-types";
+import { v4 as uuid } from 'uuid';
+
 
 
 export default function BurgerConstructor({cart}) {
@@ -22,9 +24,9 @@ export default function BurgerConstructor({cart}) {
       />
       <div className={`${styles.filling} custom-scroll pr-2`}>
         {
-          filling.map(((item, ind) => {
+          filling.map(((item) => {
             return (
-              <div className={styles.filling__item} key={ind}>
+              <div className={styles.filling__item} key={uuid()}>
                 <DragIcon type="primary"/>
                 <ConstructorElement
                   text={item.name}

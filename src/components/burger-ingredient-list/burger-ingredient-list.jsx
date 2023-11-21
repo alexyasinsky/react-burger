@@ -4,6 +4,7 @@ import {useMemo, useState} from "react";
 import BurgerIngredient from "./components/burger-ingredient/burger-ingredient";
 import PropTypes from "prop-types";
 import {ingredientPropType} from "../../utils/prop-types";
+import { v4 as uuid } from 'uuid';
 
 export default function BurgerIngredientList({list}) {
 
@@ -49,7 +50,7 @@ export default function BurgerIngredientList({list}) {
           {
             items.map((item, ind) => {
               return (
-                <BurgerIngredient key={ind} ingredient={item}/>
+                <BurgerIngredient key={uuid()} ingredient={item}/>
               )
             })
           }
