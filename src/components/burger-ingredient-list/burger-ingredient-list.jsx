@@ -9,9 +9,9 @@ export default function BurgerIngredientList({list}) {
 
   const [current, setCurrent] = useState('buns');
 
-  const buns = useMemo(()=> list.filter(item => item.type === 'bun'), [list]);
-  const sauces = useMemo(()=> list.filter(item => item.type === 'sauce'), [list]);
-  const main = useMemo(()=> list.filter(item => item.type === 'main'), [list]);
+  const buns = useMemo(() => list.filter(item => item.type === 'bun'), [list]);
+  const sauces = useMemo(() => list.filter(item => item.type === 'sauce'), [list]);
+  const main = useMemo(() => list.filter(item => item.type === 'main'), [list]);
 
   let title = '';
   let items = [];
@@ -46,13 +46,13 @@ export default function BurgerIngredientList({list}) {
       <article>
         <h2 className="text text_type_main-medium pt-2 pb-6">{title}</h2>
         <div className={`${styles.list} custom-scroll`}>
-        {
-          items.map((item, ind) => {
-            return (
-              <BurgerIngredient key={ind} ingredient={item}/>
-            )
-          })
-        }
+          {
+            items.map((item, ind) => {
+              return (
+                <BurgerIngredient key={ind} ingredient={item}/>
+              )
+            })
+          }
         </div>
       </article>
     </section>

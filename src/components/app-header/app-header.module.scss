@@ -1,25 +1,27 @@
 header {
-    display: flex;
-    width: 100vw;
-    height: 88px;
-    justify-content: center;
-    align-items: center;
-    flex-shrink: 0;
-    background: #1C1C21;
-    box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.04), 0 4px 8px 0 rgba(0, 0, 0, 0.04), 0 16px 24px 0 rgba(0, 0, 0, 0.04), 0 24px 32px 0 rgba(0, 0, 0, 0.04);
+  display: flex;
+  width: 100vw;
+  height: 88px;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  background: #1C1C21;
+  box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.04), 0 4px 8px 0 rgba(0, 0, 0, 0.04), 0 16px 24px 0 rgba(0, 0, 0, 0.04), 0 24px 32px 0 rgba(0, 0, 0, 0.04);
 }
 
 nav {
+  display: flex;
+  width: 1280px;
+
+  .link {
     display: flex;
-    width: 1280px;
-    .link {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-    }
-    .logo {
-        margin-left: 122px;
-        margin-right: 287px;
-    }
+    align-items: center;
+    gap: 8px;
+  }
+
+  .logo {
+    margin-left: 122px;
+    margin-right: 287px;
+  }
 }
 
