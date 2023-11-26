@@ -13,14 +13,18 @@ export default function BurgerIngredientList({ list }) {
     () => list.filter((item) => item.type === 'bun'),
     [list]
   );
+
   const sauces = useMemo(
     () => list.filter((item) => item.type === 'sauce'),
     [list]
   );
+
   const main = useMemo(
     () => list.filter((item) => item.type === 'main'),
     [list]
   );
+
+
 
   return (
     <section className={`${styles.wrapper} pt-8`}>
@@ -62,7 +66,6 @@ export default function BurgerIngredientList({ list }) {
         </div>
       </article>
       </div>
-
     </section>
   );
 }

@@ -4,8 +4,8 @@ import {Logo, BurgerIcon, ListIcon, ProfileIcon} from '@ya.praktikum/react-devel
 export default function AppHeader() {
 
   return (
-    <header>
-      <nav>
+    <header className={styles.wrapper}>
+      <nav className={styles.navigation}>
         <div className={`${styles.link} pl-5 pr-5 pb-4 pt-4`}>
           <BurgerIcon type="primary"/>
           <p className="text text_type_main-default">Конструктор</p>
@@ -21,9 +21,7 @@ export default function AppHeader() {
           <ProfileIcon type="secondary"/>
           <p className="text text_type_main-default text_color_inactive">Личный кабинет</p>
         </div>
-
       </nav>
-
     </header>
   )
 }
