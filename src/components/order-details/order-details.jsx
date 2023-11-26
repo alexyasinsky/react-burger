@@ -1,5 +1,4 @@
 import styles from './order-details.module.scss';
-import { CheckMarkIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 
 export default function OrderDetails() {
 

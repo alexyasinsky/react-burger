@@ -3,8 +3,9 @@ import {Button, CurrencyIcon} from "@ya.praktikum/react-developer-burger-ui-comp
 import {useState} from "react";
 import Modal from '../../modal/modal';
 import OrderDetails from '../../order-details/order-details';
+import PropTypes from "prop-types";
 
-export default function BurgerConstructorTotal({sum}) {
+export default function BurgerConstructorTotal({sum = 0}) {
 
   const [visibilityOfOrderDetails, setVisibilityIfOrderDetails] = useState(false);
 
@@ -36,4 +37,8 @@ export default function BurgerConstructorTotal({sum}) {
       )}
     </>
   );
+}
+
+BurgerConstructorTotal.propTypes = {
+  sum : PropTypes.number
 }
