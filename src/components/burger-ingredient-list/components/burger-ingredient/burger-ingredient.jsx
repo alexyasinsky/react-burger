@@ -16,6 +16,8 @@ export default function BurgerIngredient({ ingredient }) {
     setVisibilityOfIngredientDetails(!visibilityOfIngredientDetails);
   }
 
+
+
   return (
     <>
       <figure
