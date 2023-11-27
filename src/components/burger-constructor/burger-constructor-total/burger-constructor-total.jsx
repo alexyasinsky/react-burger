@@ -1,17 +1,13 @@
 import styles from './burger-constructor-total.module.scss';
 import {Button, CurrencyIcon} from "@ya.praktikum/react-developer-burger-ui-components";
-import {useState} from "react";
 import Modal from '../../modal/modal';
 import OrderDetails from '../../order-details/order-details';
 import PropTypes from "prop-types";
+import { useModal } from '../../../hooks/useModal';
 
 export default function BurgerConstructorTotal({sum = 0}) {
 
-  const [visibilityOfOrderDetails, setVisibilityIfOrderDetails] = useState(false);
-
-  function toggelVisibilityOfOrderDetails() {
-    setVisibilityIfOrderDetails(!visibilityOfOrderDetails);
-  }
+  const { isModalOpen, openModal, closeModal } = useModal();  
 
   return (
     <>
@@ -21,17 +17,17 @@ export default function BurgerConstructorTotal({sum = 0}) {
           <CurrencyIcon type="primary" />
         </div>
         <Button
-          onClick={toggelVisibilityOfOrderDetails}
+          onClick={openModal}
           htmlType="button"
           type="primary"
           size="large"
-          extraClass="ml-10"
+          extraClass="ml-10" 
         >
           Оформить заказ
         </Button>
       </div>
-      {visibilityOfOrderDetails && (
-        <Modal onClose={toggelVisibilityOfOrderDetails}>
+      {isModalOpen && (
+        <Modal onClose={closeModal}>
           <OrderDetails />
         </Modal>
       )}

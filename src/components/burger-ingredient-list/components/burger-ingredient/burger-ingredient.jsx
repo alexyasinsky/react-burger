@@ -4,25 +4,19 @@ import {
   CurrencyIcon,
 } from '@ya.praktikum/react-developer-burger-ui-components';
 import { ingredientPropType } from '../../../../utils/prop-types';
-import { useState } from 'react';
 import Modal from '../../../modal/modal';
 import IngredientDetails from '../../../ingredient-details/ingredient-details';
+import { useModal } from '../../../../hooks/useModal';
 
 export default function BurgerIngredient({ ingredient }) {
-  const [visibilityOfIngredientDetails, setVisibilityOfIngredientDetails] =
-    useState(false);
 
-  function toggleIngredientDetails() {
-    setVisibilityOfIngredientDetails(!visibilityOfIngredientDetails);
-  }
-
-
+  const { isModalOpen, openModal, closeModal } = useModal();  
 
   return (
     <>
       <figure
         className={`${styles.card} mb-8`}
-        onClick={toggleIngredientDetails}
+        onClick={openModal}
       >
         {ingredient.quantity && (
           <Counter count={ingredient.quantity} size="default" />
@@ -42,9 +36,9 @@ export default function BurgerIngredient({ ingredient }) {
           {ingredient.name}
         </figcaption>
       </figure>
-      {visibilityOfIngredientDetails && (
+      {isModalOpen && (
         <Modal
-          onClose={toggleIngredientDetails}
+          onClose={closeModal}
           title="Детали ингредиента"
         >
           <IngredientDetails ingredient={ingredient}/>

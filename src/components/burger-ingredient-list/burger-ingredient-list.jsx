@@ -45,7 +45,7 @@ export default function BurgerIngredientList({ list }) {
         <h2 className="text text_type_main-medium pt-2 pb-6">Булки</h2>
         <div className={styles.list}>
           {buns.map((item) => {
-            return <BurgerIngredient key={uuid()} ingredient={item} />;
+            return (<BurgerIngredient key={uuid()} ingredient={item} />);
           })}
         </div>
       </article>
