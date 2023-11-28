@@ -13,7 +13,9 @@ export default function App() {
   const { getData } = useAPI();
 
   useEffect(() => {
-    getData(url).then((data) => setList(data.data));
+    getData(url)
+    .then((data) => setList(data.data))
+    .catch(console.error);
   }, [getData]);
 
   return (

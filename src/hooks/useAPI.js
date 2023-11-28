@@ -4,7 +4,7 @@ import { useCallback} from "react";
 export const useAPI = () => {
 
   const getData = useCallback(async (url) => {
-    const response = await fetch(url).catch(console.error);
+    const response = await fetch(url);
     if (response.ok) {
       return response.json();
     } else {
