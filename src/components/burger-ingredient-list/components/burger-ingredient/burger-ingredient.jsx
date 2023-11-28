@@ -9,15 +9,11 @@ import IngredientDetails from '../../../ingredient-details/ingredient-details';
 import { useModal } from '../../../../hooks/useModal';
 
 export default function BurgerIngredient({ ingredient }) {
-
-  const { isModalOpen, openModal, closeModal } = useModal();  
+  const { isModalOpen, openModal, closeModal } = useModal();
 
   return (
     <>
-      <figure
-        className={`${styles.card} mb-8`}
-        onClick={openModal}
-      >
+      <figure className={`${styles.card} mb-8`} onClick={openModal}>
         {ingredient.quantity && (
           <Counter count={ingredient.quantity} size="default" />
         )}
@@ -37,11 +33,8 @@ export default function BurgerIngredient({ ingredient }) {
         </figcaption>
       </figure>
       {isModalOpen && (
-        <Modal
-          onClose={closeModal}
-          title="Детали ингредиента"
-        >
-          <IngredientDetails ingredient={ingredient}/>
+        <Modal onClose={closeModal} title="Детали ингредиента">
+          <IngredientDetails ingredient={ingredient} />
         </Modal>
       )}
     </>

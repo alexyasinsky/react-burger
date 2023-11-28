@@ -18,7 +18,7 @@ export default function BurgerConstructor({cart}) {
       <ConstructorElement
         type="top"
         isLocked={true}
-        text={bun.name}
+        text={`${bun.name} (верх)`}
         price={bun.price}
         thumbnail={bun.image}
         extraClass='mr-4 ml-8'
@@ -42,7 +42,7 @@ export default function BurgerConstructor({cart}) {
       <ConstructorElement
         type="bottom"
         isLocked={true}
-        text={bun.name}
+        text={`${bun.name} (низ)`}
         price={bun.price}
         thumbnail={bun.image}
         extraClass='mr-4 ml-8'
