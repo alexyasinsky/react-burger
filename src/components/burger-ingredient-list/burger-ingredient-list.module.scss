@@ -1,0 +1,21 @@
+.wrapper {
+  width: 600px;
+}
+
+.tabs {
+  display: flex;
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.sorted {
+  overflow: auto;
+  height: 58vh;
+}
+
+
+
