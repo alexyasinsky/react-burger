@@ -3,19 +3,33 @@ import {
   Counter,
   CurrencyIcon,
 } from '@ya.praktikum/react-developer-burger-ui-components';
-import { ingredientPropType } from '../../../../services/prop-types';
+import {ingredientPropType} from '../../../../services/prop-types';
 import Modal from '../../../modal/modal';
 import IngredientDetails from '../../../ingredient-details/ingredient-details';
-import { useModal } from '../../../../hooks/useModal';
+import {useDispatch, useSelector} from "react-redux";
+import {setCurrentIngredient} from "../../../../services/store/ingredients/reducers";
+import {useCallback} from "react";
+import {selectCurrentIngredient} from "../../../../services/store/ingredients/selectors";
 
-export default function BurgerIngredient({ ingredient }) {
-  const { isModalOpen, openModal, closeModal } = useModal();
+export default function BurgerIngredient({ingredient}) {
+
+  const currentIngredient = useSelector(selectCurrentIngredient);
+
+  const dispatch = useDispatch();
+
+  const openIngredientDetailsModal = useCallback(() => {
+    dispatch(setCurrentIngredient(ingredient));
+  }, [dispatch, ingredient])
+
+  const closeIngredientDetailsModal = useCallback(() => {
+    dispatch(setCurrentIngredient(null));
+  }, [dispatch, ingredient])
 
   return (
     <>
-      <figure className={`${styles.card} mb-8`} onClick={openModal}>
+      <figure className={`${styles.card} mb-8`} onClick={openIngredientDetailsModal}>
         {ingredient.quantity && (
-          <Counter count={ingredient.quantity} size="default" />
+          <Counter count={ingredient.quantity} size="default"/>
         )}
         <img
           className="ml-4 mr-4 mb-4"
@@ -26,15 +40,15 @@ export default function BurgerIngredient({ ingredient }) {
           <p className="text text_type_digits-default mb-4">
             {ingredient.price}
           </p>
-          <CurrencyIcon type="primary" />
+          <CurrencyIcon type="primary"/>
         </div>
         <figcaption className="text text_type_main-default">
           {ingredient.name}
         </figcaption>
       </figure>
-      {isModalOpen && (
-        <Modal onClose={closeModal} title="Детали ингредиента">
-          <IngredientDetails ingredient={ingredient} />
+      {currentIngredient && currentIngredient._id === ingredient._id && (
+        <Modal onClose={closeIngredientDetailsModal} title="Детали ингредиента">
+          <IngredientDetails/>
         </Modal>
       )}
     </>

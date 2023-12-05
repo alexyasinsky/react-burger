@@ -1,7 +1,11 @@
 import styles from './ingredient-details.module.scss';
-import { ingredientPropType } from '../../services/prop-types';
+import {useSelector} from "react-redux";
+import {selectCurrentIngredient} from "../../services/store/ingredients/selectors";
 
-export default function IngredientDetails({ ingredient }) {
+export default function IngredientDetails() {
+
+  const ingredient = useSelector(selectCurrentIngredient);
+
   return (
     <article className={styles.card}>
       <img src={ingredient.image} alt={ingredient.name} />
@@ -45,7 +49,3 @@ export default function IngredientDetails({ ingredient }) {
     </article>
   );
 }
-
-IngredientDetails.propTypes = {
-  ingredient: ingredientPropType.isRequired,
-};

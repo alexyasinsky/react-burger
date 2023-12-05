@@ -6,7 +6,7 @@ import {cart} from "../../db/cart";
 const initialState = {
  ingredientsList: [],
  cart: cart,
- currentIngredient: {},
+ currentIngredient: null,
  order: null
 }
 
@@ -14,7 +14,9 @@ const ingredientsSlice = createSlice({
   name: 'ingredients',
   initialState: initialState,
   reducers: {
-    test: (state) => {},
+    setCurrentIngredient: (state, action) => {
+      state.currentIngredient = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchIngredients.fulfilled, (state, action) => {
@@ -25,6 +27,6 @@ const ingredientsSlice = createSlice({
 
 const { actions, reducer } = ingredientsSlice;
 
-export const { log } = actions;
+export const { setCurrentIngredient } = actions;
 
 export default reducer;
