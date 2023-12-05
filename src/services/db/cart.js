@@ -1,5 +1,5 @@
-export const cart = {
-  bun: {
+export const cart = [
+  {
     "_id": "60666c42cc7b410027a1a9b1",
     "name": "Краторная булка N-200i",
     "type": "bun",
@@ -13,7 +13,6 @@ export const cart = {
     "image_large": "https://code.s3.yandex.net/react/code/bun-02-large.png",
     "__v": 0,
   },
-  filling: [
     {
       "_id": "60666c42cc7b410027a1a9b9",
       "name": "Соус традиционный галактический",
@@ -98,6 +97,5 @@ export const cart = {
       "image_large": "https://code.s3.yandex.net/react/code/mineral_rings-large.png",
       "__v": 0,
     }
-  ]
-}
+]
 

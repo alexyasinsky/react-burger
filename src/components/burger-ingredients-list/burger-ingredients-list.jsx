@@ -1,14 +1,12 @@
-import styles from './burger-ingredient-list.module.scss';
+import styles from './burger-ingredients-list.module.scss';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useMemo, useState } from 'react';
 import BurgerIngredient from './components/burger-ingredient/burger-ingredient';
-import PropTypes from 'prop-types';
-import { ingredientPropType } from '../../services/prop-types';
 import { v4 as uuid } from 'uuid';
 import {selectIngredientsList} from '../../services/store/ingredients/selectors';
 import { useSelector } from 'react-redux';
 
-export default function BurgerIngredientList() {
+export default function BurgerIngredientsList() {
 
   const list = useSelector(selectIngredientsList);
 
@@ -72,10 +70,3 @@ export default function BurgerIngredientList() {
     </section>
   );
 }
-
-BurgerIngredientList.propTypes = {
-  cart: PropTypes.shape({
-    bun: ingredientPropType.isRequired,
-    filling: PropTypes.arrayOf(ingredientPropType).isRequired,
-  }),
-};

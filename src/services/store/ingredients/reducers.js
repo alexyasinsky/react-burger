@@ -1,10 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { fetchIngredients } from './actions';
+import {cart} from "../../db/cart";
 
 
 const initialState = {
  ingredientsList: [],
- cart: [],
+ cart: cart,
  currentIngredient: {},
  order: null
 }

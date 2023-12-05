@@ -4,13 +4,18 @@ import {
   DragIcon,
 } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useMemo } from 'react';
-import PropTypes from 'prop-types';
-import { ingredientPropType } from '../../services/prop-types';
 import { v4 as uuid } from 'uuid';
 import BurgerConstructorTotal from './burger-constructor-total/burger-constructor-total';
+import {useSelector} from "react-redux";
+import {selectCart} from "../../services/store/ingredients/selectors";
 
-export default function BurgerConstructor({ cart }) {
-  const { bun, filling } = cart;
+export default function BurgerConstructor() {
+
+  const cart = useSelector(selectCart);
+
+  const bun = cart.find(item => item.type === 'bun');
+  const filling = cart.filter(item => item.type !== 'bun');
+
   const totalSum = useMemo(
     () => bun.price * 2 + filling.reduce((acc, item) => acc + item.price, 0),
     [bun, filling]
@@ -52,10 +57,3 @@ export default function BurgerConstructor({ cart }) {
     </section>
   );
 }
-
-BurgerConstructor.propTypes = {
-  cart: PropTypes.shape({
-    bun: ingredientPropType.isRequired,
-    filling: PropTypes.arrayOf(ingredientPropType).isRequired,
-  }),
-};

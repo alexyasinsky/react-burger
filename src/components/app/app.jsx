@@ -1,7 +1,6 @@
 import AppHeader from '../app-header/app-header';
-import BurgerIngredientList from '../burger-ingredient-list/burger-ingredient-list';
+import BurgerIngredientsList from '../burger-ingredients-list/burger-ingredients-list';
 import BurgerConstructor from '../burger-constructor/burger-constructor';
-import { cart } from '../../services/db/cart';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchIngredients } from '../../services/store/ingredients/actions';
@@ -19,8 +18,8 @@ export default function App() {
     <>
       <AppHeader />
       <main>
-        <BurgerIngredientList cart={cart} />
-        <BurgerConstructor cart={cart} />
+        <BurgerIngredientsList/>
+        <BurgerConstructor/>
       </main>
     </>
   );
