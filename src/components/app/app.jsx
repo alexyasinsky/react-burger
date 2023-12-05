@@ -1,22 +1,20 @@
 import AppHeader from '../app-header/app-header';
 import BurgerIngredientList from '../burger-ingredient-list/burger-ingredient-list';
 import BurgerConstructor from '../burger-constructor/burger-constructor';
-import { cart } from '../../utils/cart';
-import { useEffect, useState } from 'react';
-import { useAPI } from '../../hooks/useAPI';
+import { cart } from '../../services/db/cart';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchIngredients } from '../../services/store/ingredients/actions';
 
 export default function App() {
 
-  const [list, setList] = useState([]);
+  const dispatch = useDispatch();
 
-  const url = 'https://norma.nomoreparties.space/api/ingredients';
-  const { getData } = useAPI();
+  useEffect(()=> {
+    dispatch(fetchIngredients());
+  }, [dispatch])
 
-  useEffect(() => {
-    getData(url)
-    .then((data) => setList(data.data))
-    .catch(console.error);
-  }, [getData]);
+  const list = useSelector(state => state.ingredientsSlice.ingredients);
 
   return (
     <>

@@ -3,7 +3,7 @@ import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useMemo, useState } from 'react';
 import BurgerIngredient from './components/burger-ingredient/burger-ingredient';
 import PropTypes from 'prop-types';
-import { ingredientPropType } from '../../utils/prop-types';
+import { ingredientPropType } from '../../services/prop-types';
 import { v4 as uuid } from 'uuid';
 
 export default function BurgerIngredientList({ list }) {
@@ -24,8 +24,6 @@ export default function BurgerIngredientList({ list }) {
     [list]
   );
 
-
-
   return (
     <section className={`${styles.wrapper} pt-8`}>
       <h1 className="text text_type_main-large pb-5">Соберите бургер</h1>
@@ -41,30 +39,30 @@ export default function BurgerIngredientList({ list }) {
         </Tab>
       </div>
       <div className={`${styles.sorted} custom-scroll`}>
-      <article>
-        <h2 className="text text_type_main-medium pt-2 pb-6">Булки</h2>
-        <div className={styles.list}>
-          {buns.map((item) => {
-            return (<BurgerIngredient key={uuid()} ingredient={item} />);
-          })}
-        </div>
-      </article>
-      <article>
-        <h2 className="text text_type_main-medium pt-2 pb-6">Соусы</h2>
-        <div className={styles.list}>
-          {sauces.map((item) => {
-            return (<BurgerIngredient key={uuid()} ingredient={item} />);
-          })}
-        </div>
-      </article>
-      <article>
-        <h2 className="text text_type_main-medium pt-2 pb-6">Начинки</h2>
-        <div className={styles.list}>
-          {main.map((item) => {
-            return (<BurgerIngredient key={uuid()} ingredient={item} />);
-          })}
-        </div>
-      </article>
+        <article>
+          <h2 className="text text_type_main-medium pt-2 pb-6">Булки</h2>
+          <div className={styles.list}>
+            {buns.map((item) => {
+              return <BurgerIngredient key={uuid()} ingredient={item} />;
+            })}
+          </div>
+        </article>
+        <article>
+          <h2 className="text text_type_main-medium pt-2 pb-6">Соусы</h2>
+          <div className={styles.list}>
+            {sauces.map((item) => {
+              return <BurgerIngredient key={uuid()} ingredient={item} />;
+            })}
+          </div>
+        </article>
+        <article>
+          <h2 className="text text_type_main-medium pt-2 pb-6">Начинки</h2>
+          <div className={styles.list}>
+            {main.map((item) => {
+              return <BurgerIngredient key={uuid()} ingredient={item} />;
+            })}
+          </div>
+        </article>
       </div>
     </section>
   );
