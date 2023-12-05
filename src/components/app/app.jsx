@@ -3,8 +3,9 @@ import BurgerIngredientList from '../burger-ingredient-list/burger-ingredient-li
 import BurgerConstructor from '../burger-constructor/burger-constructor';
 import { cart } from '../../services/db/cart';
 import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { fetchIngredients } from '../../services/store/ingredients/actions';
+
 
 export default function App() {
 
@@ -14,13 +15,11 @@ export default function App() {
     dispatch(fetchIngredients());
   }, [dispatch])
 
-  const list = useSelector(state => state.ingredientsSlice.ingredients);
-
   return (
     <>
       <AppHeader />
       <main>
-        <BurgerIngredientList list={list} cart={cart} />
+        <BurgerIngredientList cart={cart} />
         <BurgerConstructor cart={cart} />
       </main>
     </>

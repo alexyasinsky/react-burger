@@ -3,7 +3,10 @@ import { fetchIngredients } from './actions';
 
 
 const initialState = {
- ingredients: [],
+ ingredientsList: [],
+ cart: [],
+ currentIngredient: {},
+ order: null
 }
 
 const ingredientsSlice = createSlice({
@@ -14,7 +17,7 @@ const ingredientsSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(fetchIngredients.fulfilled, (state, action) => {
-      state.ingredients = [...action.payload.data];
+      state.ingredientsList = [...action.payload.data];
     })
   },
 }) 

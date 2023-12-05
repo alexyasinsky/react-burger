@@ -5,8 +5,13 @@ import BurgerIngredient from './components/burger-ingredient/burger-ingredient';
 import PropTypes from 'prop-types';
 import { ingredientPropType } from '../../services/prop-types';
 import { v4 as uuid } from 'uuid';
+import {selectIngredientsList} from '../../services/store/ingredients/selectors';
+import { useSelector } from 'react-redux';
 
-export default function BurgerIngredientList({ list }) {
+export default function BurgerIngredientList() {
+
+  const list = useSelector(selectIngredientsList);
+
   const [current, setCurrent] = useState('buns');
 
   const buns = useMemo(
@@ -69,7 +74,6 @@ export default function BurgerIngredientList({ list }) {
 }
 
 BurgerIngredientList.propTypes = {
-  list: PropTypes.arrayOf(ingredientPropType).isRequired,
   cart: PropTypes.shape({
     bun: ingredientPropType.isRequired,
     filling: PropTypes.arrayOf(ingredientPropType).isRequired,
