@@ -23,7 +23,7 @@ export default function BurgerIngredient({ingredient}) {
 
   const closeIngredientDetailsModal = useCallback(() => {
     dispatch(setCurrentIngredient(null));
-  }, [dispatch, ingredient])
+  }, [dispatch])
 
   return (
     <>

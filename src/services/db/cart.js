@@ -1,6 +1,6 @@
 export const cart = [
   {
-    "_id": "60666c42cc7b410027a1a9b1",
+    "_id": "643d69a5c3f7b9001cfa093c",
     "name": "Краторная булка N-200i",
     "type": "bun",
     "proteins": 80,
@@ -13,8 +13,9 @@ export const cart = [
     "image_large": "https://code.s3.yandex.net/react/code/bun-02-large.png",
     "__v": 0,
   },
+  
     {
-      "_id": "60666c42cc7b410027a1a9b9",
+      "_id": "643d69a5c3f7b9001cfa0944",
       "name": "Соус традиционный галактический",
       "type": "sauce",
       "proteins": 42,
@@ -28,7 +29,7 @@ export const cart = [
       "__v": 0,
     },
     {
-      "_id": "60666c42cc7b410027a1a9b4",
+      "_id": "643d69a5c3f7b9001cfa093f",
       "name": "Мясо бессмертных моллюсков Protostomia",
       "type": "main",
       "proteins": 433,
@@ -42,7 +43,7 @@ export const cart = [
       "__v": 0,
     },
     {
-      "_id": "60666c42cc7b410027a1a9bc",
+      "_id": "643d69a5c3f7b9001cfa0947",
       "name": "Плоды Фалленианского дерева",
       "type": "main",
       "proteins": 20,
@@ -56,7 +57,7 @@ export const cart = [
       "__v": 0,
     },
     {
-      "_id": "60666c42cc7b410027a1a9bb",
+      "_id": "643d69a5c3f7b9001cfa0946",
       "name": "Хрустящие минеральные кольца",
       "type": "main",
       "proteins": 808,
@@ -70,7 +71,7 @@ export const cart = [
       "__v": 0,
     },
     {
-      "_id": "60666c42cc7b410027a1a9bb",
+      "_id": "643d69a5c3f7b9001cfa0946",
       "name": "Хрустящие минеральные кольца",
       "type": "main",
       "proteins": 808,
@@ -84,7 +85,7 @@ export const cart = [
       "__v": 0,
     },
     {
-      "_id": "60666c42cc7b410027a1a9bb",
+      "_id": "643d69a5c3f7b9001cfa0946",
       "name": "Хрустящие минеральные кольца",
       "type": "main",
       "proteins": 808,

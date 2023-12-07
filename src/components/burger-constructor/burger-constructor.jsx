@@ -3,11 +3,12 @@ import {
   ConstructorElement,
   DragIcon,
 } from '@ya.praktikum/react-developer-burger-ui-components';
-import { useMemo } from 'react';
+import { useMemo, useCallback } from 'react';
 import { v4 as uuid } from 'uuid';
 import BurgerConstructorTotal from './burger-constructor-total/burger-constructor-total';
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {selectCart} from "../../services/store/ingredients/selectors";
+import { postOrder } from '../../services/store/ingredients/actions';
 
 export default function BurgerConstructor() {
 
@@ -15,6 +16,16 @@ export default function BurgerConstructor() {
 
   const bun = cart.find(item => item.type === 'bun');
   const filling = cart.filter(item => item.type !== 'bun');
+  const ids = filling.map(item => item._id);
+  ids.push(bun._id);
+
+  const dispatch = useDispatch();
+  
+  const makeOrder = useCallback(()=>{
+    dispatch(postOrder(ids));
+  }, [dispatch, ids])
+
+
 
   const totalSum = useMemo(
     () => bun.price * 2 + filling.reduce((acc, item) => acc + item.price, 0),
@@ -53,7 +64,7 @@ export default function BurgerConstructor() {
         thumbnail={bun.image}
         extraClass="mr-4 ml-8"
       />
-      <BurgerConstructorTotal sum={totalSum} />
+      <BurgerConstructorTotal sum={totalSum} makeOrder={makeOrder}/>
     </section>
   );
 }

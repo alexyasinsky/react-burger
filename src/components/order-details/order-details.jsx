@@ -1,12 +1,14 @@
 import styles from './order-details.module.scss';
+import { useSelector } from 'react-redux';
+import { selectOrderNumber } from '../../services/store/ingredients/selectors';
 
 export default function OrderDetails() {
 
-  const orderNumber = Math.floor(Math.random() * 1000000);
-
+  const number = useSelector(selectOrderNumber);
+  
   return (
     <div className={styles.wrapper}>
-      <p className={`${styles.number} text text_type_digits-large mb-8 mt-10`}>{orderNumber}</p>
+      <p className={`${styles.number} text text_type_digits-large mb-8 mt-10`}>{number}</p>
       <p className="text text_type_main-medium">
         идентификатор заказа
       </p>

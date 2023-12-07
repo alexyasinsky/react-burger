@@ -3,11 +3,22 @@ import {Button, CurrencyIcon} from "@ya.praktikum/react-developer-burger-ui-comp
 import Modal from '../../modal/modal';
 import OrderDetails from '../../order-details/order-details';
 import PropTypes from "prop-types";
-import { useModal } from '../../../hooks/useModal';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectOrderNumber } from '../../../services/store/ingredients/selectors';
+import { clearOrder } from '../../../services/store/ingredients/reducers';
+import { useCallback } from 'react';
 
-export default function BurgerConstructorTotal({sum = 0}) {
+export default function BurgerConstructorTotal({makeOrder, sum = 0}) {
 
-  const { isModalOpen, openModal, closeModal } = useModal();  
+  const orderNumber = useSelector(selectOrderNumber);
+
+  const dispatch = useDispatch();
+  
+  const closeOrderModal = useCallback(() => {
+      dispatch(clearOrder())
+    }, [dispatch],
+  )
+  
 
   return (
     <>
@@ -17,7 +28,7 @@ export default function BurgerConstructorTotal({sum = 0}) {
           <CurrencyIcon type="primary" />
         </div>
         <Button
-          onClick={openModal}
+          onClick={makeOrder}
           htmlType="button"
           type="primary"
           size="large"
@@ -26,9 +37,9 @@ export default function BurgerConstructorTotal({sum = 0}) {
           Оформить заказ
         </Button>
       </div>
-      {isModalOpen && (
-        <Modal onClose={closeModal}>
-          <OrderDetails />
+      {orderNumber && (
+        <Modal onClose={closeOrderModal}>
+          <OrderDetails/>
         </Modal>
       )}
     </>

@@ -4,7 +4,7 @@ import BurgerIngredient from './components/burger-ingredient/burger-ingredient';
 import {v4 as uuid} from 'uuid';
 import {selectIngredientsList} from '../../services/store/ingredients/selectors';
 import {useSelector} from 'react-redux';
-import {useMemo} from "react";
+import {useMemo, useState} from "react";
 
 export default function BurgerIngredientsList() {
 
