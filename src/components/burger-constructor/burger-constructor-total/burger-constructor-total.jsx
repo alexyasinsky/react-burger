@@ -8,7 +8,7 @@ import { selectOrderNumber } from '../../../services/store/ingredients/selectors
 import { clearOrder } from '../../../services/store/ingredients/reducers';
 import { useCallback } from 'react';
 
-export default function BurgerConstructorTotal({makeOrder, sum = 0}) {
+export default function BurgerConstructorTotal({orderButtonHandler, sum = 0}) {
 
   const orderNumber = useSelector(selectOrderNumber);
 
@@ -18,7 +18,6 @@ export default function BurgerConstructorTotal({makeOrder, sum = 0}) {
       dispatch(clearOrder())
     }, [dispatch],
   )
-  
 
   return (
     <>
@@ -28,7 +27,7 @@ export default function BurgerConstructorTotal({makeOrder, sum = 0}) {
           <CurrencyIcon type="primary" />
         </div>
         <Button
-          onClick={makeOrder}
+          onClick={orderButtonHandler}
           htmlType="button"
           type="primary"
           size="large"

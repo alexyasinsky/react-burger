@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchIngredients, postOrder } from './actions';
+import { fetchIngredients, makeOrder } from './actions';
 import {cart} from "../../db/cart";
 
 
@@ -20,11 +20,11 @@ const ingredientsSlice = createSlice({
       state.currentIngredient = action.payload;
     },
     clearOrder: (state) => {
-      state.order = {};
+      state.order = null;
     }
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchIngredients.pending, (state, action) => {
+    builder.addCase(fetchIngredients.pending, (state) => {
       state.loading = true;
       state.error = false;
     })
@@ -36,8 +36,8 @@ const ingredientsSlice = createSlice({
       state.loading = false;
       state.error = action.error;
     })
-    builder.addCase(postOrder.fulfilled, (state, action) => {
-      state.order = {...action.payload}
+    builder.addCase(makeOrder.fulfilled, (state, action) => {
+      state.order = action.payload.order.number
     })
   },
 

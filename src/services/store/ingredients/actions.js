@@ -8,7 +8,7 @@ export const fetchIngredients = createAsyncThunk(
   }
 )
 
-export const postOrder = createAsyncThunk(
+export const makeOrder = createAsyncThunk(
   'ingredients/postOrder',
   async (ingredientsIds) => {
     const response = await fetch('https://norma.nomoreparties.space/api/orders', {
