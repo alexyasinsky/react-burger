@@ -22,7 +22,7 @@ export default function BurgerConstructor() {
   const orderButtonHandler = useCallback(()=> {
     const ids = cart.map(item => item._id);
     dispatch(makeOrder(ids));
-  }, [dispatch])
+  }, [dispatch, cart])
   
   const totalSum = useMemo(
     () => bun.price * 2 + filling.reduce((acc, item) => acc + item.price, 0),
