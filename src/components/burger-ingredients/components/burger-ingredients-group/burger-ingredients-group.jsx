@@ -4,7 +4,7 @@ import {useSelector} from "react-redux";
 import {selectCart} from "../../../../services/store/ingredients/selectors";
 
 
-export default function BurgerIngredientsGroup({title, ingredients}) {
+export default function BurgerIngredientsGroup({ title, ingredients }) {
 
   const cart = useSelector(selectCart);
 
