@@ -11,7 +11,7 @@ import {setCurrentIngredient} from "../../../../services/store/ingredients/reduc
 import {useCallback} from "react";
 import {selectCurrentIngredient} from "../../../../services/store/ingredients/selectors";
 
-export default function BurgerIngredient({ingredient}) {
+export default function BurgerIngredient({ingredient, count}) {
 
   const currentIngredient = useSelector(selectCurrentIngredient);
 
@@ -28,8 +28,8 @@ export default function BurgerIngredient({ingredient}) {
   return (
     <>
       <figure className={`${styles.card} mb-8`} onClick={openIngredientDetailsModal}>
-        {ingredient.quantity && (
-          <Counter count={ingredient.quantity} size="default"/>
+        {count && (
+          <Counter count={count} size="default"/>
         )}
         <img
           className="ml-4 mr-4 mb-4"

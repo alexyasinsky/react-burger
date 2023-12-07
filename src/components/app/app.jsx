@@ -1,5 +1,5 @@
 import AppHeader from '../app-header/app-header';
-import BurgerIngredientsList from '../burger-ingredients-list/burger-ingredients-list';
+import BurgerIngredients from '../burger-ingredients/burger-ingredients';
 import BurgerConstructor from '../burger-constructor/burger-constructor';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
@@ -18,7 +18,7 @@ export default function App() {
     <>
       <AppHeader />
       <main>
-        <BurgerIngredientsList/>
+        <BurgerIngredients/>
         <BurgerConstructor/>
       </main>
     </>

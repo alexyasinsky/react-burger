@@ -1,12 +1,11 @@
-import styles from './burger-ingredients-list.module.scss';
+import styles from './burger-ingredients.module.scss';
 import {Tab} from '@ya.praktikum/react-developer-burger-ui-components';
-import BurgerIngredient from './components/burger-ingredient/burger-ingredient';
-import {v4 as uuid} from 'uuid';
 import {selectIngredientsList} from '../../services/store/ingredients/selectors';
 import {useSelector} from 'react-redux';
 import {useMemo, useState} from "react";
+import BurgerIngredientsGroup from "./components/burger-ingredients-group/burger-ingredients-group";
 
-export default function BurgerIngredientsList() {
+export default function BurgerIngredients() {
 
   const list = useSelector(selectIngredientsList);
 
@@ -42,30 +41,9 @@ export default function BurgerIngredientsList() {
         </Tab>
       </div>
       <div className={`${styles.sorted} custom-scroll`}>
-        <article>
-          <h2 className="text text_type_main-medium pt-2 pb-6">Булки</h2>
-          <div className={styles.list}>
-            {buns.map((item) => {
-              return <BurgerIngredient key={uuid()} ingredient={item}/>;
-            })}
-          </div>
-        </article>
-        <article>
-          <h2 className="text text_type_main-medium pt-2 pb-6">Соусы</h2>
-          <div className={styles.list}>
-            {sauces.map((item) => {
-              return <BurgerIngredient key={uuid()} ingredient={item}/>;
-            })}
-          </div>
-        </article>
-        <article>
-          <h2 className="text text_type_main-medium pt-2 pb-6">Начинки</h2>
-          <div className={styles.list}>
-            {main.map((item) => {
-              return <BurgerIngredient key={uuid()} ingredient={item}/>;
-            })}
-          </div>
-        </article>
+        <BurgerIngredientsGroup title='Булки' ingredients={buns}/>
+        <BurgerIngredientsGroup title='Соусы' ingredients={sauces}/>
+        <BurgerIngredientsGroup title='Начинки' ingredients={main}/>
       </div>
     </section>
 
