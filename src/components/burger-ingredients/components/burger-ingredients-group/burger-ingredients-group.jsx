@@ -2,7 +2,7 @@ import styles from './burger-ingredients-group.module.scss';
 import BurgerIngredient from "../burger-ingredient/burger-ingredient";
 import {useSelector} from "react-redux";
 import {forwardRef} from "react";
-import {selectFilling} from "../../../../services/store/burger-constructor/selectors";
+import {selectFilling} from "../../../../services/store/burger-constructor/reducers";
 
 
 const BurgerIngredientsGroup = forwardRef(({ title, ingredients }, ref) => {

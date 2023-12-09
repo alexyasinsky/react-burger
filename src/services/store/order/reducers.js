@@ -29,11 +29,14 @@ const orderSlice = createSlice({
       state.error = action.error;
     })
   },
+  selectors: {
+    selectOrderNumber: state => state.order
+  }
 
 })
 
-const { actions, reducer } = orderSlice;
+const { actions, reducer , selectors} = orderSlice;
 
 export const { clearOrder } = actions;
-
+export const { selectOrderNumber} = selectors;
 export default reducer;

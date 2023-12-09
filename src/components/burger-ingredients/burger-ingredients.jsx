@@ -1,6 +1,6 @@
 import styles from './burger-ingredients.module.scss';
 import {Tab} from '@ya.praktikum/react-developer-burger-ui-components';
-import {selectIngredients} from '../../services/store/burger-ingredients/selectors';
+import {selectIngredients} from '../../services/store/burger-ingredients/reducers';
 import {useSelector} from 'react-redux';
 import {useEffect, useMemo, useRef, useState} from "react";
 import BurgerIngredientsGroup from "./components/burger-ingredients-group/burger-ingredients-group";

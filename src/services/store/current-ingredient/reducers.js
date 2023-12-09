@@ -12,11 +12,16 @@ const currentIngredientSlice = createSlice({
       state.ingredient = action.payload;
     },
   },
+  selectors: {
+    selectCurrentIngredient: state => state.ingredient
+  }
 
 })
 
-const { actions, reducer } = currentIngredientSlice;
+const { actions, reducer, selectors } = currentIngredientSlice;
 
 export const { setCurrentIngredient } = actions;
+
+export const { selectCurrentIngredient } = selectors;
 
 export default reducer;

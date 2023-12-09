@@ -4,8 +4,7 @@ import Modal from '../../modal/modal';
 import OrderDetails from '../../order-details/order-details';
 import PropTypes from "prop-types";
 import { useDispatch, useSelector } from 'react-redux';
-import { selectOrderNumber } from '../../../services/store/order/selectors';
-import { clearOrder } from '../../../services/store/order/reducers';
+import { clearOrder, selectOrderNumber  } from '../../../services/store/order/reducers';
 import { useCallback } from 'react';
 
 export default function BurgerConstructorTotal({orderButtonHandler, sum = 0}) {

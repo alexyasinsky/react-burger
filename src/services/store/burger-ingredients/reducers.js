@@ -18,6 +18,9 @@ const burgerIngredientsSlice = createSlice({
     })
     builder.addCase(fetchIngredients.fulfilled, (state, action) => {
       state.loading = false;
+      action.payload.data.forEach(ingredient => {
+        ingredient.type === 'bun' ? ingredient.constructorExtraType = 'bun' : ingredient.constructorExtraType = 'filling';
+      })
       state.ingredients = [...action.payload.data];
     })
     builder.addCase(fetchIngredients.rejected, (state, action) => {
@@ -25,9 +28,13 @@ const burgerIngredientsSlice = createSlice({
       state.error = action.error;
     })
   },
-
+  selectors: {
+    selectIngredients: state => state.ingredients,
+  }
 }) 
 
-const { reducer } = burgerIngredientsSlice;
+const { reducer, selectors } = burgerIngredientsSlice;
+
+export const { selectIngredients } = selectors;
 
 export default reducer;

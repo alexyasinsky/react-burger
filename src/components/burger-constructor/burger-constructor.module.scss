@@ -13,3 +13,24 @@
     gap: 8px;
   }
 }
+
+.ingredient {
+  border: 1px solid;
+}
+
+.empty {
+  display: flex;
+  width: 536px;
+  padding: 16px 32px 16px 24px;
+  align-items: center;
+  justify-content: center;
+  background: var(--interface-modal-bg, #1C1C21);
+  border-radius: 40px;
+  min-height: 72px;
+  &_top {
+    border-radius: 88px 88px 40px 40px;
+  }
+  &_bottom {
+    border-radius: 40px 40px 88px 88px;
+  }
+}

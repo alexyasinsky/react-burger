@@ -1,1 +1,0 @@
-export const selectFilling = state => state.burgerConstructor.filling;

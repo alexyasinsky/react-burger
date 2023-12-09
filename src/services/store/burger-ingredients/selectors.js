@@ -1,1 +1,0 @@
-export const selectIngredients = state => state.burgerIngredients.ingredients;
