@@ -1,6 +1,6 @@
 import styles from './order-details.module.scss';
 import { useSelector } from 'react-redux';
-import { selectOrderNumber } from '../../services/store/ingredients/selectors';
+import { selectOrderNumber } from '../../services/store/order/selectors';
 
 export default function OrderDetails() {
 

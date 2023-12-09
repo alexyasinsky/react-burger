@@ -1,13 +1,13 @@
 import styles from './burger-ingredients-group.module.scss';
 import BurgerIngredient from "../burger-ingredient/burger-ingredient";
 import {useSelector} from "react-redux";
-import {selectCart} from "../../../../services/store/ingredients/selectors";
 import {forwardRef} from "react";
+import {selectFilling} from "../../../../services/store/burger-constructor/selectors";
 
 
 const BurgerIngredientsGroup = forwardRef(({ title, ingredients }, ref) => {
 
-  const cart = useSelector(selectCart);
+  const cart = useSelector(selectFilling);
 
   const countingData = {};
   ingredients.forEach(item => {

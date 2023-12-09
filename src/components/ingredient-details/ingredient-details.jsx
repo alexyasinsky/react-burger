@@ -1,6 +1,6 @@
 import styles from './ingredient-details.module.scss';
 import {useSelector} from "react-redux";
-import {selectCurrentIngredient} from "../../services/store/ingredients/selectors";
+import {selectCurrentIngredient} from "../../services/store/current-ingredient/selectors";
 
 export default function IngredientDetails() {
 

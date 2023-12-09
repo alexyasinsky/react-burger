@@ -1,0 +1,1 @@
+export const selectOrderNumber = state => state.order.order;

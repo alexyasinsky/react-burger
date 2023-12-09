@@ -3,7 +3,7 @@ import BurgerIngredients from '../burger-ingredients/burger-ingredients';
 import BurgerConstructor from '../burger-constructor/burger-constructor';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { fetchIngredients } from '../../services/store/ingredients/actions';
+import { fetchIngredients } from '../../services/store/burger-ingredients/actions';
 
 
 export default function App() {

@@ -7,9 +7,9 @@ import {ingredientPropType} from '../../../../services/prop-types';
 import Modal from '../../../modal/modal';
 import IngredientDetails from '../../../ingredient-details/ingredient-details';
 import {useDispatch, useSelector} from "react-redux";
-import {setCurrentIngredient} from "../../../../services/store/ingredients/reducers";
+import {setCurrentIngredient} from "../../../../services/store/current-ingredient/reducers";
 import {useCallback} from "react";
-import {selectCurrentIngredient} from "../../../../services/store/ingredients/selectors";
+import {selectCurrentIngredient} from "../../../../services/store/current-ingredient/selectors";
 
 export default function BurgerIngredient({ingredient, count}) {
 

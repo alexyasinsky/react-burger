@@ -7,18 +7,18 @@ import { useMemo, useCallback } from 'react';
 import { v4 as uuid } from 'uuid';
 import BurgerConstructorTotal from './burger-constructor-total/burger-constructor-total';
 import {useDispatch, useSelector} from "react-redux";
-import {selectCart} from "../../services/store/ingredients/selectors";
-import { makeOrder } from '../../services/store/ingredients/actions';
+import { makeOrder } from '../../services/store/order/actions';
+import {selectFilling} from "../../services/store/burger-constructor/selectors";
 
 export default function BurgerConstructor() {
 
-  const cart = useSelector(selectCart);
+  const cart = useSelector(selectFilling);
 
   const bun = cart.find(item => item.type === 'bun');
   const filling = cart.filter(item => item.type !== 'bun');
 
   const dispatch = useDispatch();
-
+ //булку снизу и сверху массива ids
   const orderButtonHandler = useCallback(()=> {
     const ids = cart.map(item => item._id);
     dispatch(makeOrder(ids));

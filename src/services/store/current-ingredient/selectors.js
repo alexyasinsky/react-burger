@@ -1,0 +1,1 @@
+export const selectCurrentIngredient = state => state.currentIngredient.ingredient;

@@ -1,15 +1,7 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
-
-export const fetchIngredients = createAsyncThunk(
-  'ingredients/fetchIngredients',
-  async () => {
-    const response = await fetch('https://norma.nomoreparties.space/api/ingredients');
-    return response.json();
-  }
-)
+import {createAsyncThunk} from "@reduxjs/toolkit";
 
 export const makeOrder = createAsyncThunk(
-  'ingredients/postOrder',
+  'burger-ingredients/postOrder',
   async (ingredientsIds) => {
     const response = await fetch('https://norma.nomoreparties.space/api/orders', {
       method: 'POST',
