@@ -2,9 +2,10 @@ import styles from './burger-ingredients-group.module.scss';
 import BurgerIngredient from "../burger-ingredient/burger-ingredient";
 import {useSelector} from "react-redux";
 import {selectCart} from "../../../../services/store/ingredients/selectors";
+import {forwardRef} from "react";
 
 
-export default function BurgerIngredientsGroup({ title, ingredients }) {
+const BurgerIngredientsGroup = forwardRef(({ title, ingredients }, ref) => {
 
   const cart = useSelector(selectCart);
 
@@ -14,7 +15,7 @@ export default function BurgerIngredientsGroup({ title, ingredients }) {
   })
 
   return (
-    <article>
+    <article ref={ref}>
       <h2 className="text text_type_main-medium pt-2 pb-6">{title}</h2>
       <div className={styles.group}>
         {ingredients.map((item) => {
@@ -23,4 +24,6 @@ export default function BurgerIngredientsGroup({ title, ingredients }) {
       </div>
     </article>
   )
-}
+})
+
+export default BurgerIngredientsGroup;

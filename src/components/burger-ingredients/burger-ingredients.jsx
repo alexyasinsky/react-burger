@@ -2,14 +2,12 @@ import styles from './burger-ingredients.module.scss';
 import {Tab} from '@ya.praktikum/react-developer-burger-ui-components';
 import {selectIngredientsList} from '../../services/store/ingredients/selectors';
 import {useSelector} from 'react-redux';
-import {useMemo, useState} from "react";
+import {useEffect, useMemo, useRef, useState} from "react";
 import BurgerIngredientsGroup from "./components/burger-ingredients-group/burger-ingredients-group";
 
 export default function BurgerIngredients() {
 
   const list = useSelector(selectIngredientsList);
-
-  const [currentTab, setCurrentTab] = useState('buns');
 
   const buns = useMemo(
     () => list.filter((item) => item.type === 'bun'),
@@ -26,24 +24,51 @@ export default function BurgerIngredients() {
     [list]
   );
 
+  const [currentTab, setCurrentTab] = useState('buns');
+  const [tabsRect, setTabsRect] = useState({});
+
+  const tabsRef = useRef();
+
+  const ingredientsGroupRef = {
+    buns: useRef(),
+    sauces: useRef(),
+    main: useRef(),
+  }
+  function scrollHandler() {
+    const { y: bunY }= ingredientsGroupRef.buns.current.getBoundingClientRect();
+    const { y: saucesY }= ingredientsGroupRef.sauces.current.getBoundingClientRect();
+    const { y: mainY }= ingredientsGroupRef.main.current.getBoundingClientRect();
+    Math.abs(bunY) - tabsRect.y <= 100  && setCurrentTab('buns');
+    Math.abs(saucesY) - tabsRect.y <= 100  && setCurrentTab('sauces');
+    Math.abs(mainY) - tabsRect.y <= 100  && setCurrentTab('main');
+  }
+  function saucesTabClickHandler(e) {
+    setCurrentTab(e);
+    ingredientsGroupRef[e].current.scrollIntoView({ behavior: "smooth" })
+  }
+
+  useEffect(() => {
+    setTabsRect(tabsRef.current.getBoundingClientRect());
+  }, []);
+
   return (
     <section className={`${styles.wrapper} pt-8`}>
       <h1 className="text text_type_main-large pb-5">Соберите бургер</h1>
-      <div className={`${styles.tabs} pb-5`}>
-        <Tab value="buns" active={currentTab === 'buns'} onClick={setCurrentTab}>
+      <div className={`${styles.tabs} pb-5`} ref={tabsRef}>
+        <Tab value="buns" active={currentTab === 'buns'} onClick={saucesTabClickHandler}>
           Булки
         </Tab>
-        <Tab value="sauces" active={currentTab === 'sauces'} onClick={setCurrentTab}>
+        <Tab value="sauces" active={currentTab === 'sauces'} onClick={saucesTabClickHandler}>
           Соусы
         </Tab>
-        <Tab value="main" active={currentTab === 'main'} onClick={setCurrentTab}>
+        <Tab value="main" active={currentTab === 'main'} onClick={saucesTabClickHandler}>
           Начинки
         </Tab>
       </div>
-      <div className={`${styles.list} custom-scroll`}>
-        <BurgerIngredientsGroup title='Булки' ingredients={buns}/>
-        <BurgerIngredientsGroup title='Соусы' ingredients={sauces}/>
-        <BurgerIngredientsGroup title='Начинки' ingredients={main}/>
+      <div className={`${styles.list} custom-scroll`} onScroll={scrollHandler}>
+        <BurgerIngredientsGroup title='Булки' ingredients={buns} ref={ingredientsGroupRef.buns}/>
+        <BurgerIngredientsGroup title='Соусы' ingredients={sauces} ref={ingredientsGroupRef.sauces}/>
+        <BurgerIngredientsGroup title='Начинки' ingredients={main} ref={ingredientsGroupRef.main}/>
       </div>
     </section>
 
