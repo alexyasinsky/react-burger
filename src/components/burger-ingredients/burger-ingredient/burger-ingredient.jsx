@@ -3,13 +3,13 @@ import {
   Counter,
   CurrencyIcon,
 } from '@ya.praktikum/react-developer-burger-ui-components';
-import {ingredientPropType} from '../../../../services/prop-types';
-import Modal from '../../../modal/modal';
-import IngredientDetails from '../../../ingredient-details/ingredient-details';
+import {ingredientPropType} from '../../../services/prop-types';
+import Modal from '../../modal/modal';
+import IngredientDetails from '../../ingredient-details/ingredient-details';
 import {useDispatch, useSelector} from "react-redux";
-import {setCurrentIngredient} from "../../../../services/store/current-ingredient/reducers";
+import {setCurrentIngredient} from "../../../services/store/current-ingredient/reducers";
 import {useCallback} from "react";
-import {selectCurrentIngredient} from "../../../../services/store/current-ingredient/reducers";
+import {selectCurrentIngredient} from "../../../services/store/current-ingredient/reducers";
 import {useDrag} from "react-dnd";
 import PropTypes from "prop-types";
 
