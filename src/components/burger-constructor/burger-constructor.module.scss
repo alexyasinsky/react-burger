@@ -15,18 +15,22 @@
 }
 
 .ingredient {
-  border: 1px solid;
+  border: 1px solid var(--interface-modal-bg, #1C1C21);
+}
+
+.ingredient_hovered {
+  border: 1px solid var(--interface-accent, #4C4CFF);
 }
 
 .empty {
   display: flex;
-  width: 536px;
+  width: 534px;
   padding: 16px 32px 16px 24px;
   align-items: center;
   justify-content: center;
   background: var(--interface-modal-bg, #1C1C21);
   border-radius: 40px;
-  min-height: 72px;
+  min-height: 80px;
   &_top {
     border-radius: 88px 88px 40px 40px;
   }

@@ -3,12 +3,10 @@ import {
   ConstructorElement,
   DragIcon,
 } from '@ya.praktikum/react-developer-burger-ui-components';
-import { useMemo, useCallback } from 'react';
 import { v4 as uuid } from 'uuid';
 import BurgerConstructorTotal from './burger-constructor-total/burger-constructor-total';
 import {useDispatch, useSelector} from "react-redux";
-import { makeOrder } from '../../services/store/order/actions';
-import {setBun, addFilling, selectBun, selectFilling} from "../../services/store/burger-constructor/reducers";
+import {setBun, addFilling, selectBun, selectFilling, removeFilling} from "../../services/store/burger-constructor/reducers";
 import {useDrop} from "react-dnd";
 
 export default function BurgerConstructor() {
@@ -17,16 +15,6 @@ export default function BurgerConstructor() {
   const filling = useSelector(selectFilling);
 
   const dispatch = useDispatch();
- //булку снизу и сверху массива ids
-  const orderButtonHandler = useCallback(()=> {
-    const ids = filling.map(item => item._id);
-    dispatch(makeOrder(ids));
-  }, [dispatch, filling])
-  
-  // const totalSum = useMemo(
-  //   () => bun.price * 2 + filling.reduce((acc, item) => acc + item.price, 0),
-  //   [bun, filling]
-  // );
 
   const [{isTopBunHover}, dropTopBunTarget] = useDrop({
     accept: "bun",
@@ -66,20 +54,24 @@ export default function BurgerConstructor() {
     dispatch(addFilling(ingredient));
   }
 
-  const bunBorderColor = {borderColor: isTopBunHover || isBottomBunHover ? 'var(--interface-accent, #4C4CFF)' : 'var(--interface-modal-bg, #1C1C21)'};
+  const bunExtraClass = isTopBunHover || isBottomBunHover ? styles.ingredient_hovered : styles.ingredient;
 
-  const fillingBorderColor = {borderColor: isFillingHover ? 'var(--interface-accent, #4C4CFF)' : 'var(--interface-modal-bg, #1C1C21)'};
+  const fillingExtraClass = isFillingHover ? styles.ingredient_hovered : styles.ingredient;
+
+  function deleteButtonHandler(e){
+    const ind = e.target.parentElement.parentElement.parentElement.parentElement.parentElement.dataset.ind;
+    dispatch(removeFilling(ind));
+  }
 
   return (
     <section className="pt-20">
       {bun === null ?
-        (<div className={`${styles.empty} ${styles.empty_top} ${styles.ingredient} ml-8`} ref={dropTopBunTarget} style={bunBorderColor}>
+        (<div className={`${styles.empty} ${styles.empty_top} ${bunExtraClass} ml-8 mr-4`} ref={dropTopBunTarget}>
         <p className="text text_type_main-default">Выберите булку</p>
       </div>)
         :
         (<div
           ref={dropTopBunTarget}
-          style={bunBorderColor}
         >
           <ConstructorElement
             type="top"
@@ -87,29 +79,34 @@ export default function BurgerConstructor() {
             text={`${bun.name} (верх)`}
             price={bun.price}
             thumbnail={bun.image}
-            extraClass="mr-4 ml-8"
+            extraClass={`${bunExtraClass} mr-4 ml-8`}
           />
         </div>)
       }
       {filling.length === 0 ?
         (
-          <div className={`${styles.empty} ${styles.ingredient} ml-8 mt-3 mb-3`} ref={dropFillingTarget} style={fillingBorderColor} >
+          <div className={`${styles.empty} ${fillingExtraClass} ml-8 mt-2 mb-2`} ref={dropFillingTarget} >
           <p className="text text_type_main-default">Выберите начинку</p>
       </div>
         ) : (
           <div
-            className={`${styles.filling}custom-scroll pr-2`}
+            className={`${styles.filling} custom-scroll pr-2`}
             ref={dropFillingTarget}
-            style={fillingBorderColor}
           >
-                {filling.map((item) => {
+                {filling.map((item, ind) => {
                     return (
-                      <div className={styles.filling__item} key={uuid()}>
-                        <DragIcon type="primary" />
+                      <div
+                        className={styles.filling__item}
+                        key={uuid()}
+                        data-ind={ind}
+                      >
+                        <DragIcon type="primary"/>
                         <ConstructorElement
                           text={item.name}
                           price={item.price}
                           thumbnail={item.image}
+                          extraClass={fillingExtraClass}
+                          handleClose={deleteButtonHandler}
                         />
                       </div>
                     );
@@ -117,13 +114,12 @@ export default function BurgerConstructor() {
                 </div>)
       }
       {bun === null ?
-        (<div className={`${styles.empty} ${styles.empty_bottom} ${styles.ingredient} ml-8`} ref={dropBottomBunTarget} style={bunBorderColor}>
+        (<div className={`${styles.empty} ${styles.empty_bottom} ${bunExtraClass} ml-8 mr-4`} ref={dropBottomBunTarget}>
         <p className="text text_type_main-default">Выберите булку</p>
       </div>)
         :
          ( <div
              ref={dropBottomBunTarget}
-             style={bunBorderColor}
            >
              <ConstructorElement
                type="bottom"
@@ -131,49 +127,13 @@ export default function BurgerConstructor() {
                text={`${bun.name} (низ)`}
                price={bun.price}
                thumbnail={bun.image}
-               extraClass="mr-4 ml-8"
+               extraClass={`${bunExtraClass} mr-4 ml-8`}
              />
          </div>
 
         )
       }
-      {/*<BurgerConstructorTotal sum={totalSum} orderButtonHandler={orderButtonHandler}/>*/}
+      <BurgerConstructorTotal/>
     </section>
   )
-
-  // return (
-  //   <section className="pt-20">
-  //     <ConstructorElement
-  //       type="top"
-  //       isLocked={true}
-  //       text={`${bun.name} (верх)`}
-  //       price={bun.price}
-  //       thumbnail={bun.image}
-  //       extraClass="mr-4 ml-8"
-  //     />
-  //     <div className={`${styles.filling} custom-scroll pr-2`}>
-  //       {filling.map((item) => {
-  //         return (
-  //           <div className={styles.filling__item} key={uuid()}>
-  //             <DragIcon type="primary" />
-  //             <ConstructorElement
-  //               text={item.name}
-  //               price={item.price}
-  //               thumbnail={item.image}
-  //             />
-  //           </div>
-  //         );
-  //       })}
-  //     </div>
-  //     <ConstructorElement
-  //       type="bottom"
-  //       isLocked={true}
-  //       text={`${bun.name} (низ)`}
-  //       price={bun.price}
-  //       thumbnail={bun.image}
-  //       extraClass="mr-4 ml-8"
-  //     />
-  //     <BurgerConstructorTotal sum={totalSum} orderButtonHandler={orderButtonHandler}/>
-  //   </section>
-  // );
 }

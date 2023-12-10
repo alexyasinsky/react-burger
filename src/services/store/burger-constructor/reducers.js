@@ -1,4 +1,3 @@
-import {cart} from "../../db/cart";
 import {createSlice} from "@reduxjs/toolkit";
 
 const initialState = {
@@ -15,6 +14,9 @@ const burgerConstructorSlice = createSlice({
     },
     addFilling: (state, action) => {
       state.filling.push(action.payload);
+    },
+    removeFilling: (state, action) => {
+      state.filling.splice(action.payload, 1);
     }
   },
   selectors: {
@@ -25,6 +27,6 @@ const burgerConstructorSlice = createSlice({
 
 const {reducer, selectors, actions} = burgerConstructorSlice;
 
-export const {setBun, addFilling} = actions;
+export const {setBun, addFilling, removeFilling} = actions;
 export const {selectBun, selectFilling} = selectors;
 export default reducer;
