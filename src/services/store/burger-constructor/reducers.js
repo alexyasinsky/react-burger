@@ -21,6 +21,10 @@ const burgerConstructorSlice = createSlice({
     clearConstructorState: (state) => {
       state.bun = null;
       state.filling = [];
+    },
+    sortFilling: (state, action) => {
+      state.filling.splice(action.payload.from, 1);
+      state.filling.splice(action.payload.to, 0, action.payload.item);
     }
   },
   selectors: {
@@ -31,6 +35,6 @@ const burgerConstructorSlice = createSlice({
 
 const {reducer, selectors, actions} = burgerConstructorSlice;
 
-export const {setBun, addFilling, removeFilling, clearConstructorState} = actions;
+export const {setBun, addFilling, removeFilling, clearConstructorState, sortFilling} = actions;
 export const {selectBun, selectFilling} = selectors;
 export default reducer;

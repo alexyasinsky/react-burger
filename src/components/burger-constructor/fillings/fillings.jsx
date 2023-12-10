@@ -6,7 +6,7 @@ import {addFilling, selectFilling} from "../../../services/store/burger-construc
 import {useDispatch, useSelector} from "react-redux";
 
 
-export default function Fillings () {
+export default function Fillings() {
 
   const filling = useSelector(selectFilling);
 
@@ -30,9 +30,9 @@ export default function Fillings () {
 
   return (
     <>
-      { filling.length === 0 ?
+      {filling.length === 0 ?
         (
-          <div className={`${styles.empty} ${fillingExtraClass} ml-8 mt-2 mb-2`} ref={dropFillingTarget} >
+          <div className={`${styles.empty} ${fillingExtraClass} ml-8 mt-2 mb-2`} ref={dropFillingTarget}>
             <p className="text text_type_main-default">Выберите начинку</p>
           </div>
         ) : (
@@ -41,16 +41,14 @@ export default function Fillings () {
             ref={dropFillingTarget}
           >
             {filling.map((item, index) => {
-
               return (
-                <FillingItem item={item} key={uuid()} index={index} extraClass={fillingExtraClass} />
+                <FillingItem ingredient={item} key={uuid()} index={index} extraClass={fillingExtraClass}/>
               );
             })}
           </div>
         )
       }
     </>
-
 
 
   )

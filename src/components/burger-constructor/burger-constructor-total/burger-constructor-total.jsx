@@ -14,10 +14,13 @@ export default function BurgerConstructorTotal() {
   const bun = useSelector(selectBun);
   const filling = useSelector(selectFilling);
 
+
   const dispatch = useDispatch();
 
   const orderButtonHandler = useCallback(()=> {
+    console.log(bun)
     const ingredients = [bun, ...filling, bun];
+    console.log(ingredients);
     const ids = ingredients.map(item => item._id);
     dispatch(makeOrder(ids));
   }, [dispatch, filling])
