@@ -23,7 +23,7 @@ const BurgerIngredientsGroup = forwardRef(({ title, ingredients }, ref) => {
       <h2 className="text text_type_main-medium pt-2 pb-6">{title}</h2>
       <div className={styles.group}>
         {ingredients.map((item) => {
-          return <BurgerIngredient key={item._id} ingredient={item} count={countingData[item._id]}/>;
+          return (<BurgerIngredient key={item._id} ingredient={item} count={countingData[item._id]}/>);
         })}
       </div>
     </article>
