@@ -18,9 +18,8 @@ export default function BurgerConstructorTotal() {
   const dispatch = useDispatch();
 
   const orderButtonHandler = useCallback(()=> {
-    console.log(bun)
+    if (bun === null || filling.length === 0) return
     const ingredients = [bun, ...filling, bun];
-    console.log(ingredients);
     const ids = ingredients.map(item => item._id);
     dispatch(makeOrder(ids));
   }, [dispatch, filling])

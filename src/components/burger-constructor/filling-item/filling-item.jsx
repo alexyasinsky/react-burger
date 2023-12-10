@@ -65,9 +65,8 @@ export default function FillingItem ({ingredient, index, extraClass}) {
       className={styles.item}
       data-index={index}
       style={{ opacity }} data-handler-id={handlerId}
-      ref={ref}
     >
-      <div >
+      <div ref={ref}>
         <DragIcon type="primary"/>
       </div>
       <ConstructorElement
