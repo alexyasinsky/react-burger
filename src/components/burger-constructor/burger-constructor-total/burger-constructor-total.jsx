@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 import { useDispatch, useSelector } from 'react-redux';
 import { clearOrder, selectOrderNumber  } from '../../../services/store/order/reducers';
 import {useCallback, useMemo} from 'react';
-import {selectBun, selectFilling} from "../../../services/store/burger-constructor/reducers";
+import {clearConstructorState, selectBun, selectFilling} from "../../../services/store/burger-constructor/reducers";
 import {makeOrder} from "../../../services/store/order/actions";
 
 export default function BurgerConstructorTotal() {
@@ -33,7 +33,8 @@ export default function BurgerConstructorTotal() {
     }, [bun, filling]);
 
   const closeOrderModal = useCallback(() => {
-      dispatch(clearOrder())
+      dispatch(clearOrder());
+      dispatch(clearConstructorState())
     }, [dispatch],
   )
 
