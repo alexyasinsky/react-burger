@@ -3,6 +3,8 @@ import BurgerIngredient from "../burger-ingredient/burger-ingredient";
 import {useSelector} from "react-redux";
 import {forwardRef} from "react";
 import {selectBun, selectFilling} from "../../../services/store/burger-constructor/reducers";
+import PropTypes from "prop-types";
+import {ingredientPropType} from "../../../services/prop-types";
 
 
 const BurgerIngredientsGroup = forwardRef(({ title, ingredients }, ref) => {
@@ -28,4 +30,8 @@ const BurgerIngredientsGroup = forwardRef(({ title, ingredients }, ref) => {
   )
 })
 
+BurgerIngredientsGroup.propTypes = {
+  title: PropTypes.string,
+  ingredients: PropTypes.arrayOf(ingredientPropType).isRequired
+}
 export default BurgerIngredientsGroup;

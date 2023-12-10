@@ -3,6 +3,7 @@ import {ConstructorElement} from "@ya.praktikum/react-developer-burger-ui-compon
 import {useSelector} from "react-redux";
 import {selectBun} from "../../../services/store/burger-constructor/reducers";
 import {forwardRef} from "react";
+import PropTypes from "prop-types";
 
 
 const Bun = forwardRef(({viewType, isHover}, ref) => {
@@ -35,5 +36,10 @@ const Bun = forwardRef(({viewType, isHover}, ref) => {
       }
     </>
   )})
+
+Bun.propTypes = {
+  viewType : PropTypes.string.isRequired,
+  isHover: PropTypes.bool.isRequired
+}
 
 export default Bun;

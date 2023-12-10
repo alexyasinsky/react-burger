@@ -4,6 +4,8 @@ import {removeFilling, sortFilling} from "../../../services/store/burger-constru
 import {useDispatch} from "react-redux";
 import {useRef} from "react";
 import {useDrag, useDrop} from "react-dnd";
+import {ingredientPropType} from "../../../services/prop-types";
+import PropTypes from "prop-types";
 
 
 export default function FillingItem ({ingredient, index, extraClass}) {
@@ -78,4 +80,10 @@ export default function FillingItem ({ingredient, index, extraClass}) {
       />
     </div>
   )
+}
+
+FillingItem.propTypes = {
+  ingredient: ingredientPropType.isRequired,
+  index: PropTypes.number.isRequired,
+  extraClass: PropTypes.string.isRequired
 }
