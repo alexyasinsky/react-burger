@@ -1,10 +1,8 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-
-const url = 'https://norma.nomoreparties.space/api/orders';
+import {makeRequest, url} from "../../../utils/api";
 export const makeOrder = createAsyncThunk(
   'burger-ingredients/postOrder',
-  async (ingredientsIds) => {
-    const response = await fetch(url, {
+  async (ingredientsIds) => makeRequest(`${url}/orders`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8'
@@ -12,7 +10,5 @@ export const makeOrder = createAsyncThunk(
       body: JSON.stringify({
         "ingredients": ingredientsIds
       })
-    });
-    return response.json();
-  }
+    })
 )

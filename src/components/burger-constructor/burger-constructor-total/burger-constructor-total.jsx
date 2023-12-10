@@ -2,7 +2,6 @@ import styles from './burger-constructor-total.module.scss';
 import {Button, CurrencyIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import Modal from '../../modal/modal';
 import OrderDetails from '../../order-details/order-details';
-import PropTypes from "prop-types";
 import { useDispatch, useSelector } from 'react-redux';
 import { clearOrder, selectOrderNumber  } from '../../../services/store/order/reducers';
 import {useCallback, useMemo} from 'react';
@@ -64,8 +63,4 @@ export default function BurgerConstructorTotal() {
       )}
     </>
   );
-}
-
-BurgerConstructorTotal.propTypes = {
-  sum : PropTypes.number
 }

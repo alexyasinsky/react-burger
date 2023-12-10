@@ -1,4 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
+import {v4 as uuid} from "uuid";
 
 const initialState = {
   bun: null,
@@ -13,7 +14,9 @@ const burgerConstructorSlice = createSlice({
       state.bun = action.payload;
     },
     addFilling: (state, action) => {
-      state.filling.push(action.payload);
+      const fillingItem = {...action.payload};
+      fillingItem.constructorId = uuid();
+      state.filling.push(fillingItem);
     },
     removeFilling: (state, action) => {
       state.filling.splice(action.payload, 1);

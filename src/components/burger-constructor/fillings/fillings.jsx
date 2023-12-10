@@ -1,6 +1,5 @@
 import styles from "./fillings.module.scss";
 import {useDrop} from "react-dnd";
-import {v4 as uuid} from "uuid";
 import FillingItem from "../filling-item/filling-item";
 import {addFilling, selectFilling} from "../../../services/store/burger-constructor/reducers";
 import {useDispatch, useSelector} from "react-redux";
@@ -42,7 +41,7 @@ export default function Fillings() {
           >
             {filling.map((item, index) => {
               return (
-                <FillingItem ingredient={item} key={uuid()} index={index} extraClass={fillingExtraClass}/>
+                <FillingItem ingredient={item} key={item.constructorId} index={index} extraClass={fillingExtraClass}/>
               );
             })}
           </div>

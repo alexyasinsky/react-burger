@@ -4,7 +4,7 @@ import {useSelector} from "react-redux";
 import {forwardRef} from "react";
 import {selectBun, selectFilling} from "../../../services/store/burger-constructor/reducers";
 import PropTypes from "prop-types";
-import {ingredientPropType} from "../../../services/prop-types";
+import {ingredientPropType} from "../../../utils/prop-types";
 
 
 const BurgerIngredientsGroup = forwardRef(({ title, ingredients }, ref) => {
