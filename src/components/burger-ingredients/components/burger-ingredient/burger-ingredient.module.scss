@@ -2,10 +2,19 @@
   text-align: center;
   width: 272px;
   position: relative;
+  img {
+    width: 200px;
+    height: 120px;
+    object-fit: cover;
+  }
 }
 
 .price {
   display: flex;
   justify-content: center;
   gap: 8px;
+}
+
+.dragged {
+  padding: 10px;
 }

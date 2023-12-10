@@ -11,6 +11,7 @@ import {setCurrentIngredient} from "../../../../services/store/current-ingredien
 import {useCallback} from "react";
 import {selectCurrentIngredient} from "../../../../services/store/current-ingredient/reducers";
 import {useDrag} from "react-dnd";
+import PropTypes from "prop-types";
 
 export default function BurgerIngredient({ingredient, count}) {
 
@@ -26,12 +27,9 @@ export default function BurgerIngredient({ingredient, count}) {
     dispatch(setCurrentIngredient(null));
   }, [dispatch])
 
-  const [{isDrag}, dragRef] = useDrag({
+  const [, dragRef] = useDrag({
     type: ingredient.constructorExtraType,
     item: ingredient,
-    collect: monitor => ({
-      isDrag: monitor.isDragging()
-    })
   });
 
   return (
@@ -41,7 +39,7 @@ export default function BurgerIngredient({ingredient, count}) {
           <Counter count={count} size="default"/>
         )}
         <img
-          className="ml-4 mr-4 mb-4"
+          className={` ml-4 mr-4 mb-4`}
           src={ingredient.image}
           alt={ingredient.name}
           ref={dragRef}
@@ -67,4 +65,5 @@ export default function BurgerIngredient({ingredient, count}) {
 
 BurgerIngredient.propTypes = {
   ingredient: ingredientPropType.isRequired,
+  count: PropTypes.number
 };
