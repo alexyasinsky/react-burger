@@ -1,15 +1,17 @@
-.filling {
-  margin-top: 10px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-bottom: 10px;
-  max-height: 33vh;
-  overflow: auto;
-
-  &__item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+.ingredient {
+  border: 1px solid var(--interface-modal-bg, #1C1C21);
+  &_hovered {
+    border: 1px solid var(--interface-accent, #4C4CFF);
   }
+}
+
+.empty {
+  display: flex;
+  width: 534px;
+  padding: 16px 32px 16px 24px;
+  align-items: center;
+  justify-content: center;
+  background: var(--interface-modal-bg, #1C1C21);
+  border-radius: 40px;
+  min-height: 80px;
 }

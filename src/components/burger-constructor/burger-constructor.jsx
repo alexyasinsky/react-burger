@@ -1,60 +1,46 @@
-import styles from './burger-constructor.module.scss';
-import {ConstructorElement, DragIcon} from "@ya.praktikum/react-developer-burger-ui-components";
-import {useMemo} from "react";
-import PropTypes from "prop-types";
-import {ingredientPropType} from "../../utils/prop-types";
-import { v4 as uuid } from 'uuid';
 import BurgerConstructorTotal from './burger-constructor-total/burger-constructor-total';
 
+import Fillings from "./fillings/fillings";
+import Bun from "./bun/bun";
+import {useDispatch} from "react-redux";
+import {useDrop} from "react-dnd";
+import {setBun} from "../../services/store/burger-constructor/reducers";
 
+export default function BurgerConstructor() {
 
-export default function BurgerConstructor({cart}) {
+  const dispatch = useDispatch();
 
-  const {bun, filling} = cart;
-  const totalSum = useMemo(() => bun.price * 2 + filling.reduce((acc, item) => acc + item.price, 0), [bun, filling]);
+  const [{isTopBunHover}, topBunDropTarget] = useDrop({
+    accept: "bun",
+    drop(ingredient) {
+      bunDropHandler(ingredient);
+    },
+    collect: monitor => ({
+      isTopBunHover: monitor.isOver(),
+    })
+  });
+
+  const [{isBottomBunHover}, bottomBunDropTarget] = useDrop({
+    accept: "bun",
+    drop(ingredient) {
+      bunDropHandler(ingredient);
+    },
+    collect: monitor => ({
+      isBottomBunHover: monitor.isOver(),
+    })
+  });
+  function bunDropHandler(ingredient) {
+    dispatch(setBun(ingredient));
+  }
+
+  const isBunHover = isTopBunHover || isBottomBunHover;
 
   return (
-    <section className='pt-20'>
-      <ConstructorElement
-        type="top"
-        isLocked={true}
-        text={`${bun.name} (верх)`}
-        price={bun.price}
-        thumbnail={bun.image}
-        extraClass='mr-4 ml-8'
-      />
-      <div className={`${styles.filling} custom-scroll pr-2`}>
-        {
-          filling.map(((item) => {
-            return (
-              <div className={styles.filling__item} key={uuid()}>
-                <DragIcon type="primary"/>
-                <ConstructorElement
-                  text={item.name}
-                  price={item.price}
-                  thumbnail={item.image}
-                />
-              </div>
-            )
-          }))
-        }
-      </div>
-      <ConstructorElement
-        type="bottom"
-        isLocked={true}
-        text={`${bun.name} (низ)`}
-        price={bun.price}
-        thumbnail={bun.image}
-        extraClass='mr-4 ml-8'
-      />
-      <BurgerConstructorTotal sum={totalSum} />
+    <section className="pt-20">
+      <Bun viewType="top" ref={topBunDropTarget} isHover={isBunHover}/>
+      <Fillings/>
+      <Bun viewType="bottom" ref={bottomBunDropTarget} isHover={isBunHover}/>
+      <BurgerConstructorTotal/>
     </section>
   )
-}
-
-BurgerConstructor.propTypes = {
-  cart: PropTypes.shape({
-    bun: ingredientPropType.isRequired,
-    filling: PropTypes.arrayOf(ingredientPropType).isRequired,
-  })
 }

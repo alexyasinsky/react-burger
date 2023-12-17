@@ -1,0 +1,19 @@
+
+.empty {
+  composes: empty from '../burger-constructor.module.scss';
+
+  &_top {
+    border-radius: 88px 88px 40px 40px;
+  }
+
+  &_bottom {
+    border-radius: 40px 40px 88px 88px;
+  }
+}
+
+.ingredient {
+  composes: ingredient from '../burger-constructor.module.scss';
+  &_hovered {
+    composes: ingredient_hovered from '../burger-constructor.module.scss';
+  }
+}

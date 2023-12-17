@@ -19,7 +19,7 @@ export default function Modal({ children, title, onClose }) {
   })
 
   return createPortal(
-   (<div className={styles.wrapper}>
+   (<div className={styles.wrapper} >
       <div className={`${styles.modal} p-10`}>
         <header className={styles.header}>
           <h2 className="text text_type_main-large">{title}</h2>
