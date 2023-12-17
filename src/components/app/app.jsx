@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { fetchIngredients } from '../../services/store/burger-ingredients/actions';
 import Home from "../../pages/home/home";
 import SignIn from "../../pages/sign-in/sign-in";
+import Register from "../../pages/register/register";
 
 
 export default function App() {
@@ -19,7 +20,8 @@ export default function App() {
       <AppHeader />
       <main>
         {/*<Home/>*/}
-        <SignIn/>
+        {/*<SignIn/>*/}
+        <Register/>
       </main>
     </>
   );
