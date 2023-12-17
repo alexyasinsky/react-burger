@@ -10,16 +10,21 @@ body {
 
 #root {
   height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 main {
   width: 1280px;
-  display: flex;
-  justify-content: space-between;
-  margin: auto;
+  margin: 0 auto;
+  flex-grow: 1;
 }
 
 #react-modals {
   position: absolute;
   top: 0;
+}
+
+a {
+  text-decoration: none;
 }
