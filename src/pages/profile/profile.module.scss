@@ -1,0 +1,20 @@
+
+.wrapper {
+  display: flex;
+  margin-top: 120px;
+}
+
+.menu {
+  width: 320px;
+  nav {
+    display: flex;
+    flex-direction: column;
+    a {
+      height: 64px;
+    }
+  }
+  p {
+    color: var(--text-dark-grey-secondary-text, #8585AD);
+    opacity: 0.4;
+  }
+}
