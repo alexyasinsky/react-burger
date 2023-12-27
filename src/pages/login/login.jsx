@@ -1,8 +1,8 @@
 import Form from "../../components/form/form";
-import styles from './sign-in.module.scss';
+import styles from './login.module.scss';
 import {useState} from "react";
 
-export default function SignIn() {
+export default function Login() {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
