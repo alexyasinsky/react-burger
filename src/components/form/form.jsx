@@ -1,8 +1,8 @@
+import styles from "./form.module.scss";
 import {Button, Input} from "@ya.praktikum/react-developer-burger-ui-components";
-import styles from './form.module.scss';
 import {useEffect, useRef} from "react";
 
-export default function ({fields, handleSubmit, submitTitle}) {
+export default function Form({inputs, handleSubmit, submitTitle}) {
 
   const inputRef = useRef(null);
 
@@ -13,20 +13,20 @@ export default function ({fields, handleSubmit, submitTitle}) {
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
       {
-        fields.map((setter, ind) => {
+        inputs.map((input, ind) => {
           return (
             <Input
               key={ind}
               ref={ind === 0 ? inputRef : null}
-              value={setter.value}
-              type="text"
-              placeholder={setter.placeholder}
-              name={setter.name}
-              onChange={setter.handler}
+              value={input.value}
+              type={input.type}
+              placeholder={input.placeholder}
+              name={input.name}
+              onChange={(e) => input.setValue(e.target.value)}
               extraClass='mb-6'
-              icon={setter.icon}
-              onIconClick={setter.onIconClick}
-            ></Input>
+              icon={input.icon}
+              onIconClick={input.onIconClick}
+            />
           )
         })
       }
@@ -37,6 +37,7 @@ export default function ({fields, handleSubmit, submitTitle}) {
           </Button>
         )
       }
+
     </form>
   )
 }

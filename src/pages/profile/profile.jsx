@@ -1,43 +1,14 @@
 import Form from "../../components/form/form";
-import {useState} from "react";
 
 import styles from './profile.module.scss';
+import useInputNew from "../../hooks/useInputNew";
 
 
 export default function Profile() {
 
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  const fields = [
-    {
-      value: name,
-      name: 'name',
-      type: 'text',
-      placeholder: 'Имя',
-      handler: (e) => setName(e.target.value),
-      icon: 'EditIcon',
-      onIconClick: () => {}
-    },
-    {
-      value: email,
-      name: 'email',
-      type: 'email',
-      placeholder: 'Логин',
-      handler: (e) => setEmail(e.target.value),
-      icon: 'EditIcon',
-      onIconClick: () => {}
-    },
-    {
-      value: password,
-      name: 'password',
-      placeholder: 'Пароль',
-      handler: (e) => setPassword(e.target.value),
-      icon: 'EditIcon',
-      onIconClick: () => {}
-    },
-  ]
+  const name = useInputNew('name', 'Имя', 'EditIcon');
+  const email = useInputNew('email', 'Логин', 'EditIcon');
+  const password = useInputNew('password', 'Пароль', 'EditIcon');
 
   return (
     <div className={styles.wrapper}>
@@ -52,7 +23,9 @@ export default function Profile() {
           изменить свои персональные данные
         </p>
       </div>
-      <Form fields={fields}/>
+      <Form
+        inputs={[name, email, password]}
+      />
     </div>
   )
 }

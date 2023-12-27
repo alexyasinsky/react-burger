@@ -1,24 +1,22 @@
 import Form from "../../components/form/form";
 import styles from './forgot-password.module.scss';
-import {useState} from "react";
+import FormNavigation from "../../components/form-navigation/form-navigation";
+import useInputNew from "../../hooks/useInputNew";
 
 export default function ForgotPassword() {
 
-  const [email, setEmail] = useState('');
+  const email = useInputNew('email', 'Укажите e-mail');
 
   function handleSubmit(e) {
     e.preventDefault();
-    setEmail('');
+    email.setValue('');
   }
 
-  const fields = [
+  const formLinks = [
     {
-      value: email,
-      name: 'email',
-      type: 'email',
-      placeholder: 'Укажите e-mail',
-      handler: (e) => setEmail(e.target.value)
-    },
+      href: '/login',
+      question: 'Вспомнили пароль?'
+    }
   ]
 
   return (
@@ -26,13 +24,14 @@ export default function ForgotPassword() {
       <h1 className="text text_type_main-medium mb-6">
         Восстановление пароля
       </h1>
-      <Form fields={fields} handleSubmit={handleSubmit} submitTitle='Восстановить'/>
-      <p className="text text_type_main-default text_color_inactive mt-20">
-        Вспомнили пароль?
-        <a href='#' className={`${styles.link} text text_type_main-default ml-2`}>
-          Войти
-        </a>
-      </p>
+      <Form
+        inputs={[email]}
+        handleSubmit={handleSubmit}
+        submitTitle='Восстановить'
+      />
+      <FormNavigation
+        links={formLinks}
+      />
     </div>
   )
 }

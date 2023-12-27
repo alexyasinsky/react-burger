@@ -1,34 +1,24 @@
 import Form from "../../components/form/form";
 import styles from './reset-password.module.scss';
-import {useState} from "react";
+import FormNavigation from "../../components/form-navigation/form-navigation";
+import useInputNew from "../../hooks/useInputNew";
 
 export default function ResetPassword() {
 
-  const [password, setPassword] = useState('');
-  const [code, setCode] = useState('');
+  const password = useInputNew('password', 'Введите новый пароль', 'ShowIcon');
+  const code = useInputNew('code', 'Введите код из письма');
 
   function handleSubmit(e) {
     e.preventDefault();
-    setPassword('');
-    setCode('');
+    password.setValue('');
+    code.setValue('');
   }
 
-  const fields = [
+  const formLinks = [
     {
-      value: password,
-      name: 'password',
-      placeholder: 'Введите новый пароль',
-      handler: (e) => setPassword(e.target.value),
-      icon: 'ShowIcon',
-      onIconClick: () => {}
-    },
-    {
-      value: code,
-      name: 'code',
-      type: 'text',
-      placeholder: 'Введите код из письма',
-      handler: (e) => setCode(e.target.value)
-    },
+      href: '/login',
+      question: 'Вспомнили пароль?'
+    }
   ]
 
   return (
@@ -36,13 +26,15 @@ export default function ResetPassword() {
       <h1 className="text text_type_main-medium mb-6">
         Восстановление пароля
       </h1>
-      <Form fields={fields} handleSubmit={handleSubmit} submitTitle='Сохранить'/>
-      <p className="text text_type_main-default text_color_inactive mt-20">
-        Вспомнили пароль?
-        <a href='#' className={`${styles.link} text text_type_main-default ml-2`}>
-          Войти
-        </a>
-      </p>
+      <Form
+        inputs={[password, code]}
+        handleSubmit={handleSubmit}
+        submitTitle='Сохранить'
+      />
+      <FormNavigation
+        links={formLinks}
+      />
+
     </div>
   )
 }
