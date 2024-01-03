@@ -1,3 +1,7 @@
+.link {
+  color: var(--text-primary-light-standart-text, #F2F2F3);
+}
+
 .card {
   text-align: center;
   width: 272px;
@@ -18,3 +22,4 @@
 .dragged {
   padding: 10px;
 }
+

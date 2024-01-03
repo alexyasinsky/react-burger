@@ -2,7 +2,7 @@ import AppHeader from '../app-header/app-header';
 import {useEffect} from 'react';
 import {useDispatch} from 'react-redux';
 import {fetchIngredients} from '../../services/store/burger-ingredients/actions';
-import {Routes, Route} from 'react-router-dom';
+import {Routes, Route, useNavigate, useLocation} from 'react-router-dom';
 import Home from "../../pages/home/home";
 import Login from "../../pages/login/login";
 
@@ -11,9 +11,19 @@ import ForgotPassword from "../../pages/forgot-password/forgot-password";
 import ResetPassword from "../../pages/reset-password/reset-password";
 import Profile from "../../pages/profile/profile";
 import NotFound from "../../pages/not-found/not-found";
+import IngredientDetails from "../ingredient-details/ingredient-details";
+import Modal from "../modal/modal";
 
 
 export default function App() {
+
+  const location = useLocation();
+  const navigate = useNavigate();
+  const background = location.state && location.state.background;
+
+  const handleModalClose = () => {
+    navigate(-1);
+  };
 
   const dispatch = useDispatch();
 
@@ -25,16 +35,33 @@ export default function App() {
 <>
   <AppHeader/>
   <main>
-    <Routes>
+    <Routes location={background || location}>
       <Route path="/" element={<Home/>}/>
       <Route path="/login" element={<Login/>}/>
       <Route path="/register" element={<Register/>}/>
       <Route path="/forgot-password" element={<ForgotPassword/>}/>
       <Route path="/reset-password" element={<ResetPassword/>}/>
       <Route path="/profile" element={<Profile/>}/>
+      <Route path='/ingredients/:id'
+             element={<IngredientDetails />} />
       <Route path="*" element={<NotFound/>}/>
     </Routes>
+    {background && (
+      <Routes>
+        <Route
+          path='/ingredients/:id'
+          element={
+            <Modal
+              onClose={handleModalClose}
+            >
+              <IngredientDetails/>
+            </Modal>
+          }
+        />
+      </Routes>
+    )}
   </main>
+  <footer></footer>
 </>
 
   );

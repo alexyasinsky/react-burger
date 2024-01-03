@@ -18,6 +18,9 @@ main {
   width: 1280px;
   margin: 0 auto;
   flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #react-modals {
@@ -27,4 +30,8 @@ main {
 
 a {
   text-decoration: none;
+}
+
+footer {
+  height: 88px;
 }

@@ -5,7 +5,7 @@ import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import PropTypes from 'prop-types';
 import { useEffect } from 'react';
 
-export default function Modal({ children, title, onClose }) {
+export default function Modal({ children, onClose }) {
   const modalRoot = document.getElementById('react-modals');
 
   function escapeHandler(event) {
@@ -20,22 +20,20 @@ export default function Modal({ children, title, onClose }) {
 
   return createPortal(
    (<div className={styles.wrapper} >
-      <div className={`${styles.modal} p-10`}>
-        <header className={styles.header}>
-          <h2 className="text text_type_main-large">{title}</h2>
-          <CloseIcon type="primary" onClick={onClose}/>
-        </header>
-        {children}
-      </div>
-      <ModalOverlay onClose={onClose}/>
-    </div>)
-  ,
+     <div className={`${styles.modal} p-10`}>
+       <div className={styles.close}>
+         <CloseIcon type="primary" onClick={onClose}/>
+       </div>
+       {children}
+     </div>
+     <ModalOverlay onClose={onClose}/>
+   </div>)
+    ,
     modalRoot
   );
 }
 
 Modal.propTypes = {
   children: PropTypes.element.isRequired,
-  title: PropTypes.string,
   onClose: PropTypes.func.isRequired
 }
