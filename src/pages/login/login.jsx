@@ -13,8 +13,8 @@ export default function Login() {
   });
 
   const password = useInputNew({
-    name: 'email',
-    placeholder: 'E-mail',
+    name: 'password',
+    placeholder: 'Пароль',
     icon: 'ShowIcon'
   });
 

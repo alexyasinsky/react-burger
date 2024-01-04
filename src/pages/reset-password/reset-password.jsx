@@ -2,6 +2,7 @@ import Form from "../../components/form/form";
 import styles from './reset-password.module.scss';
 import FormNavigation from "../../components/form-navigation/form-navigation";
 import useInputNew from "../../hooks/useInputNew";
+import {makeRequest, url} from "../../utils/api";
 
 export default function ResetPassword() {
 
@@ -16,11 +17,25 @@ export default function ResetPassword() {
     placeholder: 'Введите код из письма'
   });
 
-  function handleSubmit(e) {
+  async function setNewPassword (body) {
+    return await makeRequest(`${url}/password-reset/reset`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+      body: JSON.stringify({...body})
+    });
+  }
+  async function handleSubmit(e) {
     e.preventDefault();
+    await setNewPassword({
+      password: password.value,
+      token: code.value
+    })
     password.setValue('');
     code.setValue('');
   }
+
 
   const formLinks = [
     {

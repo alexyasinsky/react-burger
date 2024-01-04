@@ -9,14 +9,6 @@ const initialState = {
 export const userSlice = createSlice({
   name: "user",
   initialState,
-  reducers: {
-    setAuthChecked: (state, action) => {
-      state.isAuthChecked = action.payload;
-    },
-    setUser: (state, action) => {
-      state.user = action.payload.user;
-    },
-  },
   extraReducers: (builder) => {
     builder
       .addCase(register.fulfilled, (state, action) => {

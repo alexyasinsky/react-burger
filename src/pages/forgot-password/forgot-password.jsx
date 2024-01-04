@@ -2,6 +2,7 @@ import Form from "../../components/form/form";
 import styles from './forgot-password.module.scss';
 import FormNavigation from "../../components/form-navigation/form-navigation";
 import useInputNew from "../../hooks/useInputNew";
+import {makeRequest, url} from "../../utils/api";
 
 export default function ForgotPassword() {
 
@@ -9,9 +10,20 @@ export default function ForgotPassword() {
     name: 'email',
     placeholder: 'Укажите e-mail'
   });
-
-  function handleSubmit(e) {
+  async function resetPassword (body) {
+    return await makeRequest(`${url}/password-reset`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+      body: JSON.stringify({...body})
+    });
+  }
+  async function handleSubmit(e) {
     e.preventDefault();
+    await resetPassword({
+      email: email.value
+    })
     email.setValue('');
   }
 
