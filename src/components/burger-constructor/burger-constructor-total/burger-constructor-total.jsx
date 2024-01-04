@@ -20,7 +20,7 @@ export default function BurgerConstructorTotal() {
     const ingredients = [bun, ...filling, bun];
     const ids = ingredients.map(item => item._id);
     dispatch(makeOrder(ids));
-  }, [dispatch, filling])
+  }, [dispatch, bun, filling])
 
   const orderNumber = useSelector(selectOrderNumber);
 
