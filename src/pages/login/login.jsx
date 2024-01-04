@@ -7,8 +7,16 @@ import {login} from "../../services/store/user/actions";
 
 export default function Login() {
 
-  const email = useInputNew('email', 'E-mail');
-  const password = useInputNew('password', 'Пароль', 'ShowIcon');
+  const email = useInputNew({
+    name: 'email',
+    placeholder: 'E-mail'
+  });
+
+  const password = useInputNew({
+    name: 'email',
+    placeholder: 'E-mail',
+    icon: 'ShowIcon'
+  });
 
   const formLinks = [
     {

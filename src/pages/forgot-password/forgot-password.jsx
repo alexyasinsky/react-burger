@@ -5,7 +5,10 @@ import useInputNew from "../../hooks/useInputNew";
 
 export default function ForgotPassword() {
 
-  const email = useInputNew('email', 'Укажите e-mail');
+  const email = useInputNew({
+    name: 'email',
+    placeholder: 'Укажите e-mail'
+  });
 
   function handleSubmit(e) {
     e.preventDefault();

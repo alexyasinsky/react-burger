@@ -1,5 +1,6 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import {makeRequest, url} from "../../../utils/api";
+import {makeRequest, makeRequestWithRefreshToken, url} from "../../../utils/api";
+
 export const register = createAsyncThunk('user/register', async (body) => {
     const response = await makeRequest(`${url}/auth/register`, {
       method: 'POST',
@@ -39,4 +40,25 @@ export const logout = createAsyncThunk('user/logout', async () => {
   localStorage.removeItem("refreshToken");
   localStorage.removeItem("accessToken");
   return response;
+})
+
+export const getUser = createAsyncThunk('user/getUser', async () => {
+  return await makeRequestWithRefreshToken(`${url}/auth/user`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8',
+      authorization: localStorage.getItem('accessToken')
+    },
+  });
+})
+
+export const editUser = createAsyncThunk('user/patchUser', async (body) => {
+  return await makeRequestWithRefreshToken(`${url}/auth/user`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8',
+      authorization: localStorage.getItem('accessToken')
+    },
+    body: JSON.stringify({...body})
+  });
 })

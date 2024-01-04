@@ -2,17 +2,55 @@ import Form from "../../components/form/form";
 
 import styles from './profile.module.scss';
 import useInputNew from "../../hooks/useInputNew";
-import {useDispatch} from "react-redux";
-import {logout} from "../../services/store/user/actions";
+import {useDispatch, useSelector} from "react-redux";
+import {editUser, getUser, logout} from "../../services/store/user/actions";
+import {useEffect} from "react";
+import {selectUser} from "../../services/store/user/reducers";
 
 
 export default function Profile() {
 
-  const name = useInputNew('name', 'Имя', 'EditIcon');
-  const email = useInputNew('email', 'Логин', 'EditIcon');
-  const password = useInputNew('password', 'Пароль', 'EditIcon');
-
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getUser());
+  }, []);
+
+  const user = useSelector(selectUser) || {};
+
+  function editIconHandler() {
+    dispatch(
+      editUser({
+      email: email.value,
+      name: name.value,
+      password: password.value
+    })
+    )
+  }
+
+  const name = useInputNew({
+    name: 'name',
+    placeholder: 'Имя',
+    defaultValue: user.name,
+    icon: 'EditIcon',
+    onIconClick: editIconHandler
+  });
+
+  const email = useInputNew({
+    name: 'email',
+    placeholder: 'Логин',
+    defaultValue: user.email,
+    icon: 'EditIcon',
+    onIconClick: editIconHandler
+  });
+
+  const password = useInputNew({
+    name: 'password',
+    placeholder: 'Пароль',
+    defaultValue: user.password,
+    icon: 'EditIcon',
+    onIconClick: editIconHandler
+  });
   const exitHandler = () => {
     dispatch(logout());
   }

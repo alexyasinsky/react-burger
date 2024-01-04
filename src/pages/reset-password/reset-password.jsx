@@ -5,8 +5,16 @@ import useInputNew from "../../hooks/useInputNew";
 
 export default function ResetPassword() {
 
-  const password = useInputNew('password', 'Введите новый пароль', 'ShowIcon');
-  const code = useInputNew('code', 'Введите код из письма');
+  const password = useInputNew({
+    name: 'password',
+    placeholder: 'Пароль',
+    icon: 'ShowIcon'
+  });
+
+  const code = useInputNew({
+    name: 'code',
+    placeholder: 'Введите код из письма'
+  });
 
   function handleSubmit(e) {
     e.preventDefault();

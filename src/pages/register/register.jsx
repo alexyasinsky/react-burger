@@ -7,9 +7,21 @@ import {register} from "../../services/store/user/actions";
 
 export default function Register() {
 
-  const name = useInputNew('name', 'Имя');
-  const email = useInputNew('email', 'E-mail');
-  const password = useInputNew('password', 'Пароль', 'ShowIcon');
+  const name = useInputNew({
+    name: 'name',
+    placeholder: 'Имя'
+  });
+
+  const email = useInputNew({
+    name: 'email',
+    placeholder: 'E-mail'
+  });
+
+  const password = useInputNew({
+    name: 'password',
+    placeholder: 'Пароль',
+    icon: 'ShowIcon'
+  });
 
   const dispatch = useDispatch();
 
@@ -20,9 +32,9 @@ export default function Register() {
       password: password.value,
       name: name.value
     }))
-    // name.setValue('');
-    // email.setValue('');
-    // password.setValue('');
+    name.setValue('');
+    email.setValue('');
+    password.setValue('');
   }
 
   const formLinks = [

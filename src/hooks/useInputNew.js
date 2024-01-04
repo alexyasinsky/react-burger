@@ -1,33 +1,16 @@
 import {useState} from "react";
 
+export default function useInputNew(input) {
 
-export default function useInputNew(
-  input,
-  placeholder = '',
-  icon = '',
-  onIconClick = () => {}
-) {
-
-  const [value, setValue] = useState('');
-
-  let type;
-
-  switch (input) {
-    case 'email' || 'password':
-      type = input;
-      break;
-    default:
-      type = 'text'
-  }
-
+  const [value, setValue] = useState(input.defaultValue || '');
 
   return {
-    name: input,
+    name: input.name,
     value,
     setValue,
-    placeholder,
-    type,
-    icon,
-    onIconClick
+    placeholder: input.placeholder || '',
+    type: input.type || 'text',
+    icon: input.icon || '',
+    onIconClick: input.onIconClick || null
   }
 }

@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {register, login, logout} from "./actions";
+import {register, login, logout, getUser, editUser} from "./actions";
 
 const initialState = {
   user: null,
@@ -24,16 +24,27 @@ export const userSlice = createSlice({
         state.isAuthChecked = true;
       })
       .addCase(login.fulfilled, (state, action) => {
-        state.user = action.payload;
+        state.user = action.payload.user;
         state.isAuthChecked = true;
       })
       .addCase(logout.fulfilled, (state) => {
         state.user = null;
         state.isAuthChecked = false;
       })
+      .addCase(getUser.fulfilled, (state, action) => {
+        state.user = action.payload.user;
+      })
+      .addCase(editUser.fulfilled, (state, action) => {
+        state.user = action.payload.user;
+      })
+  },
+  selectors: {
+    selectUser: state => state.user
   }
 });
 
-const { reducer } = userSlice;
+const { selectors, reducer } = userSlice;
+
+export const { selectUser} = selectors;
 
 export default reducer;
