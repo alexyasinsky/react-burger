@@ -17,14 +17,17 @@ const orderSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(makeOrder.pending, (state) => {
+      debugger
       state.loading = true;
       state.error = false;
     })
     builder.addCase(makeOrder.fulfilled, (state, action) => {
+      debugger
       state.loading = false;
       state.order = action.payload.order.number;
     })
     builder.addCase(makeOrder.rejected, (state, action) => {
+      debugger
       state.loading = false;
       state.error = action.error;
     })

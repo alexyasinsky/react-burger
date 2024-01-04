@@ -1,8 +1,8 @@
-import styles from './order-details.module.scss';
+import styles from './order-accepted.module.scss';
 import { useSelector } from 'react-redux';
 import { selectOrderNumber } from '../../services/store/order/reducers';
 
-export default function OrderDetails() {
+export default function OrderAccepted() {
 
   const number = useSelector(selectOrderNumber);
   
