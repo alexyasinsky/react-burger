@@ -2,6 +2,8 @@ import Form from "../../components/form/form";
 import styles from './register.module.scss';
 import FormNavigation from "../../components/form-navigation/form-navigation";
 import useInputNew from "../../hooks/useInputNew";
+import {useDispatch} from "react-redux";
+import {register} from "../../services/store/user/actions";
 
 export default function Register() {
 
@@ -9,11 +11,18 @@ export default function Register() {
   const email = useInputNew('email', 'E-mail');
   const password = useInputNew('password', 'Пароль', 'ShowIcon');
 
+  const dispatch = useDispatch();
+
   function handleSubmit(e) {
     e.preventDefault();
-    name.setValue('');
-    email.setValue('');
-    password.setValue('');
+    dispatch(register({
+      email: email.value,
+      password: password.value,
+      name: name.value
+    }))
+    // name.setValue('');
+    // email.setValue('');
+    // password.setValue('');
   }
 
   const formLinks = [

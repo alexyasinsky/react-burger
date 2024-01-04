@@ -2,6 +2,8 @@ import Form from "../../components/form/form";
 import styles from './login.module.scss';
 import FormNavigation from "../../components/form-navigation/form-navigation";
 import useInputNew from "../../hooks/useInputNew";
+import {useDispatch} from "react-redux";
+import {login} from "../../services/store/user/actions";
 
 export default function Login() {
 
@@ -18,8 +20,16 @@ export default function Login() {
       question: 'Забыли пароль?'
     }
   ]
+
+  const dispatch = useDispatch();
+
   function handleSubmit(e) {
     e.preventDefault();
+    dispatch(login({
+        email: email.value,
+        password: password.value
+      }
+    ))
     email.setValue('');
     password.setValue('');
   }
@@ -36,7 +46,7 @@ export default function Login() {
       />
       <FormNavigation
         links={formLinks}
-        />
+      />
     </div>
   )
 }
