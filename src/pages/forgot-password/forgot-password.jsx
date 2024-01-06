@@ -3,6 +3,7 @@ import styles from './forgot-password.module.scss';
 import FormNavigation from "../../components/form-navigation/form-navigation";
 import useInputNew from "../../hooks/useInputNew";
 import {makeRequest, url} from "../../utils/api";
+import {useNavigate} from "react-router-dom";
 
 export default function ForgotPassword() {
 
@@ -19,18 +20,23 @@ export default function ForgotPassword() {
       body: JSON.stringify({...body})
     });
   }
-  async function handleSubmit(e) {
+  const navigate = useNavigate();
+  function handleSubmit(e) {
     e.preventDefault();
-    await resetPassword({
+    resetPassword({
       email: email.value
+    }).then(()=>{
+      localStorage.setItem('isPasswordReset', 'true');
+      navigate('/reset-password')
     })
-    email.setValue('');
+
   }
 
   const formLinks = [
     {
       href: '/login',
-      question: 'Вспомнили пароль?'
+      question: 'Вспомнили пароль?',
+      title: 'Войти'
     }
   ]
 

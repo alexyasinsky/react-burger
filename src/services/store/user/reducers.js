@@ -9,6 +9,11 @@ const initialState = {
 export const userSlice = createSlice({
   name: "user",
   initialState,
+  reducers: {
+    setAuthChecked: (state, action) => {
+      state.isAuthChecked = action.payload;
+    }
+  },
   extraReducers: (builder) => {
     builder
       .addCase(register.fulfilled, (state, action) => {
@@ -21,22 +26,28 @@ export const userSlice = createSlice({
       })
       .addCase(logout.fulfilled, (state) => {
         state.user = null;
-        state.isAuthChecked = false;
       })
       .addCase(getUser.fulfilled, (state, action) => {
         state.user = action.payload.user;
+        state.isAuthChecked = true;
+      })
+      .addCase(getUser.rejected, (state) => {
+        localStorage.removeItem("accessToken");
+        localStorage.removeItem("refreshToken");
+        state.user = null;
       })
       .addCase(editUser.fulfilled, (state, action) => {
         state.user = action.payload.user;
       })
   },
   selectors: {
-    selectUser: state => state.user
+    selectUser: state => state.user,
+    selectIsAuthChecked: state => state.isAuthChecked
   }
 });
 
-const { selectors, reducer } = userSlice;
-
-export const { selectUser} = selectors;
+const { actions,selectors, reducer } = userSlice;
+export const { setAuthChecked } = actions;
+export const { selectUser, selectIsAuthChecked} = selectors;
 
 export default reducer;

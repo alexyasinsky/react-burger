@@ -6,19 +6,7 @@ export default function FormNavigation({links}) {
   return (
     <div className={`${styles.wrapper} mt-20`}>
       {
-        links.map(({href, question}, ind) => {
-
-          let title;
-
-          switch (href) {
-            case '/register':
-              title = 'Зарегистрироваться'
-              break
-            default:
-              title = 'Войти'
-              break
-          }
-
+        links.map(({href, question, title}, ind) => {
           return (
             <p
               className="text text_type_main-default text_color_inactive"

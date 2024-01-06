@@ -40,7 +40,8 @@ export default function Register() {
   const formLinks = [
     {
       href: '/login',
-      question: 'Уже зарегистрированы?'
+      question: 'Уже зарегистрированы?',
+      title: 'Войти'
     },
   ]
 

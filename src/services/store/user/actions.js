@@ -1,5 +1,6 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {makeRequest, makeRequestWithRefreshToken, url} from "../../../utils/api";
+import {setAuthChecked} from "./reducers";
 
 export const register = createAsyncThunk('user/register', async (body) => {
     const response = await makeRequest(`${url}/auth/register`, {
@@ -62,3 +63,11 @@ export const editUser = createAsyncThunk('user/patchUser', async (body) => {
     body: JSON.stringify({...body})
   });
 })
+
+export const checkUserAuth = () => (dispatch) => {
+  if (localStorage.getItem("accessToken")) {
+    dispatch(getUser());
+  } else {
+    dispatch(setAuthChecked(true));
+  }
+}

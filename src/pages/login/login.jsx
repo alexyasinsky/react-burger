@@ -21,11 +21,13 @@ export default function Login() {
   const formLinks = [
     {
       href: '/login',
-      question: 'Вы - новый пользователь?'
+      question: 'Вы - новый пользователь?',
+      title: 'Войти'
     },
     {
-      href: '/register',
-      question: 'Забыли пароль?'
+      href: '/forgot-password',
+      question: 'Забыли пароль?',
+      title: 'Восстановить пароль'
     }
   ]
 
