@@ -1,76 +1,43 @@
-import Form from "../../components/form/form";
-
 import styles from './profile.module.scss';
-import useInputNew from "../../hooks/useInputNew";
-import {useDispatch, useSelector} from "react-redux";
-import {editUser, getUser, logout} from "../../services/store/user/actions";
-import {useEffect} from "react";
-import {selectUser} from "../../services/store/user/reducers";
+import {useDispatch} from "react-redux";
+import {logout} from "../../services/store/user/actions";
+import { NavLink, Outlet, useNavigate} from "react-router-dom";
 
 
 export default function Profile() {
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getUser());
-  }, []);
-
-  const user = useSelector(selectUser) || {};
-
-  function editIconHandler() {
-    dispatch(
-      editUser({
-      email: email.value,
-      name: name.value,
-      password: password.value
-    })
-    )
-  }
-
-  const name = useInputNew({
-    name: 'name',
-    placeholder: 'Имя',
-    defaultValue: user.name,
-    icon: 'EditIcon',
-    onIconClick: editIconHandler
-  });
-
-  const email = useInputNew({
-    name: 'email',
-    placeholder: 'Логин',
-    defaultValue: user.email,
-    icon: 'EditIcon',
-    onIconClick: editIconHandler
-  });
-
-  const password = useInputNew({
-    name: 'password',
-    placeholder: 'Пароль',
-    defaultValue: user.password,
-    icon: 'EditIcon',
-    onIconClick: editIconHandler
-  });
+  const navigate = useNavigate();
   const exitHandler = () => {
     dispatch(logout());
+    navigate('/');
   }
 
   return (
-    <div className={styles.wrapper}>
-      <div className={`${styles.menu} mr-20`}>
-        <nav>
-          <a href="#" className="text text_type_main-medium text_color_primary">Профиль</a>
-          <a href="#" className="text text_type_main-medium text_color_inactive">История заказов</a>
+      <div className={styles.wrapper}>
+        <nav className={`${styles.menu} mr-20 text text_type_main-medium`}>
+          <NavLink to='user'>
+            {({isActive}) => {
+              return (
+                <p className={`${isActive ? 'text_color_primary' : 'text_color_inactive'}`}>
+                  Профиль
+                </p>
+              )
+            }}
+            </NavLink>
+          <NavLink to='orders'>
+            {({isActive}) => {
+              return (
+                <p className={`${isActive ? 'text_color_primary' : 'text_color_inactive'}`}>
+                  История заказов
+                </p>
+              )
+            }}
+          </NavLink>
           <p onClick={exitHandler} className="text text_type_main-medium text_color_inactive">Выход</p>
         </nav>
-        <p className="text text_type_main-small mt-20">
-          В этом разделе вы можете
-          изменить свои персональные данные
-        </p>
+        <Outlet/>
       </div>
-      <Form
-        inputs={[name, email, password]}
-      />
-    </div>
   )
 }

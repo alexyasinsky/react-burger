@@ -15,6 +15,7 @@ import IngredientDetails from "../ingredient-details/ingredient-details";
 import Modal from "../modal/modal";
 import {OnlyAuth, OnlyUnAuth} from "../protected-route/protected-route";
 import {checkUserAuth} from "../../services/store/user/actions";
+import User from "../user/user";
 
 
 export default function App() {
@@ -44,7 +45,11 @@ export default function App() {
       <Route path="/register" element={<OnlyUnAuth component={<Register/>}/>}/>
       <Route path="/forgot-password" element={<OnlyUnAuth component={<ForgotPassword/>}/>}/>
       <Route path="/reset-password" element={<OnlyUnAuth component={<ResetPassword/>}/>}/>
-      <Route path="/profile" element={<OnlyAuth component={<Profile/>}/>}/>
+      <Route path="/profile" element={<OnlyAuth component={<Profile/>}/>}>
+        <Route path='user' element={<User/>}/>
+        <Route index element={<NotFound/>}/>
+        <Route path='*' element={<NotFound/>}/>
+      </Route>
       <Route path='/ingredients/:id'
              element={<IngredientDetails />} />
       <Route path="*" element={<NotFound/>}/>

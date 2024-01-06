@@ -3,7 +3,7 @@ import styles from './reset-password.module.scss';
 import FormNavigation from "../../components/form-navigation/form-navigation";
 import useInputNew from "../../hooks/useInputNew";
 import {makeRequest, url} from "../../utils/api";
-import {Navigate} from "react-router-dom";
+import {Navigate, useNavigate} from "react-router-dom";
 
 export default function ResetPassword() {
 
@@ -18,6 +18,8 @@ export default function ResetPassword() {
     placeholder: 'Введите код из письма'
   });
 
+  const navigate = useNavigate();
+
   if (localStorage.getItem('isPasswordReset') === true) {
     return (<Navigate to='/'/>)
   }
@@ -31,16 +33,16 @@ export default function ResetPassword() {
       body: JSON.stringify({...body})
     });
   }
-  async function handleSubmit(e) {
+  function handleSubmit(e) {
     e.preventDefault();
-    await setNewPassword({
+    setNewPassword({
       password: password.value,
       token: code.value
+    }).then(() => {
+      localStorage.removeItem('isPasswordReset');
+      navigate('/');
     })
-    password.setValue('');
-    code.setValue('');
   }
-
 
   const formLinks = [
     {

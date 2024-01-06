@@ -1,19 +1,16 @@
-
 .wrapper {
-  display: flex;
+  width: 100%;
+  height: 80%;
 }
 
 .menu {
+  display: flex;
+  flex-direction: column;
   width: 320px;
-  nav {
-    display: flex;
-    flex-direction: column;
-    a {
-      height: 64px;
-    }
-  }
-  p {
-    color: var(--text-dark-grey-secondary-text, #8585AD);
-    opacity: 0.4;
+  float: left;
+
+  a {
+    height: 64px;
   }
 }
+
