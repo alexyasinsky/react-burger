@@ -21,7 +21,7 @@ export default function AppHeader() {
           <Logo/>
         </div>
         <AppHeaderLink
-          href='/profile/user'
+          href='/profile'
           icon={<ProfileIcon type=''/>}
           title='Личный кабинет'
         />

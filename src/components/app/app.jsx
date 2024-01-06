@@ -46,8 +46,7 @@ export default function App() {
       <Route path="/forgot-password" element={<OnlyUnAuth component={<ForgotPassword/>}/>}/>
       <Route path="/reset-password" element={<OnlyUnAuth component={<ResetPassword/>}/>}/>
       <Route path="/profile" element={<OnlyAuth component={<Profile/>}/>}>
-        <Route path='user' element={<User/>}/>
-        <Route index element={<NotFound/>}/>
+        <Route index element={<User/>}/>
         <Route path='*' element={<NotFound/>}/>
       </Route>
       <Route path='/ingredients/:id'
