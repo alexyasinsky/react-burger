@@ -40,8 +40,6 @@ export default function Login() {
         password: password.value
       }
     ))
-    email.setValue('');
-    password.setValue('');
   }
 
   return (

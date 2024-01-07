@@ -32,8 +32,6 @@ export const userSlice = createSlice({
         state.isAuthChecked = true;
       })
       .addCase(getUser.rejected, (state) => {
-        localStorage.removeItem("accessToken");
-        localStorage.removeItem("refreshToken");
         state.user = null;
       })
       .addCase(editUser.fulfilled, (state, action) => {

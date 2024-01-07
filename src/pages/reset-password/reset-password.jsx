@@ -20,7 +20,7 @@ export default function ResetPassword() {
 
   const navigate = useNavigate();
 
-  if (localStorage.getItem('isPasswordReset') === true) {
+  if (localStorage.getItem('isPasswordReset')) {
     return (<Navigate to='/'/>)
   }
 

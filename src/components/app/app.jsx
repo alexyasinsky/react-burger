@@ -36,40 +36,40 @@ export default function App() {
   }, [dispatch])
 
   return (
-<>
-  <AppHeader/>
-  <main>
-    <Routes location={background || location}>
-      <Route path="/" element={<Home/>}/>
-      <Route path="/login" element={<OnlyUnAuth component={<Login/>}/>}/>
-      <Route path="/register" element={<OnlyUnAuth component={<Register/>}/>}/>
-      <Route path="/forgot-password" element={<OnlyUnAuth component={<ForgotPassword/>}/>}/>
-      <Route path="/reset-password" element={<OnlyUnAuth component={<ResetPassword/>}/>}/>
-      <Route path="/profile" element={<OnlyAuth component={<Profile/>}/>}>
-        <Route index element={<User/>}/>
-        <Route path='*' element={<NotFound/>}/>
-      </Route>
-      <Route path='/ingredients/:id'
-             element={<IngredientDetails />} />
-      <Route path="*" element={<NotFound/>}/>
-    </Routes>
-    {background && (
-      <Routes>
-        <Route
-          path='/ingredients/:id'
-          element={
-            <Modal
-              onClose={handleModalClose}
-            >
-              <IngredientDetails/>
-            </Modal>
-          }
-        />
-      </Routes>
-    )}
-  </main>
-  <footer></footer>
-</>
+    <>
+      <AppHeader/>
+      <main>
+        <Routes location={background || location}>
+          <Route path="/" element={<Home/>}/>
+          <Route path="/login" element={<OnlyUnAuth component={<Login/>}/>}/>
+          <Route path="/register" element={<OnlyUnAuth component={<Register/>}/>}/>
+          <Route path="/forgot-password" element={<OnlyUnAuth component={<ForgotPassword/>}/>}/>
+          <Route path="/reset-password" element={<OnlyUnAuth component={<ResetPassword/>}/>}/>
+          <Route path="/profile" element={<OnlyAuth component={<Profile/>}/>}>
+            <Route index element={<User/>}/>
+            <Route path='*' element={<NotFound/>}/>
+          </Route>
+          <Route path='/ingredients/:id'
+                 element={<IngredientDetails/>}/>
+          <Route path="*" element={<NotFound/>}/>
+        </Routes>
+        {background && (
+          <Routes>
+            <Route
+              path='/ingredients/:id'
+              element={
+                <Modal
+                  onClose={handleModalClose}
+                >
+                  <IngredientDetails/>
+                </Modal>
+              }
+            />
+          </Routes>
+        )}
+      </main>
+      <footer></footer>
+    </>
 
   );
 }

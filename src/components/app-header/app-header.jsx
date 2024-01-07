@@ -1,6 +1,7 @@
 import styles from './app-header.module.scss';
 import {Logo, BurgerIcon, ListIcon, ProfileIcon} from '@ya.praktikum/react-developer-burger-ui-components'
 import AppHeaderLink from "../app-header-link/app-header-link";
+import {Link} from "react-router-dom";
 
 export default function AppHeader() {
 
@@ -17,9 +18,9 @@ export default function AppHeader() {
           icon={<ListIcon type=''/>}
           title='Лента заказов'
         />
-        <div className={`${styles.logo} pb-2 pt-2`}>
+        <Link to='/' className={`${styles.logo} pb-2 pt-2`}>
           <Logo/>
-        </div>
+        </Link>
         <AppHeaderLink
           href='/profile'
           icon={<ProfileIcon type=''/>}

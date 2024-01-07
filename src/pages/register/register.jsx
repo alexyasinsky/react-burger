@@ -32,9 +32,6 @@ export default function Register() {
       password: password.value,
       name: name.value
     }))
-    name.setValue('');
-    email.setValue('');
-    password.setValue('');
   }
 
   const formLinks = [
