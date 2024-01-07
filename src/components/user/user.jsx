@@ -36,6 +36,13 @@ export default function User() {
     })
   }
 
+  function cancelEditingPersonalData (){
+    setName(user.name);
+    setEmail(user.email);
+    setPassword('');
+    finishEditingPersonalData();
+  }
+
   function finishEditingPersonalData() {
     setIsEditButtonsShown(false);
     setIcons({
@@ -45,7 +52,8 @@ export default function User() {
     })
   }
 
-  function confirmEditingPersonalData() {
+  function confirmEditingPersonalData(e) {
+    e.preventDefault();
     const data = {};
     if (name !== user.name) {
       data.name = name;
@@ -100,10 +108,10 @@ export default function User() {
         {
           isEditButtonsShown && (
             <div className={styles.buttonsWrapper}>
-              <Button onClick={finishEditingPersonalData} htmlType="button" type="secondary" size="medium">
+              <Button onClick={cancelEditingPersonalData} htmlType="button" type="secondary" size="medium">
                 Отмена
               </Button>
-              <Button onClick={confirmEditingPersonalData} htmlType="button" type="primary" size="medium">
+              <Button onClick={confirmEditingPersonalData} htmlType="submit" type="primary" size="medium">
                 Сохранить
               </Button>
             </div>

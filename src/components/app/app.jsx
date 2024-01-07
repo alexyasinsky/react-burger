@@ -16,6 +16,7 @@ import Modal from "../modal/modal";
 import {OnlyAuth, OnlyUnAuth} from "../protected-route/protected-route";
 import {checkUserAuth} from "../../services/store/user/actions";
 import User from "../user/user";
+import Orders from "../orders/orders";
 
 
 export default function App() {
@@ -47,6 +48,7 @@ export default function App() {
           <Route path="/reset-password" element={<OnlyUnAuth component={<ResetPassword/>}/>}/>
           <Route path="/profile" element={<OnlyAuth component={<Profile/>}/>}>
             <Route index element={<User/>}/>
+            <Route path='orders' element={<Orders/>}/>
             <Route path='*' element={<NotFound/>}/>
           </Route>
           <Route path='/ingredients/:id'
