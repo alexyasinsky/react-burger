@@ -1,26 +1,25 @@
 import Form from "../../components/form/form";
 import styles from './register.module.scss';
 import FormNavigation from "../../components/form-navigation/form-navigation";
-import useInputNew from "../../hooks/useInputNew";
+import {useInput, usePasswordInput} from "../../hooks/useInputs";
 import {useDispatch} from "react-redux";
 import {register} from "../../services/store/user/actions";
 
 export default function Register() {
 
-  const name = useInputNew({
+  const name = useInput({
     name: 'name',
     placeholder: 'Имя'
   });
 
-  const email = useInputNew({
+  const email = useInput({
     name: 'email',
-    placeholder: 'E-mail'
+    placeholder: 'E-mail',
+    type: 'email',
   });
 
-  const password = useInputNew({
-    name: 'password',
+  const password = usePasswordInput({
     placeholder: 'Пароль',
-    icon: 'ShowIcon'
   });
 
   const dispatch = useDispatch();

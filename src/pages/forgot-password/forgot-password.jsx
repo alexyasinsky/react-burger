@@ -1,15 +1,16 @@
 import Form from "../../components/form/form";
 import styles from './forgot-password.module.scss';
 import FormNavigation from "../../components/form-navigation/form-navigation";
-import useInputNew from "../../hooks/useInputNew";
+import {useInput} from "../../hooks/useInputs";
 import {makeRequest, url} from "../../utils/api";
 import {useNavigate} from "react-router-dom";
 
 export default function ForgotPassword() {
 
-  const email = useInputNew({
+  const email = useInput({
     name: 'email',
-    placeholder: 'Укажите e-mail'
+    placeholder: 'Укажите e-mail',
+    type: 'email',
   });
   async function resetPassword (body) {
     return await makeRequest(`${url}/password-reset`, {

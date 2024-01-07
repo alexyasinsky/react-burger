@@ -25,7 +25,6 @@ export const login = createAsyncThunk('user/login', async (body) => {
   })
   localStorage.setItem("refreshToken", response.refreshToken);
   localStorage.setItem("accessToken", response.accessToken);
-  console.log(response)
   return response;
 })
 

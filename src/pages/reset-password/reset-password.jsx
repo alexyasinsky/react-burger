@@ -1,19 +1,17 @@
 import Form from "../../components/form/form";
 import styles from './reset-password.module.scss';
 import FormNavigation from "../../components/form-navigation/form-navigation";
-import useInputNew from "../../hooks/useInputNew";
+import {useInput, usePasswordInput} from "../../hooks/useInputs";
 import {makeRequest, url} from "../../utils/api";
 import {Navigate, useNavigate} from "react-router-dom";
 
 export default function ResetPassword() {
 
-  const password = useInputNew({
-    name: 'password',
+  const password = usePasswordInput({
     placeholder: 'Пароль',
-    icon: 'ShowIcon'
   });
 
-  const code = useInputNew({
+  const code = useInput({
     name: 'code',
     placeholder: 'Введите код из письма'
   });

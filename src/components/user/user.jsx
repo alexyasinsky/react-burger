@@ -1,13 +1,12 @@
-import Form from "../form/form";
 import styles from "./user.module.scss";
 import {useDispatch, useSelector} from "react-redux";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {editUser, getUser} from "../../services/store/user/actions";
 import {selectUser} from "../../services/store/user/reducers";
-import useInputNew from "../../hooks/useInputNew";
+import {Button, Input} from "@ya.praktikum/react-developer-burger-ui-components";
 
 
-export default function User () {
+export default function User() {
 
   const dispatch = useDispatch();
 
@@ -17,46 +16,100 @@ export default function User () {
 
   const user = useSelector(selectUser) || {};
 
-  function editIconHandler() {
-    dispatch(
-      editUser({
-        email: email.value,
-        name: name.value,
-        password: password.value
-      })
-    )
+  const [name, setName] = useState(user.name);
+  const [email, setEmail] = useState(user.email);
+  const [password, setPassword] = useState('');
+
+  const [isEditButtonsShown, setIsEditButtonsShown] = useState(false);
+
+  const [icons, setIcons] = useState({
+    name: 'EditIcon',
+    email: 'EditIcon',
+    password: 'EditIcon'
+  })
+
+  function startEditingPersonalData(e) {
+    setIsEditButtonsShown(true);
+    setIcons({
+      ...icons,
+      [e.target.name]: 'CloseIcon'
+    })
   }
 
-  const name = useInputNew({
-    name: 'name',
-    placeholder: 'Имя',
-    defaultValue: user.name,
-    icon: 'EditIcon',
-    onIconClick: editIconHandler
-  });
+  function finishEditingPersonalData() {
+    setIsEditButtonsShown(false);
+    setIcons({
+      name: 'EditIcon',
+      email: 'EditIcon',
+      password: 'EditIcon'
+    })
+  }
 
-  const email = useInputNew({
-    name: 'email',
-    placeholder: 'Логин',
-    defaultValue: user.email,
-    icon: 'EditIcon',
-    onIconClick: editIconHandler
-  });
-
-  const password = useInputNew({
-    name: 'password',
-    placeholder: 'Пароль',
-    defaultValue: user.password,
-    icon: 'EditIcon',
-    onIconClick: editIconHandler
-  });
+  function confirmEditingPersonalData() {
+    const data = {};
+    if (name !== user.name) {
+      data.name = name;
+    }
+    if (email !== user.email) {
+      data.email = email;
+    }
+    if (password !== '') {
+      data.password = password;
+    }
+    dispatch(editUser(data));
+    finishEditingPersonalData();
+  }
 
 
   return (
     <>
-      <Form
-        inputs={[name, email, password]}
-      />
+      <form className={styles.form}>
+        <Input
+          value={name}
+          placeholder='Имя'
+          type='text'
+          name='name'
+          onChange={(e) => setName(e.target.value)}
+          onClick={startEditingPersonalData}
+          extraClass='mb-6'
+          icon={icons.name}
+        >
+        </Input>
+        <Input
+          value={email}
+          placeholder='Логин'
+          type='email'
+          name='email'
+          onChange={(e) => setEmail(e.target.value)}
+          onClick={startEditingPersonalData}
+          extraClass='mb-6'
+          icon={icons.email}
+        >
+        </Input>
+        <Input
+          value={password}
+          placeholder='Пароль'
+          type='password'
+          name='password'
+          onChange={(e) => setPassword(e.target.value)}
+          onClick={startEditingPersonalData}
+          extraClass='mb-6'
+          icon={icons.password}
+        >
+        </Input>
+        {
+          isEditButtonsShown && (
+            <div className={styles.buttonsWrapper}>
+              <Button onClick={finishEditingPersonalData} htmlType="button" type="secondary" size="medium">
+                Отмена
+              </Button>
+              <Button onClick={confirmEditingPersonalData} htmlType="button" type="primary" size="medium">
+                Сохранить
+              </Button>
+            </div>
+          )
+        }
+      </form>
       <p className={`${styles.description} text text_type_main-small mt-4`}>
         В этом разделе вы можете
         изменить свои персональные данные
