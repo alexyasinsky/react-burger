@@ -1,6 +1,7 @@
 import {useSelector} from "react-redux";
 import {Navigate, useLocation} from "react-router-dom";
 import {selectIsAuthChecked, selectUser} from "../../services/store/user/reducers";
+import PropTypes from "prop-types";
 
 const ProtectedRoute = ({onlyUnAuth = false, component}) => {
   // isAuthChecked это флаг, показывающий, что проверка токена произведена.
@@ -37,3 +38,8 @@ export const OnlyAuth = ProtectedRoute;
 export const OnlyUnAuth = ({component}) => (
   <ProtectedRoute onlyUnAuth={true} component={component}/>
 );
+
+ProtectedRoute.propTypes = {
+  onlyUnAuth: PropTypes.bool,
+  component: PropTypes.element.isRequired
+}

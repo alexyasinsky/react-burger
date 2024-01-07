@@ -1,6 +1,7 @@
 import styles from "./form.module.scss";
 import {Button, Input} from "@ya.praktikum/react-developer-burger-ui-components";
 import {useEffect, useRef} from "react";
+import PropTypes from "prop-types";
 
 export default function Form({inputs, handleSubmit, submitTitle}) {
 
@@ -40,4 +41,15 @@ export default function Form({inputs, handleSubmit, submitTitle}) {
 
     </form>
   )
+}
+
+Form.propTypes = {
+  inputs: PropTypes.arrayOf(PropTypes.shape({
+    "name": PropTypes.string.isRequired,
+    "value": PropTypes.node.isRequired,
+    "setValue": PropTypes.func.isRequired,
+    "type": PropTypes.string,
+    "placeholder": PropTypes.string,
+    "icon": PropTypes.string,
+  }))
 }

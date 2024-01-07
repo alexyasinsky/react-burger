@@ -1,4 +1,5 @@
 import styles from "./form-navigation.module.scss";
+import PropTypes from "prop-types";
 
 
 export default function FormNavigation({links}) {
@@ -21,5 +22,12 @@ export default function FormNavigation({links}) {
         })}
     </div>
   )
+}
 
+FormNavigation.propTypes = {
+  links: PropTypes.arrayOf(PropTypes.shape({
+    href: PropTypes.string.isRequired,
+    question: PropTypes.string.isRequired,
+    title:PropTypes.string.isRequired
+  }))
 }

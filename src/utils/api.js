@@ -26,7 +26,7 @@ export const makeRequestWithRefreshToken = async (url, options) => {
     return await checkResponse(response);
   } catch (err) {
     if (err.message === "jwt expired") {
-      const refreshData = await refreshToken(); //обновляем токен
+      const refreshData = await refreshToken(url); //обновляем токен
       if (!refreshData.success) {
         return Promise.reject(refreshData);
       }

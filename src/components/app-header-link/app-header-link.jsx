@@ -1,6 +1,7 @@
 import {NavLink} from "react-router-dom";
 import styles from "./app-header-link.module.scss";
 import {cloneElement} from "react";
+import PropTypes from "prop-types";
 
 
 export default function AppHeaderLink({href, icon, title}) {
@@ -16,4 +17,10 @@ export default function AppHeaderLink({href, icon, title}) {
       }}
     </NavLink>
   )
+}
+
+AppHeaderLink.propTypes = {
+  href: PropTypes.string.isRequired,
+  icon: PropTypes.element,
+  title: PropTypes.string.isRequired
 }
