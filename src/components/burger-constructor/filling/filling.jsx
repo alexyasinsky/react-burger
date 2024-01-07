@@ -1,4 +1,4 @@
-import styles from './filling-item.module.scss';
+import styles from './filling.module.scss';
 import {ConstructorElement, DragIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import {removeFilling, sortFilling} from "../../../services/store/burger-constructor/reducers";
 import {useDispatch} from "react-redux";
@@ -8,7 +8,7 @@ import {ingredientPropType} from "../../../utils/prop-types";
 import PropTypes from "prop-types";
 
 
-export default function FillingItem ({ingredient, index, extraClass}) {
+export default function Filling ({ingredient, index, extraClass}) {
 
   const dispatch = useDispatch();
   function deleteButtonHandler(e){
@@ -82,7 +82,7 @@ export default function FillingItem ({ingredient, index, extraClass}) {
   )
 }
 
-FillingItem.propTypes = {
+Filling.propTypes = {
   ingredient: ingredientPropType.isRequired,
   index: PropTypes.number.isRequired,
   extraClass: PropTypes.string.isRequired
