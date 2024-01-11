@@ -9,7 +9,7 @@ export async function makeRequest(url, options = {}) {
 }
 
 export const refreshToken = async (url) => {
-  const response = await fetch(`${url}/auth/token`, {
+  return makeRequest(`${url}/auth/token`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json;charset=utf-8",
@@ -18,7 +18,6 @@ export const refreshToken = async (url) => {
       token: localStorage.getItem("refreshToken"),
     }),
   });
-  return checkResponse(response);
 };
 export const makeRequestWithRefreshToken = async (url, options) => {
   try {
