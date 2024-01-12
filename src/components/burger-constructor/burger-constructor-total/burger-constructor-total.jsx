@@ -7,15 +7,21 @@ import { clearOrder, selectOrderNumber  } from '../../../services/store/order/re
 import {useCallback, useMemo} from 'react';
 import {clearConstructorState, selectBun, selectFilling} from "../../../services/store/burger-constructor/reducers";
 import {makeOrder} from "../../../services/store/order/actions";
+import {selectUser} from "../../../services/store/user/reducers";
+import {useNavigate} from "react-router-dom";
 
 export default function BurgerConstructorTotal() {
 
   const bun = useSelector(selectBun);
   const filling = useSelector(selectFilling);
 
+  const user = useSelector(selectUser);
+  const navigate = useNavigate();
+
   const dispatch = useDispatch();
 
   const orderButtonHandler = useCallback(()=> {
+    if (!user) return navigate('/login');
     if (bun === null || filling.length === 0) return
     const ingredients = [bun, ...filling, bun];
     const ids = ingredients.map(item => item._id);
