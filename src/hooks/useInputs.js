@@ -30,7 +30,3 @@ export function usePasswordInput(input) {
     onIconClick: () => setFieldType(fieldType === 'password' ? 'text' : 'password')
   }
 }
-
-//переделать на useForm
-
-// сделать компоненты для типовых полей. для логики формы использовать хук, для отрисовки и логики взаимодействия с полем формы - типовые поля

@@ -22,11 +22,11 @@ const ProtectedRoute = ({onlyUnAuth = false, component}) => {
     // Пользователь авторизован, но роут предназначен для неавторизованного пользователя.
     // Делаем редирект на главную страницу или на тот адрес, что записан в location.state.from
     const {from} = location.state || {from: {pathname: "/"}};
-    return <Navigate to={from}/>;
+    return (<Navigate to={from}/>);
   }
 
   if (!onlyUnAuth && !user) {
-    return <Navigate to="/login" state={{from: location}}/>;
+    return (<Navigate to="/login" state={{from: location}}/>);
   }
 
 
@@ -36,7 +36,7 @@ const ProtectedRoute = ({onlyUnAuth = false, component}) => {
 
 export const OnlyAuth = ProtectedRoute;
 export const OnlyUnAuth = ({component}) => (
-  <ProtectedRoute onlyUnAuth={true} component={component}/>
+  (<ProtectedRoute onlyUnAuth={true} component={component}/>)
 );
 
 ProtectedRoute.propTypes = {

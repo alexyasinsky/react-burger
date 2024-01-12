@@ -3,7 +3,7 @@ import styles from './reset-password.module.scss';
 import FormNavigation from "../../components/form-navigation/form-navigation";
 import {useInput, usePasswordInput} from "../../hooks/useInputs";
 import {makeRequest, url} from "../../utils/api";
-import {Navigate, useNavigate} from "react-router-dom";
+import {Navigate, useLocation} from "react-router-dom";
 
 export default function ResetPassword() {
 
@@ -16,9 +16,9 @@ export default function ResetPassword() {
     placeholder: 'Введите код из письма'
   });
 
-  const navigate = useNavigate();
+  const location = useLocation();
 
-  if (localStorage.getItem('isPasswordReset')) {
+  if (location.state?.from !== '/forgot-password') {
     return (<Navigate to='/'/>)
   }
 
@@ -37,8 +37,7 @@ export default function ResetPassword() {
       password: password.value,
       token: code.value
     }).then(() => {
-      localStorage.removeItem('isPasswordReset');
-      navigate('/');
+      return (<Navigate to='/'/>)
     })
   }
 
