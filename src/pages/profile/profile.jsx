@@ -32,7 +32,7 @@ export default function Profile() {
               История заказов
                 </p>
           </Link>
-          <p onClick={exitHandler} className="text text_type_main-medium text_color_inactive">Выход</p>
+          <button onClick={exitHandler} className={`${styles.exit} text text_type_main-medium text_color_inactive`}>Выход</button>
         </nav>
         <Outlet/>
       </div>
