@@ -1,5 +1,6 @@
 import styles from "./form-navigation.module.scss";
 import PropTypes from "prop-types";
+import {Link} from "react-router-dom";
 
 
 export default function FormNavigation({links}) {
@@ -14,9 +15,9 @@ export default function FormNavigation({links}) {
               key={ind}
             >
               {question}
-              <a href={href} className={`${styles.link} text text_type_main-default ml-2`}>
+              <Link to={href} className={`${styles.link} text text_type_main-default ml-2`}>
                 {title}
-              </a>
+              </Link>
             </p>
           )
         })}
