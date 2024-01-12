@@ -1,15 +1,17 @@
 
 export const url = 'https://norma.nomoreparties.space/api';
+
 const checkResponse = (res) => {
   return res.ok ? res.json() : res.json().then((err) => Promise.reject(err));
 };
+
 export async function makeRequest(url, options = {}) {
   const response = await fetch(url, options);
   return checkResponse(response);
 }
 
-export const refreshToken = async (url) => {
-  return makeRequest(`${url}/auth/token`, {
+export const refreshToken = async () => {
+  return await makeRequest(`${url}/auth/token`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json;charset=utf-8",
@@ -19,13 +21,13 @@ export const refreshToken = async (url) => {
     }),
   });
 };
+
 export const makeRequestWithRefreshToken = async (url, options) => {
   try {
-    const response = await fetch(url, options);
-    return await checkResponse(response);
+    return await makeRequest(url, options);
   } catch (err) {
     if (err.message === "jwt expired") {
-      const refreshData = await refreshToken(url); //обновляем токен
+      const refreshData = await refreshToken(); //обновляем токен
       if (!refreshData.success) {
         return Promise.reject(refreshData);
       }

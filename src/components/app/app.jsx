@@ -72,6 +72,5 @@ export default function App() {
       </main>
       <footer></footer>
     </>
-
   );
 }
