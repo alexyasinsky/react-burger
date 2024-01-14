@@ -1,0 +1,23 @@
+.wrapper {
+  width: 100%;
+  height: 80%;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  width: 320px;
+  float: left;
+
+  a {
+    height: 64px;
+  }
+}
+
+.exit {
+  cursor: pointer;
+  border: 0;
+  background: none;
+  width: fit-content;
+}
+

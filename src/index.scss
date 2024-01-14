@@ -10,16 +10,28 @@ body {
 
 #root {
   height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 main {
   width: 1280px;
+  margin: 0 auto;
+  flex-grow: 1;
   display: flex;
-  justify-content: space-between;
-  margin: auto;
+  align-items: center;
+  justify-content: center;
 }
 
 #react-modals {
   position: absolute;
   top: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+footer {
+  height: 88px;
 }

@@ -36,7 +36,7 @@ export default function BurgerConstructor() {
   const isBunHover = isTopBunHover || isBottomBunHover;
 
   return (
-    <section className="pt-20">
+    <section className="pt-10">
       <Bun viewType="top" ref={topBunDropTarget} isHover={isBunHover}/>
       <Fillings/>
       <Bun viewType="bottom" ref={bottomBunDropTarget} isHover={isBunHover}/>

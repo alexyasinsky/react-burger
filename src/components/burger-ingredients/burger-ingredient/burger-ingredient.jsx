@@ -4,37 +4,27 @@ import {
   CurrencyIcon,
 } from '@ya.praktikum/react-developer-burger-ui-components';
 import {ingredientPropType} from '../../../utils/prop-types';
-import Modal from '../../modal/modal';
-import IngredientDetails from '../../ingredient-details/ingredient-details';
-import {useDispatch, useSelector} from "react-redux";
-import {setCurrentIngredient} from "../../../services/store/current-ingredient/reducers";
-import {useCallback} from "react";
-import {selectCurrentIngredient} from "../../../services/store/current-ingredient/reducers";
 import {useDrag} from "react-dnd";
 import PropTypes from "prop-types";
+import {Link, useLocation} from "react-router-dom";
 
 export default function BurgerIngredient({ingredient, count}) {
-
-  const currentIngredient = useSelector(selectCurrentIngredient);
-
-  const dispatch = useDispatch();
-
-  const openIngredientDetailsModal = useCallback(() => {
-    dispatch(setCurrentIngredient(ingredient));
-  }, [dispatch, ingredient])
-
-  const closeIngredientDetailsModal = useCallback(() => {
-    dispatch(setCurrentIngredient(null));
-  }, [dispatch])
 
   const [, dragRef] = useDrag({
     type: ingredient.constructorExtraType,
     item: ingredient,
   });
 
+  const location = useLocation();
+
   return (
-    <>
-      <figure className={`${styles.card} mb-8`} onClick={openIngredientDetailsModal}>
+    <Link
+      key={ingredient._id}
+      to={`/ingredients/${ingredient._id}`}
+      state={{ background: location }}
+      className={styles.link}
+    >
+      <figure className={`${styles.card} mb-8`}>
         {count && (
           <Counter count={count} size="default"/>
         )}
@@ -54,12 +44,7 @@ export default function BurgerIngredient({ingredient, count}) {
           {ingredient.name}
         </figcaption>
       </figure>
-      {currentIngredient && currentIngredient._id === ingredient._id && (
-        <Modal onClose={closeIngredientDetailsModal} title="Детали ингредиента">
-          <IngredientDetails/>
-        </Modal>
-      )}
-    </>
+    </Link>
   );
 }
 

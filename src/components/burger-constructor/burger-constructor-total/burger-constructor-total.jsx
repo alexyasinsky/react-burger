@@ -1,27 +1,32 @@
 import styles from './burger-constructor-total.module.scss';
 import {Button, CurrencyIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import Modal from '../../modal/modal';
-import OrderDetails from '../../order-details/order-details';
+import OrderAccepted from '../../order-accepted/order-accepted';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearOrder, selectOrderNumber  } from '../../../services/store/order/reducers';
 import {useCallback, useMemo} from 'react';
 import {clearConstructorState, selectBun, selectFilling} from "../../../services/store/burger-constructor/reducers";
 import {makeOrder} from "../../../services/store/order/actions";
+import {selectUser} from "../../../services/store/user/reducers";
+import {useNavigate} from "react-router-dom";
 
 export default function BurgerConstructorTotal() {
 
   const bun = useSelector(selectBun);
   const filling = useSelector(selectFilling);
 
+  const user = useSelector(selectUser);
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
 
   const orderButtonHandler = useCallback(()=> {
+    if (!user) return navigate('/login');
     if (bun === null || filling.length === 0) return
     const ingredients = [bun, ...filling, bun];
     const ids = ingredients.map(item => item._id);
     dispatch(makeOrder(ids));
-  }, [dispatch, filling])
+  }, [dispatch, bun, filling])
 
   const orderNumber = useSelector(selectOrderNumber);
 
@@ -58,7 +63,7 @@ export default function BurgerConstructorTotal() {
       </div>
       {orderNumber && (
         <Modal onClose={closeOrderModal}>
-          <OrderDetails/>
+          <OrderAccepted/>
         </Modal>
       )}
     </>
