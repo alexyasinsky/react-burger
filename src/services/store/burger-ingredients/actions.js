@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import {url, makeRequest} from "../../../utils/api";
+import {BURGER_API, makeRequest} from "../../../utils/api";
 export const fetchIngredients = createAsyncThunk(
   'burger-ingredients/fetchIngredients',
-  async () => makeRequest(`${url}/ingredients`)
+  async () => makeRequest(`${BURGER_API}/ingredients`)
 )

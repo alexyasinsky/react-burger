@@ -3,7 +3,7 @@ import {v4 as uuid} from "uuid";
 
 const initialState = {
   bun: null,
-  filling: []
+  fillings: []
 }
 
 const burgerConstructorSlice = createSlice({
@@ -16,28 +16,28 @@ const burgerConstructorSlice = createSlice({
     addFilling: (state, action) => {
       const fillingItem = {...action.payload};
       fillingItem.constructorId = uuid();
-      state.filling.push(fillingItem);
+      state.fillings.push(fillingItem);
     },
     removeFilling: (state, action) => {
-      state.filling.splice(action.payload, 1);
+      state.fillings.splice(action.payload, 1);
     },
     clearConstructorState: (state) => {
       state.bun = null;
-      state.filling = [];
+      state.fillings = [];
     },
     sortFilling: (state, action) => {
-      state.filling.splice(action.payload.from, 1);
-      state.filling.splice(action.payload.to, 0, action.payload.item);
+      state.fillings.splice(action.payload.from, 1);
+      state.fillings.splice(action.payload.to, 0, action.payload.item);
     }
   },
   selectors: {
     selectBun: state => state.bun,
-    selectFilling: state => state.filling
+    selectFillings: state => state.fillings
   }
 })
 
 const {reducer, selectors, actions} = burgerConstructorSlice;
 
 export const {setBun, addFilling, removeFilling, clearConstructorState, sortFilling} = actions;
-export const {selectBun, selectFilling} = selectors;
+export const {selectBun, selectFillings} = selectors;
 export default reducer;
