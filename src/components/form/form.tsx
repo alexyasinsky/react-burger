@@ -1,11 +1,11 @@
 import styles from "./form.module.scss";
 import {Button, Input} from "@ya.praktikum/react-developer-burger-ui-components";
-import {ChangeEvent, JSX, useEffect, useRef} from "react";
+import {ChangeEvent, JSX, SyntheticEvent, useEffect, useRef} from "react";
 import {TInput} from "../../utils/types";
 
 type TFormProps = {
   inputs: Array<TInput>,
-  handleSubmit: () => void,
+  handleSubmit: (event: SyntheticEvent) => void
   submitTitle: string
 }
 export default function Form({inputs, handleSubmit, submitTitle} : TFormProps) : JSX.Element {

@@ -4,8 +4,17 @@ import FormNavigation from "../../components/form-navigation/form-navigation";
 import {useInput} from "../../hooks/useInputs";
 import {makeRequest, burgerApi} from "../../utils/api";
 import {useLocation, useNavigate} from "react-router-dom";
+import {JSX, SyntheticEvent} from "react";
 
-export default function ForgotPassword() {
+type TResetPasswordRequestBody = {
+  email: string;
+}
+
+type TResetPasswordRequestResponse = {
+  success: string;
+  message: string;
+}
+export default function ForgotPassword(): JSX.Element {
 
   const location = useLocation();
 
@@ -14,8 +23,8 @@ export default function ForgotPassword() {
     placeholder: 'Укажите e-mail',
     type: 'email',
   });
-  async function resetPassword (body) {
-    return await makeRequest(`${burgerApi}/password-reset`, {
+  async function resetPassword (body: TResetPasswordRequestBody){
+    return await makeRequest<TResetPasswordRequestResponse>(`${burgerApi}/password-reset`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -24,8 +33,8 @@ export default function ForgotPassword() {
     });
   }
   const navigate = useNavigate();
-  function handleSubmit(e) {
-    e.preventDefault();
+  function handleSubmit(event: SyntheticEvent) {
+    event.preventDefault();
     resetPassword({
       email: email.value
     }).then(()=>{

@@ -2,9 +2,10 @@ import styles from './profile.module.scss';
 import {useDispatch} from "react-redux";
 import {logout} from "../../services/store/user/actions";
 import {Link, Outlet, useLocation, useNavigate} from "react-router-dom";
+import {JSX} from "react";
 
 
-export default function Profile() {
+export default function Profile(): JSX.Element {
 
   const dispatch = useDispatch();
 
@@ -15,6 +16,7 @@ export default function Profile() {
 
 
   const exitHandler = () => {
+    // @ts-ignore
     dispatch(logout());
     navigate('/');
   }

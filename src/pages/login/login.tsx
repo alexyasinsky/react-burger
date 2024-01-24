@@ -4,8 +4,9 @@ import FormNavigation from "../../components/form-navigation/form-navigation";
 import {useDispatch} from "react-redux";
 import {login} from "../../services/store/user/actions";
 import {useInput, usePasswordInput} from "../../hooks/useInputs";
+import {JSX, SyntheticEvent} from "react";
 
-export default function Login() {
+export default function Login(): JSX.Element {
 
   const email = useInput({
     name: 'email',
@@ -32,8 +33,9 @@ export default function Login() {
 
   const dispatch = useDispatch();
 
-  function handleSubmit(e) {
-    e.preventDefault();
+  function handleSubmit(event: SyntheticEvent) {
+    event.preventDefault();
+    // @ts-ignore
     dispatch(login({
         email: email.value,
         password: password.value

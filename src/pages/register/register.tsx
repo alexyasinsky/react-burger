@@ -4,8 +4,9 @@ import FormNavigation from "../../components/form-navigation/form-navigation";
 import {useInput, usePasswordInput} from "../../hooks/useInputs";
 import {useDispatch} from "react-redux";
 import {register} from "../../services/store/user/actions";
+import {JSX, SyntheticEvent} from "react";
 
-export default function Register() {
+export default function Register(): JSX.Element {
 
   const name = useInput({
     name: 'name',
@@ -24,8 +25,9 @@ export default function Register() {
 
   const dispatch = useDispatch();
 
-  function handleSubmit(e) {
-    e.preventDefault();
+  function handleSubmit(event: SyntheticEvent) {
+    event.preventDefault();
+    // @ts-ignore
     dispatch(register({
       email: email.value,
       password: password.value,

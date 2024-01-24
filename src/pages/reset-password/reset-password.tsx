@@ -4,8 +4,13 @@ import FormNavigation from "../../components/form-navigation/form-navigation";
 import {useInput, usePasswordInput} from "../../hooks/useInputs";
 import {makeRequest, burgerApi} from "../../utils/api";
 import { Navigate, useLocation} from "react-router-dom";
+import {JSX, SyntheticEvent} from "react";
 
-export default function ResetPassword() {
+type TSetNewPasswordRequestBody = {
+  password: string;
+  token: string;
+}
+export default function ResetPassword(): JSX.Element {
 
   const password = usePasswordInput({
     placeholder: 'Пароль',
@@ -22,7 +27,7 @@ export default function ResetPassword() {
     return (<Navigate to='/'/>)
   }
 
-  async function setNewPassword (body) {
+  async function setNewPassword (body: TSetNewPasswordRequestBody) {
     return await makeRequest(`${burgerApi}/password-reset/reset`, {
       method: 'POST',
       headers: {
@@ -31,8 +36,8 @@ export default function ResetPassword() {
       body: JSON.stringify({...body})
     });
   }
-  function handleSubmit(e) {
-    e.preventDefault();
+  function handleSubmit(event: SyntheticEvent) {
+    event.preventDefault();
     setNewPassword({
       password: password.value,
       token: code.value

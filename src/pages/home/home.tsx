@@ -4,9 +4,10 @@ import BurgerIngredients from "../../components/burger-ingredients/burger-ingred
 import BurgerConstructor from "../../components/burger-constructor/burger-constructor";
 
 import styles from './home.module.scss';
+import {JSX} from "react";
 
 
-export default function Home () {
+export default function Home (): JSX.Element {
   return (
     <div className={styles.wrapper}>
       <DndProvider backend={HTML5Backend}>
