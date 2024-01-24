@@ -22,15 +22,6 @@ export type TUser = {
     password?: string;
 }
 
-export type TInput = {
-    name?: string;
-    defaultValue?: string;
-    placeholder?: string;
-    type?: "text" | "email" | "password";
-    icon?: keyof TICons | undefined;
-    onIconClick?: () => void | undefined;
-}
-
 export type TMonoTypeObject<T> = {
     [name: string]: T
 }

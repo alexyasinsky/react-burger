@@ -1,10 +1,11 @@
 import Form from "../../components/form/form";
 import styles from './reset-password.module.scss';
-import FormNavigation from "../../components/form-navigation/form-navigation";
-import {useInput, usePasswordInput} from "../../hooks/useInputs";
-import {makeRequest, burgerApi} from "../../utils/api";
+import FormNavigation from "../../components/form/form-navigation/form-navigation";
+import {makeRequest, BURGER_API} from "../../utils/api";
 import { Navigate, useLocation} from "react-router-dom";
 import {JSX, SyntheticEvent} from "react";
+import FormInput from "../../components/form/form-input/form-input";
+import {useInput} from "../../hooks/useInput";
 
 type TSetNewPasswordRequestBody = {
   password: string;
@@ -12,14 +13,13 @@ type TSetNewPasswordRequestBody = {
 }
 export default function ResetPassword(): JSX.Element {
 
-  const password = usePasswordInput({
-    placeholder: 'Пароль',
-  });
-
   const code = useInput({
-    name: 'code',
-    placeholder: 'Введите код из письма'
-  });
+    name: 'code'
+  })
+
+  const password = useInput({
+    name: 'password'
+  })
 
   const location = useLocation();
 
@@ -28,7 +28,7 @@ export default function ResetPassword(): JSX.Element {
   }
 
   async function setNewPassword (body: TSetNewPasswordRequestBody) {
-    return await makeRequest(`${burgerApi}/password-reset/reset`, {
+    return await makeRequest(`${BURGER_API}/password-reset/reset`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -60,10 +60,19 @@ export default function ResetPassword(): JSX.Element {
         Восстановление пароля
       </h1>
       <Form
-        inputs={[password, code]}
-        handleSubmit={handleSubmit}
-        submitTitle='Сохранить'
-      />
+          handleSubmit={handleSubmit}
+          submitTitle='Войти'
+      >
+        <FormInput input={password}
+                   placeholder='Пароль'
+                   type='password'
+                   icon='ShowIcon'
+        />
+        <FormInput
+            input={code}
+            placeholder='Введите код из письма'
+        />
+      </Form>
       <FormNavigation
         links={formLinks}
       />

@@ -12,7 +12,7 @@ type TRefreshData = {
     accessToken: string;
 }
 
-export const burgerApi = 'https://norma.nomoreparties.space/api';
+export const  BURGER_API = 'https://norma.nomoreparties.space/api';
 
 const checkResponse = <T>(res: Response): Promise<T> => {
     return res.ok ? res.json() as Promise<T> : res.json().then(res => Promise.reject(res.message));
@@ -24,7 +24,7 @@ export async function makeRequest<T>(url: string, options: TFetchOptions = undef
 }
 
 export async function refreshToken(): Promise<TRefreshData> {
-    return await makeRequest<TRefreshData>(`${burgerApi}/auth/token`, {
+    return await makeRequest<TRefreshData>(`${BURGER_API}/auth/token`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json;charset=utf-8",
@@ -41,7 +41,6 @@ export const makeRequestWithRefreshToken = async <T>(url: string, options: TFetc
     } catch (err) {
         if (err === "jwt expired" && options) {
             const refreshData= await refreshToken();
-            console.log(refreshData)
             if (!refreshData.success) {
                 return Promise.reject(refreshData);
             }

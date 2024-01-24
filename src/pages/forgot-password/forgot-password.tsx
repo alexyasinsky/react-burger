@@ -1,10 +1,11 @@
 import Form from "../../components/form/form";
 import styles from './forgot-password.module.scss';
-import FormNavigation from "../../components/form-navigation/form-navigation";
-import {useInput} from "../../hooks/useInputs";
-import {makeRequest, burgerApi} from "../../utils/api";
+import FormNavigation from "../../components/form/form-navigation/form-navigation";
+import {makeRequest, BURGER_API} from "../../utils/api";
 import {useLocation, useNavigate} from "react-router-dom";
 import {JSX, SyntheticEvent} from "react";
+import {useInput} from "../../hooks/useInput";
+import FormInput from "../../components/form/form-input/form-input";
 
 type TResetPasswordRequestBody = {
   email: string;
@@ -19,12 +20,10 @@ export default function ForgotPassword(): JSX.Element {
   const location = useLocation();
 
   const email = useInput({
-    name: 'email',
-    placeholder: 'Укажите e-mail',
-    type: 'email',
-  });
+    name: 'email'
+  })
   async function resetPassword (body: TResetPasswordRequestBody){
-    return await makeRequest<TResetPasswordRequestResponse>(`${burgerApi}/password-reset`, {
+    return await makeRequest<TResetPasswordRequestResponse>(`${BURGER_API}/password-reset`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -57,10 +56,14 @@ export default function ForgotPassword(): JSX.Element {
         Восстановление пароля
       </h1>
       <Form
-        inputs={[email]}
-        handleSubmit={handleSubmit}
-        submitTitle='Восстановить'
-      />
+          handleSubmit={handleSubmit}
+          submitTitle='Войти'
+      >
+        <FormInput
+            input={email}
+            placeholder='Укажите e-mail'
+        />
+      </Form>
       <FormNavigation
         links={formLinks}
       />

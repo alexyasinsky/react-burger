@@ -1,27 +1,26 @@
 import Form from "../../components/form/form";
 import styles from './register.module.scss';
-import FormNavigation from "../../components/form-navigation/form-navigation";
-import {useInput, usePasswordInput} from "../../hooks/useInputs";
+import FormNavigation from "../../components/form/form-navigation/form-navigation";
 import {useDispatch} from "react-redux";
 import {register} from "../../services/store/user/actions";
 import {JSX, SyntheticEvent} from "react";
+import FormInput from "../../components/form/form-input/form-input";
+import {useInput} from "../../hooks/useInput";
 
 export default function Register(): JSX.Element {
 
   const name = useInput({
-    name: 'name',
-    placeholder: 'Имя'
-  });
+    name: 'name'
+  })
+
 
   const email = useInput({
-    name: 'email',
-    placeholder: 'E-mail',
-    type: 'email',
-  });
+    name: 'email'
+  })
 
-  const password = usePasswordInput({
-    placeholder: 'Пароль',
-  });
+  const password = useInput({
+    name: 'password'
+  })
 
   const dispatch = useDispatch();
 
@@ -50,10 +49,23 @@ export default function Register(): JSX.Element {
         Регистрация
       </h1>
       <Form
-        inputs={[name, email, password]}
-        handleSubmit={handleSubmit}
-        submitTitle='Зарегистрироваться'
-      />
+          handleSubmit={handleSubmit}
+          submitTitle='Войти'
+      >
+        <FormInput
+            input={name}
+            placeholder='Имя'
+        />
+        <FormInput
+            input={email}
+            placeholder='E-mail'
+        />
+        <FormInput input={password}
+                   placeholder='Пароль'
+                   type='password'
+                   icon='ShowIcon'
+        />
+      </Form>
       <FormNavigation
         links={formLinks}
       />
