@@ -1,5 +1,4 @@
 import styles from "./form-navigation.module.scss";
-import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 import {JSX} from "react";
 
