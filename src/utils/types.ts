@@ -1,3 +1,5 @@
+import {TICons} from "@ya.praktikum/react-developer-burger-ui-components/dist/ui/icons";
+
 export type TIngredient = {
     _id: string;
     name: string;
@@ -18,6 +20,15 @@ export type TUser = {
     name: string;
     email: string;
     password?: string;
+}
+
+export type TInput = {
+    name?: string;
+    defaultValue?: string;
+    placeholder?: string;
+    type?: "text" | "email" | "password";
+    icon?: keyof TICons | undefined;
+    onIconClick?: () => void | undefined;
 }
 
 export type TMonoTypeObject<T> = {

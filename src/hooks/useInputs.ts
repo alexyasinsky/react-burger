@@ -1,16 +1,12 @@
-import {useState} from "react";
-import {TICons} from "@ya.praktikum/react-developer-burger-ui-components/dist/ui/icons";
+import React, {useState} from "react";
+import {TInput} from "../utils/types";
 
-type TUseInput = {
-  name: string;
-  defaultValue?: string;
-  placeholder?: string;
-  type?: "text" | "email" | "password" | undefined;
-  icon?: keyof TICons | undefined;
-  onIconClick?: () => void | null;
-}
+export type TUseInput = Omit<TInput & {
+  value: string;
+  setValue: React.Dispatch<React.SetStateAction<string>>;
+}, 'defaultValue'>
 
-export function useInput(input: TUseInput) {
+export function useInput(input: TInput): TUseInput {
 
   const [value, setValue] = useState<string>(input.defaultValue || '');
 
@@ -20,22 +16,15 @@ export function useInput(input: TUseInput) {
     setValue,
     placeholder: input.placeholder || '',
     type: input.type || 'text',
-    icon: input.icon || '',
-    onIconClick: input.onIconClick || null
+    icon: input.icon || undefined,
+    onIconClick: input.onIconClick || undefined
   }
 }
 
-type TUsePasswordInput = {
-  defaultValue?: string;
-  placeholder?: string;
-  type?: "text" | "email" | "password" | undefined;
-  icon?: keyof TICons | undefined;
-  onIconClick?: () => void | null;
-}
-export function usePasswordInput(input: TUsePasswordInput) {
+export function usePasswordInput(input: TInput): TUseInput {
 
-  const [value, setValue] = useState(input.defaultValue || '');
-  const [fieldType, setFieldType] = useState('password');
+  const [value, setValue] = useState<string>(input.defaultValue || '');
+  const [fieldType, setFieldType] = useState<"text" | "email" | "password">('password');
 
   return {
     name: 'password',
