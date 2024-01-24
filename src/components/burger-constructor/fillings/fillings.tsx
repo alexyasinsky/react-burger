@@ -1,19 +1,29 @@
 import styles from "./fillings.module.scss";
 import {useDrop} from "react-dnd";
 import Filling from "../filling/filling";
-import {addFilling, selectFilling} from "../../../services/store/burger-constructor/reducers";
+import {addFilling, selectFillings} from "../../../services/store/burger-constructor/reducers";
 import {useDispatch, useSelector} from "react-redux";
+import {JSX} from "react";
+import {TIngredient} from "../../../utils/types";
 
 
-export default function Fillings() {
+type TFillingIngredient = TIngredient & {
+  constructorId: number;
+}
 
-  const filling = useSelector(selectFilling);
+type TDropCollectedProps = {
+  isFillingHover: boolean
+}
+
+export default function Fillings() : JSX.Element {
+
+  const fillings: Array<TFillingIngredient> = useSelector(selectFillings);
 
   const dispatch = useDispatch();
 
-  const [{isFillingHover}, dropFillingTarget] = useDrop({
+  const [{isFillingHover}, dropFillingTarget] = useDrop<TFillingIngredient, unknown, TDropCollectedProps>({
     accept: 'filling',
-    drop(ingredient) {
+    drop(ingredient:TIngredient) {
       onFillingDropHandler(ingredient);
     },
     collect: monitor => ({
@@ -21,7 +31,7 @@ export default function Fillings() {
     })
   });
 
-  function onFillingDropHandler(ingredient) {
+  function onFillingDropHandler(ingredient: TIngredient) {
     dispatch(addFilling(ingredient));
   }
 
@@ -29,7 +39,7 @@ export default function Fillings() {
 
   return (
     <>
-      {filling.length === 0 ?
+      {fillings.length === 0 ?
         (
           <div className={`${styles.empty} ${fillingExtraClass} ml-8 mt-2 mb-2`} ref={dropFillingTarget}>
             <p className="text text_type_main-default">Выберите начинку</p>
@@ -39,7 +49,7 @@ export default function Fillings() {
             className={`${styles.filling} custom-scroll pr-2`}
             ref={dropFillingTarget}
           >
-            {filling.map((item, index) => {
+            {fillings.map((item:TFillingIngredient, index) => {
               return (
                 <Filling ingredient={item} key={item.constructorId} index={index} extraClass={fillingExtraClass}/>
               );

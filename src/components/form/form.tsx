@@ -1,14 +1,21 @@
 import styles from "./form.module.scss";
 import {Button, Input} from "@ya.praktikum/react-developer-burger-ui-components";
-import {useEffect, useRef} from "react";
-import PropTypes from "prop-types";
+import {ChangeEvent, JSX, useEffect, useRef} from "react";
+import {TInput} from "../../utils/types";
 
-export default function Form({inputs, handleSubmit, submitTitle}) {
+type TFormProps = {
+  inputs: Array<TInput>,
+  handleSubmit: () => void,
+  submitTitle: string
+}
+export default function Form({inputs, handleSubmit, submitTitle} : TFormProps) : JSX.Element {
 
-  const inputRef = useRef(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    inputRef.current.focus();
+    if(inputRef && inputRef.current) {
+      inputRef.current.focus();
+    }
   }, []);
 
   return (
@@ -23,7 +30,7 @@ export default function Form({inputs, handleSubmit, submitTitle}) {
               type={input.type}
               placeholder={input.placeholder}
               name={input.name}
-              onChange={(e) => input.setValue(e.target.value)}
+              onChange={(e: ChangeEvent<HTMLInputElement>) => input.setValue(e.target.value)}
               extraClass='mb-6'
               icon={input.icon}
               onIconClick={input.onIconClick}
@@ -31,7 +38,7 @@ export default function Form({inputs, handleSubmit, submitTitle}) {
           )
         })
       }
-      {handleSubmit &&
+      {submitTitle &&
         (
           <Button htmlType="submit" type="primary" size="medium">
             {submitTitle}
@@ -41,15 +48,4 @@ export default function Form({inputs, handleSubmit, submitTitle}) {
 
     </form>
   )
-}
-
-Form.propTypes = {
-  inputs: PropTypes.arrayOf(PropTypes.shape({
-    "name": PropTypes.string.isRequired,
-    "value": PropTypes.node.isRequired,
-    "setValue": PropTypes.func.isRequired,
-    "type": PropTypes.string,
-    "placeholder": PropTypes.string,
-    "icon": PropTypes.string,
-  }))
 }

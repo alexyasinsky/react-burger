@@ -2,12 +2,17 @@ import styles from './burger-ingredients.module.scss';
 import {Tab} from '@ya.praktikum/react-developer-burger-ui-components';
 import {selectIngredients} from '../../services/store/burger-ingredients/reducers';
 import {useSelector} from 'react-redux';
-import {useEffect, useMemo, useRef, useState} from "react";
+import {JSX, MutableRefObject, useEffect, useMemo, useRef, useState} from "react";
 import BurgerIngredientsGroup from "./burger-ingredients-group/burger-ingredients-group";
+import {TIngredient} from "../../utils/types";
 
-export default function BurgerIngredients() {
+type TIngredientGroupRef = {
+  [name: string] : MutableRefObject<HTMLElement | null>
+}
 
-  const list = useSelector(selectIngredients);
+export default function BurgerIngredients() : JSX.Element {
+
+  const list: Array<TIngredient> = useSelector(selectIngredients);
 
   const buns = useMemo(
     () => list.filter((item) => item.type === 'bun'),
@@ -19,36 +24,36 @@ export default function BurgerIngredients() {
     [list]
   );
 
-  const main = useMemo(
+  const main= useMemo(
     () => list.filter((item) => item.type === 'main'),
     [list]
   );
 
-  const [currentTab, setCurrentTab] = useState('buns');
-  const [tabsRect, setTabsRect] = useState({});
+  const [currentTab, setCurrentTab] = useState<string>('buns');
+  const [tabsRectY, setTabsRectY] = useState<number>(0);
 
-  const tabsRef = useRef();
+  const tabsRef = useRef<HTMLDivElement | null>(null);
 
-  const ingredientsGroupRef = {
-    buns: useRef(),
-    sauces: useRef(),
-    main: useRef(),
+  const ingredientsGroupRef: TIngredientGroupRef = {
+    buns: useRef<HTMLElement | null>(null),
+    sauces: useRef<HTMLElement| null>(null),
+    main: useRef<HTMLElement | null>(null),
   }
   function scrollHandler() {
-    const { y: bunY }= ingredientsGroupRef.buns.current.getBoundingClientRect();
-    const { y: saucesY }= ingredientsGroupRef.sauces.current.getBoundingClientRect();
-    const { y: mainY }= ingredientsGroupRef.main.current.getBoundingClientRect();
-    Math.abs(bunY) - tabsRect.y <= 100  && setCurrentTab('buns');
-    Math.abs(saucesY) - tabsRect.y <= 100  && setCurrentTab('sauces');
-    Math.abs(mainY) - tabsRect.y <= 100  && setCurrentTab('main');
+    const bunY= ingredientsGroupRef.buns.current!.getBoundingClientRect().y || 0;
+    const saucesY = ingredientsGroupRef.sauces.current!.getBoundingClientRect().y || 0;
+    const mainY = ingredientsGroupRef.main.current!.getBoundingClientRect().y || 0;
+    Math.abs(bunY) - tabsRectY <= 100  && setCurrentTab('buns');
+    Math.abs(saucesY) - tabsRectY <= 100  && setCurrentTab('sauces');
+    Math.abs(mainY) - tabsRectY <= 100  && setCurrentTab('main');
   }
-  function saucesTabClickHandler(e) {
-    setCurrentTab(e);
-    ingredientsGroupRef[e].current.scrollIntoView({ behavior: "smooth" })
+  function saucesTabClickHandler(tab: string) {
+    setCurrentTab(tab);
+    ingredientsGroupRef[tab].current!.scrollIntoView({ behavior: "smooth" })
   }
 
   useEffect(() => {
-    setTabsRect(tabsRef.current.getBoundingClientRect());
+    setTabsRectY(tabsRef.current!.getBoundingClientRect().y || 0);
   }, []);
 
   return (

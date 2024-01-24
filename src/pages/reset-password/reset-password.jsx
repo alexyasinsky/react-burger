@@ -2,8 +2,8 @@ import Form from "../../components/form/form";
 import styles from './reset-password.module.scss';
 import FormNavigation from "../../components/form-navigation/form-navigation";
 import {useInput, usePasswordInput} from "../../hooks/useInputs";
-import {makeRequest, url} from "../../utils/api";
-import {Navigate, useLocation} from "react-router-dom";
+import {makeRequest, burgerApi} from "../../utils/api";
+import { Navigate, useLocation} from "react-router-dom";
 
 export default function ResetPassword() {
 
@@ -23,7 +23,7 @@ export default function ResetPassword() {
   }
 
   async function setNewPassword (body) {
-    return await makeRequest(`${url}/password-reset/reset`, {
+    return await makeRequest(`${burgerApi}/password-reset/reset`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',

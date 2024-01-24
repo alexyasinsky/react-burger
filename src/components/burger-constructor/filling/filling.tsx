@@ -2,22 +2,50 @@ import styles from './filling.module.scss';
 import {ConstructorElement, DragIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import {removeFilling, sortFilling} from "../../../services/store/burger-constructor/reducers";
 import {useDispatch} from "react-redux";
-import {useRef} from "react";
+import {JSX, useRef} from "react";
 import {useDrag, useDrop} from "react-dnd";
-import {ingredientPropType} from "../../../utils/prop-types";
-import PropTypes from "prop-types";
+import {TIngredient} from "../../../utils/types";
+import {Identifier} from 'dnd-core';
 
+type TFillingProps = {
+  ingredient: TIngredient;
+  index: number;
+  extraClass: string;
+}
 
-export default function Filling ({ingredient, index, extraClass}) {
+type TDnDDragObject = {
+  ingredient: TIngredient;
+  index: number;
+}
+
+type TDragCollectedProps = {
+  isDragging: boolean
+}
+
+type TDropCollectedProps = {
+  handlerId: Identifier | null
+}
+
+export default function Filling ({ingredient, index, extraClass}: TFillingProps) : JSX.Element {
 
   const dispatch = useDispatch();
-  function deleteButtonHandler(e){
-    const index = e.target.parentElement.parentElement.parentElement.parentElement.parentElement.dataset.index;
+  function deleteButtonHandler(){
     dispatch(removeFilling(index));
   }
-  const ref = useRef(null);
+  const ref = useRef<HTMLDivElement | null>(null);
 
-  const [{ handlerId }, drop] = useDrop({
+  const [{ isDragging }, drag] = useDrag<TDnDDragObject, unknown, TDragCollectedProps>({
+    type: 'sortable',
+    item: () => {
+      return { ingredient, index }
+    },
+    collect: (monitor) => ({
+      isDragging: monitor.isDragging(),
+    }),
+  })
+  const opacity = isDragging ? 0 : 1
+
+  const [{ handlerId }, drop] = useDrop<TDnDDragObject, unknown, TDropCollectedProps>({
     accept: 'sortable',
     collect(monitor) {
       return {
@@ -37,7 +65,7 @@ export default function Filling ({ingredient, index, extraClass}) {
       const hoverMiddleY =
         (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2
       const clientOffset = monitor.getClientOffset()
-      const hoverClientY = clientOffset.y - hoverBoundingRect.top
+      const hoverClientY = clientOffset!.y - hoverBoundingRect.top
 
       if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
         return
@@ -49,23 +77,12 @@ export default function Filling ({ingredient, index, extraClass}) {
       item.index = hoverIndex
     },
   })
-  const [{ isDragging }, drag] = useDrag({
-    type: 'sortable',
-    item: () => {
-      return { ingredient, index }
-    },
-    collect: (monitor) => ({
-      isDragging: monitor.isDragging(),
-    }),
-  })
-  const opacity = isDragging ? 0 : 1
 
   drag(drop(ref))
 
   return (
     <div
       className={styles.item}
-      data-index={index}
       style={{ opacity }} data-handler-id={handlerId}
     >
       <div ref={ref}>
@@ -73,17 +90,11 @@ export default function Filling ({ingredient, index, extraClass}) {
       </div>
       <ConstructorElement
         text={ingredient.name}
-        price={ingredient.price}
+        price={+ingredient.price}
         thumbnail={ingredient.image}
         extraClass={extraClass}
         handleClose={deleteButtonHandler}
       />
     </div>
   )
-}
-
-Filling.propTypes = {
-  ingredient: ingredientPropType.isRequired,
-  index: PropTypes.number.isRequired,
-  extraClass: PropTypes.string.isRequired
 }

@@ -3,14 +3,19 @@ import {
   Counter,
   CurrencyIcon,
 } from '@ya.praktikum/react-developer-burger-ui-components';
-import {ingredientPropType} from '../../../utils/prop-types';
 import {useDrag} from "react-dnd";
-import PropTypes from "prop-types";
 import {Link, useLocation} from "react-router-dom";
+import {TIngredient} from "../../../utils/types";
+import {JSX} from "react";
 
-export default function BurgerIngredient({ingredient, count}) {
+type TBurgerIngredientProps = {
+  ingredient: TIngredient;
+  count: number
+}
 
-  const [, dragRef] = useDrag({
+export default function BurgerIngredient({ingredient, count}: TBurgerIngredientProps) : JSX.Element {
+
+  const [, dragRef] = useDrag<TIngredient, unknown, unknown>({
     type: ingredient.constructorExtraType,
     item: ingredient,
   });
@@ -47,8 +52,3 @@ export default function BurgerIngredient({ingredient, count}) {
     </Link>
   );
 }
-
-BurgerIngredient.propTypes = {
-  ingredient: ingredientPropType.isRequired,
-  count: PropTypes.number
-};

@@ -2,13 +2,18 @@ import styles from './bun.module.scss';
 import {ConstructorElement} from "@ya.praktikum/react-developer-burger-ui-components";
 import {useSelector} from "react-redux";
 import {selectBun} from "../../../services/store/burger-constructor/reducers";
-import {forwardRef} from "react";
-import PropTypes from "prop-types";
+import {forwardRef, JSX} from "react";
+import {TIngredient} from "../../../utils/types";
 
 
-const Bun = forwardRef(({viewType, isHover}, ref) => {
+type TBunProps = {
+  viewType: 'top' | 'bottom',
+  isHover: boolean
+}
 
-  const bun = useSelector(selectBun);
+const Bun = forwardRef<HTMLDivElement, TBunProps>(({viewType, isHover} : TBunProps, ref) : JSX.Element => {
+
+  const bun: TIngredient | null = useSelector(selectBun);
 
   const hoverClass = isHover ? styles.ingredient_hovered : styles.ingredient;
 
@@ -27,19 +32,14 @@ const Bun = forwardRef(({viewType, isHover}, ref) => {
           <ConstructorElement
             type={viewType}
             isLocked={true}
-            text={`${bun.name} (верх)`}
-            price={bun.price}
-            thumbnail={bun.image}
+            text={`${bun['name']} (верх)`}
+            price={Number(bun['price'])}
+            thumbnail={bun['image']}
             extraClass={`${hoverClass} mr-4 ml-8`}
           />
         </div>)
       }
     </>
   )})
-
-Bun.propTypes = {
-  viewType : PropTypes.string.isRequired,
-  isHover: PropTypes.bool.isRequired
-}
 
 export default Bun;

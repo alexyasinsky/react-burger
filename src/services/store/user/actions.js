@@ -1,9 +1,9 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import {makeRequest, makeRequestWithRefreshToken, url} from "../../../utils/api";
+import {makeRequest, makeRequestWithRefreshToken, burgerApi} from "../../../utils/api";
 import {setAuthChecked} from "./reducers";
 
 export const register = createAsyncThunk('user/register', async (body) => {
-  const response = await makeRequest(`${url}/auth/register`, {
+  const response = await makeRequest(`${burgerApi}/auth/register`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json;charset=utf-8'
@@ -16,7 +16,7 @@ export const register = createAsyncThunk('user/register', async (body) => {
 })
 
 export const login = createAsyncThunk('user/login', async (body) => {
-  const response = await makeRequest(`${url}/auth/login`, {
+  const response = await makeRequest(`${burgerApi}/auth/login`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json;charset=utf-8'
@@ -29,7 +29,7 @@ export const login = createAsyncThunk('user/login', async (body) => {
 })
 
 export const logout = createAsyncThunk('user/logout', async () => {
-  const response = await makeRequest(`${url}/auth/logout`, {
+  const response = await makeRequest(`${burgerApi}/auth/logout`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json;charset=utf-8'
@@ -44,7 +44,7 @@ export const logout = createAsyncThunk('user/logout', async () => {
 })
 
 export const getUser = createAsyncThunk('user/getUser', async () => {
-  const response = await makeRequestWithRefreshToken(`${url}/auth/user`, {
+  const response = await makeRequestWithRefreshToken(`${burgerApi}/auth/user`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json;charset=utf-8',
@@ -59,7 +59,7 @@ export const getUser = createAsyncThunk('user/getUser', async () => {
 })
 
 export const editUser = createAsyncThunk('user/patchUser', async (body) => {
-  return await makeRequestWithRefreshToken(`${url}/auth/user`, {
+  return await makeRequestWithRefreshToken(`${burgerApi}/auth/user`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json;charset=utf-8',

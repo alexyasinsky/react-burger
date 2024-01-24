@@ -1,8 +1,9 @@
 import styles from './order-accepted.module.scss';
 import { useSelector } from 'react-redux';
 import { selectOrderNumber } from '../../services/store/order/reducers';
+import {JSX} from "react";
 
-export default function OrderAccepted() {
+export default function OrderAccepted(): JSX.Element {
 
   const number = useSelector(selectOrderNumber);
   

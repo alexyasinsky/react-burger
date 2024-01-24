@@ -2,13 +2,16 @@ import ModalOverlay from './modal-overlay/modal-overlay';
 import { createPortal } from 'react-dom';
 import styles from './modal.module.scss';
 import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import PropTypes from 'prop-types';
-import { useEffect } from 'react';
+import {JSX, ReactNode, useEffect} from 'react';
 
-export default function Modal({ children, onClose }) {
-  const modalRoot = document.getElementById('react-modals');
+type TModalProps = {
+  children: ReactNode,
+  onClose: () => void
+}
+export default function Modal({ children, onClose } : TModalProps) : JSX.Element {
 
-  function escapeHandler(event) {
+  const modalRoot = document.getElementById('react-modals')!;
+  function escapeHandler(event: KeyboardEvent) {
     return event.key === 'Escape' && onClose();
   }
   useEffect(()=> {
@@ -31,9 +34,4 @@ export default function Modal({ children, onClose }) {
     ,
     modalRoot
   );
-}
-
-Modal.propTypes = {
-  children: PropTypes.element.isRequired,
-  onClose: PropTypes.func.isRequired
 }

@@ -1,9 +1,17 @@
 import styles from "./form-navigation.module.scss";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
+import {JSX} from "react";
 
 
-export default function FormNavigation({links}) {
+type FormNavigationProps = {
+  links: Array<{
+    href: string,
+    question: string,
+    title: string
+  }>
+}
+export default function FormNavigation({links}: FormNavigationProps): JSX.Element{
 
   return (
     <div className={`${styles.wrapper} mt-20`}>
@@ -23,12 +31,4 @@ export default function FormNavigation({links}) {
         })}
     </div>
   )
-}
-
-FormNavigation.propTypes = {
-  links: PropTypes.arrayOf(PropTypes.shape({
-    href: PropTypes.string.isRequired,
-    question: PropTypes.string.isRequired,
-    title:PropTypes.string.isRequired
-  }))
 }

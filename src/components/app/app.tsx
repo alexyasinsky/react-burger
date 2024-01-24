@@ -1,5 +1,5 @@
 import AppHeader from '../app-header/app-header';
-import {useEffect} from 'react';
+import {useEffect, JSX} from 'react';
 import {useDispatch} from 'react-redux';
 import {fetchIngredients} from '../../services/store/burger-ingredients/actions';
 import {Routes, Route, useNavigate, useLocation} from 'react-router-dom';
@@ -19,20 +19,22 @@ import User from "../user/user";
 import Orders from "../orders/orders";
 
 
-export default function App() {
+export default function App(): JSX.Element {
 
   const location = useLocation();
   const navigate = useNavigate();
-  const background = location.state && location.state.background;
+  const background: string = location.state && location.state.background;
 
-  const handleModalClose = () => {
-    navigate(-1);
+  const handleModalClose = () : void => {
+    return navigate(-1);
   };
 
   const dispatch = useDispatch();
 
   useEffect(() => {
+    //@ts-ignore
     dispatch(checkUserAuth());
+    //@ts-ignore
     dispatch(fetchIngredients());
   }, [dispatch])
 

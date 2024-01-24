@@ -2,7 +2,7 @@ import Form from "../../components/form/form";
 import styles from './forgot-password.module.scss';
 import FormNavigation from "../../components/form-navigation/form-navigation";
 import {useInput} from "../../hooks/useInputs";
-import {makeRequest, url} from "../../utils/api";
+import {makeRequest, burgerApi} from "../../utils/api";
 import {useLocation, useNavigate} from "react-router-dom";
 
 export default function ForgotPassword() {
@@ -15,7 +15,7 @@ export default function ForgotPassword() {
     type: 'email',
   });
   async function resetPassword (body) {
-    return await makeRequest(`${url}/password-reset`, {
+    return await makeRequest(`${burgerApi}/password-reset`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
