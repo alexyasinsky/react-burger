@@ -1,9 +1,9 @@
 import styles from './burger-ingredients-group.module.scss';
 import BurgerIngredient from "../burger-ingredient/burger-ingredient";
-import {useSelector} from "react-redux";
 import {forwardRef, JSX} from "react";
 import {selectBun, selectFillings} from "../../../services/store/burger-constructor/reducers";
 import {TIngredient, TMonoTypeObject} from "../../../utils/types";
+import {useAppSelector} from "../../../services/store/types";
 
 type TBurgerIngredientGroupProps = {
   title: string,
@@ -12,8 +12,8 @@ type TBurgerIngredientGroupProps = {
 
 const BurgerIngredientsGroup = forwardRef<HTMLElement, TBurgerIngredientGroupProps>(({ title, ingredients }: TBurgerIngredientGroupProps, ref) : JSX.Element => {
 
-  const filling: Array<TIngredient> = useSelector(selectFillings);
-  const bun: TIngredient | null = useSelector(selectBun);
+  const filling: Array<TIngredient> = useAppSelector(selectFillings);
+  const bun: TIngredient | null = useAppSelector(selectBun);
 
   const countingData: TMonoTypeObject<number>= {};
 

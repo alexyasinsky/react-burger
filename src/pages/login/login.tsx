@@ -1,11 +1,11 @@
 import Form from "../../components/form/form";
 import styles from './login.module.scss';
 import FormNavigation from "../../components/form/form-navigation/form-navigation";
-import {useDispatch} from "react-redux";
 import {login} from "../../services/store/user/actions";
 import {JSX, SyntheticEvent} from "react";
 import {useInput} from "../../hooks/useInput";
 import FormInput from "../../components/form/form-input/form-input";
+import {useAppDispatch} from "../../services/store/types";
 
 export default function Login(): JSX.Element {
 
@@ -30,7 +30,7 @@ export default function Login(): JSX.Element {
         }
     ]
 
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
     function handleSubmit(event: SyntheticEvent) {
         event.preventDefault();

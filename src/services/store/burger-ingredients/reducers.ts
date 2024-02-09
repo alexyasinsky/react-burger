@@ -1,9 +1,16 @@
-import { createSlice } from '@reduxjs/toolkit';
+import {createSlice, SerializedError} from '@reduxjs/toolkit';
 import { fetchIngredients } from './actions';
+import {TIngredient} from "../../../utils/types";
 
-const initialState = {
+type TInitialState = {
+  loading: boolean;
+  error: SerializedError | null;
+  ingredients: Array<TIngredient>
+}
+
+const initialState: TInitialState = {
   loading: false,
-  error: false,
+  error: null,
   ingredients: [],
 }
 
@@ -14,7 +21,7 @@ const burgerIngredientsSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(fetchIngredients.pending, (state) => {
       state.loading = true;
-      state.error = false;
+      state.error = null;
     })
     builder.addCase(fetchIngredients.fulfilled, (state, action) => {
       state.loading = false;
@@ -38,3 +45,7 @@ const { reducer, selectors } = burgerIngredientsSlice;
 export const { selectIngredients } = selectors;
 
 export default reducer;
+
+type TBurgerIngredientsActionCreators = typeof burgerIngredientsSlice.actions;
+
+export type TBurgerIngredientsActions = ReturnType<TBurgerIngredientsActionCreators[keyof TBurgerIngredientsActionCreators]>

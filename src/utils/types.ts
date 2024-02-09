@@ -1,5 +1,3 @@
-import {TICons} from "@ya.praktikum/react-developer-burger-ui-components/dist/ui/icons";
-
 export type TIngredient = {
     _id: string;
     name: string;
@@ -16,6 +14,12 @@ export type TIngredient = {
     constructorExtraType: 'bun' | 'filling';
 }
 
+export type TFillingIngredient = TIngredient & {
+    constructorId: number;
+}
+
+export type TIngredientFromApi = Pick<TIngredient, 'constructorExtraType'>
+
 export type TUser = {
     name: string;
     email: string;
@@ -24,4 +28,23 @@ export type TUser = {
 
 export type TMonoTypeObject<T> = {
     [name: string]: T
+}
+
+type TOrderOwner = {
+    name: string;
+    email: string;
+    createdAt: string;
+    updatedAt: string;
+}
+
+export type TOrder = {
+    ingredients: Array<TIngredient>,
+    _id: string;
+    owner: TOrderOwner;
+    status: string;
+    name: string;
+    createdAt: string;
+    updatedAt: string;
+    number: number;
+    price: number;
 }

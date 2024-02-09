@@ -1,6 +1,6 @@
 import styles from "./form.module.scss";
-import {Button, Input} from "@ya.praktikum/react-developer-burger-ui-components";
-import {ChangeEvent, JSX, ReactNode, SyntheticEvent, useEffect, useRef} from "react";
+import {Button} from "@ya.praktikum/react-developer-burger-ui-components";
+import {JSX, ReactNode, SyntheticEvent, useEffect, useRef} from "react";
 
 type TFormProps = {
     handleSubmit: (event: SyntheticEvent) => void

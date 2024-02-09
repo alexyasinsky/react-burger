@@ -1,11 +1,11 @@
 import styles from './filling.module.scss';
 import {ConstructorElement, DragIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import {removeFilling, sortFilling} from "../../../services/store/burger-constructor/reducers";
-import {useDispatch} from "react-redux";
 import {JSX, useRef} from "react";
 import {useDrag, useDrop} from "react-dnd";
 import {TIngredient} from "../../../utils/types";
 import {Identifier} from 'dnd-core';
+import {useAppDispatch} from "../../../services/store/types";
 
 type TFillingProps = {
   ingredient: TIngredient;
@@ -28,7 +28,7 @@ type TDropCollectedProps = {
 
 export default function Filling ({ingredient, index, extraClass}: TFillingProps) : JSX.Element {
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   function deleteButtonHandler(){
     dispatch(removeFilling(index));
   }

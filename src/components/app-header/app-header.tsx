@@ -15,7 +15,7 @@ export default function AppHeader(): JSX.Element {
           title='Конструктор'
         />
         <AppHeaderLink
-          href='/orders'
+          href='/feed'
           icon={<ListIcon type='primary'/>}
           title='Лента заказов'
         />

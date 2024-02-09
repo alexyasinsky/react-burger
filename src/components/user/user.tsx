@@ -1,5 +1,4 @@
 import styles from "./user.module.scss";
-import {useDispatch, useSelector} from "react-redux";
 import {JSX, SyntheticEvent, useEffect, useState} from "react";
 import {editUser, getUser} from "../../services/store/user/actions";
 import {selectUser} from "../../services/store/user/reducers";
@@ -8,6 +7,7 @@ import {TMonoTypeObject, TUser} from "../../utils/types";
 import {TICons} from "@ya.praktikum/react-developer-burger-ui-components/dist/ui/icons";
 import UserFormInput from "./user-form-input/user-form-input";
 import {useInput} from "../../hooks/useInput";
+import {useAppDispatch, useAppSelector} from "../../services/store/types";
 
 
 type TUserIcons = {
@@ -16,14 +16,14 @@ type TUserIcons = {
 
 export default function User(): JSX.Element {
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     // @ts-ignore
     dispatch(getUser());
   }, [dispatch]);
 
-  const user: TUser | null = useSelector(selectUser);
+  const user: TUser | null = useAppSelector(selectUser);
 
   const name = useInput({
     name: 'name',

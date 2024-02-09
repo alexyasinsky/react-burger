@@ -1,6 +1,5 @@
 import AppHeader from '../app-header/app-header';
 import {useEffect, JSX} from 'react';
-import {useDispatch} from 'react-redux';
 import {fetchIngredients} from '../../services/store/burger-ingredients/actions';
 import {Routes, Route, useNavigate, useLocation} from 'react-router-dom';
 import Home from "../../pages/home/home";
@@ -17,6 +16,8 @@ import {OnlyAuth, OnlyUnAuth} from "../protected-route/protected-route";
 import {checkUserAuth} from "../../services/store/user/actions";
 import User from "../user/user";
 import Orders from "../orders/orders";
+import Feed from "../../pages/feed/feed";
+import {useAppDispatch} from "../../services/store/types";
 
 
 export default function App(): JSX.Element {
@@ -28,13 +29,9 @@ export default function App(): JSX.Element {
   const handleModalClose = () : void => {
     return navigate(-1);
   };
-
-  const dispatch = useDispatch();
-
+  const dispatch = useAppDispatch();
   useEffect(() => {
-    //@ts-ignore
     dispatch(checkUserAuth());
-    //@ts-ignore
     dispatch(fetchIngredients());
   }, [dispatch])
 
@@ -44,6 +41,7 @@ export default function App(): JSX.Element {
       <main>
         <Routes location={background || location}>
           <Route path="/" element={<Home/>}/>
+          <Route path="/feed" element={<Feed/>}/>
           <Route path="/login" element={<OnlyUnAuth component={<Login/>}/>}/>
           <Route path="/register" element={<OnlyUnAuth component={<Register/>}/>}/>
           <Route path="/forgot-password" element={<OnlyUnAuth component={<ForgotPassword/>}/>}/>

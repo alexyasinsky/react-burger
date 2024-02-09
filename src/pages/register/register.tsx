@@ -1,11 +1,11 @@
 import Form from "../../components/form/form";
 import styles from './register.module.scss';
 import FormNavigation from "../../components/form/form-navigation/form-navigation";
-import {useDispatch} from "react-redux";
 import {register} from "../../services/store/user/actions";
 import {JSX, SyntheticEvent} from "react";
 import FormInput from "../../components/form/form-input/form-input";
 import {useInput} from "../../hooks/useInput";
+import {useAppDispatch} from "../../services/store/types";
 
 export default function Register(): JSX.Element {
 
@@ -22,7 +22,7 @@ export default function Register(): JSX.Element {
     name: 'password'
   })
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   function handleSubmit(event: SyntheticEvent) {
     event.preventDefault();

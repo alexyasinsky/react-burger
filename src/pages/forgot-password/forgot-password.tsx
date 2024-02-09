@@ -22,7 +22,8 @@ export default function ForgotPassword(): JSX.Element {
   const email = useInput({
     name: 'email'
   })
-  async function resetPassword (body: TResetPasswordRequestBody){
+
+  async function resetPassword(body: TResetPasswordRequestBody) {
     return await makeRequest<TResetPasswordRequestResponse>(`${BURGER_API}/password-reset`, {
       method: 'POST',
       headers: {
@@ -31,12 +32,14 @@ export default function ForgotPassword(): JSX.Element {
       body: JSON.stringify({...body})
     });
   }
+
   const navigate = useNavigate();
+
   function handleSubmit(event: SyntheticEvent) {
     event.preventDefault();
     resetPassword({
       email: email.value
-    }).then(()=>{
+    }).then(() => {
       return navigate('/reset-password', {state: {from: location.pathname}})
     })
 
@@ -56,12 +59,12 @@ export default function ForgotPassword(): JSX.Element {
         Восстановление пароля
       </h1>
       <Form
-          handleSubmit={handleSubmit}
-          submitTitle='Войти'
+        handleSubmit={handleSubmit}
+        submitTitle='Войти'
       >
         <FormInput
-            input={email}
-            placeholder='Укажите e-mail'
+          input={email}
+          placeholder='Укажите e-mail'
         />
       </Form>
       <FormNavigation
