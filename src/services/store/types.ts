@@ -7,13 +7,13 @@ import {TBurgerConstructorActions} from "./burger-constructor/reducers";
 import {TBurgerIngredientsActions} from "./burger-ingredients/reducers";
 
 
-export type AppActions =
+type AppActions =
   TOrderActions |
   TBurgerConstructorActions |
   TBurgerIngredientsActions |
   TUserActions
 
-export type RootState = ReturnType<typeof store.getState>
+type RootState = ReturnType<typeof store.getState>
 
 export type AppDispatch = ThunkDispatch<RootState, any, AppActions>
 export const useAppDispatch: () => AppDispatch = useDispatch

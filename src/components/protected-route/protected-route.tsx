@@ -1,8 +1,8 @@
 import {Navigate, useLocation} from "react-router-dom";
 import {selectIsAuthChecked, selectUser} from "../../services/store/user/reducers";
 import {JSX, ReactElement} from "react";
-import {PacmanLoader} from "react-spinners";
 import {useAppSelector} from "../../services/store/types";
+import Loader from "../loader/loader";
 
 type TProtectedRouteProps = {
     onlyUnAuth?: boolean,
@@ -23,12 +23,7 @@ const ProtectedRoute = ({onlyUnAuth = false, component}: TProtectedRouteProps): 
         // Запрос еще выполняется
         // Выводим прелоадер в ПР
         return (
-            <PacmanLoader
-                loading={true}
-                color="#F2F2F3"
-                size={100}
-                aria-label="Loading Spinner"
-            />
+           <Loader/>
         );
     }
 
