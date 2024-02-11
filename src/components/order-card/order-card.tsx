@@ -5,6 +5,8 @@ import {TIngredient, TOrder} from "../../utils/types";
 import {useAppSelector} from "../../services/store/hooks";
 import {selectIngredients} from "../../services/store/burger-ingredients/reducers";
 import {CurrencyIcon} from "@ya.praktikum/react-developer-burger-ui-components";
+// @ts-ignore
+import {v4 as uuid} from "uuid";
 
 type TOrderCardProps = {
   order: TOrder;
@@ -18,8 +20,8 @@ export default function OrderCard({order}: TOrderCardProps): JSX.Element {
   const [orderPrice, setOrderPrice] = useState<number>(0);
 
   const translatedStatus = {
-    pending: 'Готовится',
-    done: 'Готов к выдаче',
+    pending: 'В работе',
+    done: 'Готов',
 
   }
 
@@ -65,7 +67,7 @@ export default function OrderCard({order}: TOrderCardProps): JSX.Element {
               transform: `translate(${-10*ind}px)`
             }
             return (
-              <div className={styles.image} style={style}/>
+              <div key={uuid()} className={styles.image} style={style}/>
             )
             })
           }

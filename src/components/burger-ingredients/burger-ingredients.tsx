@@ -69,7 +69,7 @@ export default function BurgerIngredients() : JSX.Element {
           Начинки
         </Tab>
       </div>
-      <div className={`${styles.list} custom-scroll`} onScroll={scrollHandler}>
+        <div className={`${styles.list} custom-scroll`} onScroll={scrollHandler}>
         <BurgerIngredientsGroup title='Булки' ingredients={buns} ref={ingredientsGroupRef.buns}/>
         <BurgerIngredientsGroup title='Соусы' ingredients={sauces} ref={ingredientsGroupRef.sauces}/>
         <BurgerIngredientsGroup title='Начинки' ingredients={main} ref={ingredientsGroupRef.main}/>

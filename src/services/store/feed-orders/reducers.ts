@@ -12,12 +12,16 @@ type TInitialState = {
   status: string;
   orders: Array<TOrder>;
   connectionError: string;
+  totalToday: number,
+  total: number
 }
 
 const initialState: TInitialState = {
   status: 'OFFLINE',
   orders: [],
-  connectionError: ""
+  connectionError: "",
+  totalToday: 0,
+  total: 0
 }
 
 const feedOrdersSlice = createSlice({
@@ -41,15 +45,19 @@ const feedOrdersSlice = createSlice({
       })
       .addCase(feedOrdersWsMessage, (state, action) => {
         state.orders = action.payload.orders;
+        state.totalToday = action.payload.totalToday;
+        state.total = action.payload.total;
       })
   },
   selectors: {
     selectFeedOrders: state => state.orders,
+    selectTotal: state => state.total,
+    selectTotalToday: state => state.totalToday
   }
 })
 
 const {selectors, reducer} = feedOrdersSlice;
 
-export const {selectFeedOrders} = selectors;
+export const {selectFeedOrders, selectTotalToday, selectTotal} = selectors;
 
 export default reducer;

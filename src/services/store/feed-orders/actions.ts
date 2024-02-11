@@ -3,8 +3,10 @@ import {socketMiddleware} from "../middleware/socket-middleware";
 import {TOrder} from "../../../utils/types";
 
 type TPayload = {
-  success: boolean,
-  orders: Array<TOrder>
+  success: boolean;
+  orders: Array<TOrder>;
+  total: number;
+  totalToday: number
 }
 export const feedOrdersConnect = createAction<string, 'FEED_ORDERS_CONNECT'>('FEED_ORDERS_CONNECT');
 export const feedOrdersDisconnect = createAction("FEED_ORDERS_DISCONNECT");

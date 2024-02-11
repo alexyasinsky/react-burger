@@ -1,16 +1,39 @@
 
-
 .wrapper {
+  width: 100%;
+}
+
+
+.dashboard {
   display: flex;
-  justify-content: space-between;
+  justify-content: start;
 }
 
 .feed {
-   width: 645px;
+  width: 645px;
   overflow: auto;
   height: 65vh;
 }
 
 .info {
-  width: 600px;
+}
+
+.ordersStatus {
+  display: flex;
+}
+
+.ordersList {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  max-height: 325px;
+  width: 297px;
+
+  .done {
+    color: rgba(0, 204, 204, 1);
+  }
+}
+
+.total {
+
 }
