@@ -57,8 +57,7 @@ export default function BurgerIngredients() : JSX.Element {
   }, []);
 
   return (
-    <section className={`${styles.wrapper}`}>
-      <h1 className="text text_type_main-large pb-5">Соберите бургер</h1>
+    <section className={`${styles.wrapper} pt-5`}>
       <div className={`${styles.tabs} pb-5`} ref={tabsRef}>
         <Tab value="buns" active={currentTab === 'buns'} onClick={saucesTabClickHandler}>
           Булки

@@ -45,7 +45,7 @@ export default function BurgerConstructor(): JSX.Element {
   const isBunHover = isTopBunHover || isBottomBunHover;
 
   return (
-    <section className="pt-10">
+    <section>
       <Bun viewType="top" ref={topBunDropTarget} isHover={isBunHover}/>
       <Fillings/>
       <Bun viewType="bottom" ref={bottomBunDropTarget} isHover={isBunHover}/>

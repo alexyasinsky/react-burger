@@ -38,10 +38,10 @@ type TOrderOwner = {
 }
 
 export type TOrder = {
-    ingredients: Array<TIngredient>,
+    ingredients: Array<string>,
     _id: string;
     owner: TOrderOwner;
-    status: string;
+    status: 'pending' | 'done';
     name: string;
     createdAt: string;
     updatedAt: string;

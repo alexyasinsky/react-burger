@@ -1,0 +1,16 @@
+
+
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.feed {
+   width: 645px;
+  overflow: auto;
+  height: 65vh;
+}
+
+.info {
+  width: 600px;
+}

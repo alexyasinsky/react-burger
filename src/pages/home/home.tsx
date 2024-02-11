@@ -9,12 +9,16 @@ import {JSX} from "react";
 
 export default function Home (): JSX.Element {
   return (
-    <div className={styles.wrapper}>
-      <DndProvider backend={HTML5Backend}>
-        <BurgerIngredients/>
-        <BurgerConstructor/>
-      </DndProvider>
+    <div>
+      <h1 className="text text_type_main-large">Соберите бургер</h1>
+      <div className={styles.wrapper}>
+        <DndProvider backend={HTML5Backend}>
+          <BurgerIngredients/>
+          <BurgerConstructor/>
+        </DndProvider>
+      </div>
     </div>
+
 
   )
 }

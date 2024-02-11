@@ -1,0 +1,46 @@
+
+.card {
+  background-color: rgba(28, 28, 33, 1);
+  border-radius: 40px;
+  min-height: 246px;
+  width: 640px;
+  padding: 24px;
+}
+
+.box {
+  display: flex;
+  justify-content: space-between;
+}
+
+.status {
+  color: rgba(0, 204, 204, 1);
+}
+
+.price {
+  display: flex;
+  align-items: center;
+}
+
+.ingredients {
+  display: flex;
+  .image {
+    height: 64px;
+    width: 64px;
+    border-radius: 50%;
+    border: 1px solid rgba(128, 26, 178, 1);
+    background-position: center;
+    background-size: 150%;
+    background-color: #1C1C21;
+    background-repeat: no-repeat;
+    transform: translate(-10px);
+  }
+  .extra {
+    height: 64px;
+    width: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+
