@@ -5,7 +5,7 @@ import {profileOrdersConnect} from "../../services/store/profile-orders/actions"
 import {selectProfileOrders} from "../../services/store/profile-orders/reducers";
 
 
-export default function Orders(): JSX.Element {
+export default function OrdersHistory(): JSX.Element {
 
   const dispatch = useAppDispatch();
   useEffect(() => {
@@ -14,9 +14,12 @@ export default function Orders(): JSX.Element {
 
   const orders = useAppSelector(selectProfileOrders);
 
-  console.log(orders)
+  console.log(orders);
+
+
  return (
    <>
+
    </>
  )
 }
