@@ -1,7 +1,7 @@
-// socketMiddleware.ts
 import type { Middleware } from 'redux';
 
 import {ActionCreatorWithoutPayload, ActionCreatorWithPayload} from "@reduxjs/toolkit";
+import {refreshToken} from "../../../utils/api";
 
 export type TWsActionTypes = {
   wsConnect: ActionCreatorWithPayload<string>;
@@ -16,9 +16,8 @@ export type TWsActionTypes = {
 
 const RECONNECT_PERIOD = 3000;
 
-export const socketMiddleware = (wsActions: TWsActionTypes, withTokenRefresh = false): Middleware => {
+export const socketMiddleware = (wsActions: TWsActionTypes, withTokenRefresh: boolean = false): Middleware => {
   return ((store) => {
-    debugger
     let socket: WebSocket | null = null;
     let isConnected = false;
     let reconnectTimer = 0;
@@ -36,7 +35,6 @@ export const socketMiddleware = (wsActions: TWsActionTypes, withTokenRefresh = f
 //
     return (next) => (action) => {
       const { dispatch } = store;
-
       if (wsConnect.match(action)) {
         socket = new WebSocket(action.payload);
         url = action.payload;
@@ -64,6 +62,25 @@ export const socketMiddleware = (wsActions: TWsActionTypes, withTokenRefresh = f
         socket.onmessage = (event) => {
           const { data } = event;
           const parsedData = JSON.parse(data);
+
+          if (withTokenRefresh && parsedData.message === "Invalid or missing token") {
+            refreshToken()
+              .then(refreshData => {
+                const wssUrl = new URL(url);
+                wssUrl.searchParams.set(
+                  "token",
+                  refreshData.accessToken.replace("Bearer ", "")
+                );
+                dispatch(wsConnect(wssUrl.toString()))
+              })
+              .catch(err => {
+                dispatch(onError(err.message));
+              })
+
+            dispatch(wsDisconnect());
+
+            return;
+          }
           dispatch(onMessage(parsedData));
         }
       }

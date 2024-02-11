@@ -17,8 +17,6 @@ import {checkUserAuth} from "../../services/store/user/actions";
 import User from "../user/user";
 import Orders from "../orders/orders";
 import Feed from "../../pages/feed/feed";
-import {ordersConnect} from "../../services/store/orders/actions";
-import {BURGER_WS_API} from "../../utils/api";
 import {useAppDispatch} from "../../services/store/hooks";
 
 
@@ -31,9 +29,9 @@ export default function App(): JSX.Element {
   const handleModalClose = () : void => {
     return navigate(-1);
   };
+
   const dispatch = useAppDispatch();
   useEffect(() => {
-    dispatch(ordersConnect(BURGER_WS_API));
     dispatch(checkUserAuth());
     dispatch(fetchIngredients());
   }, [dispatch])

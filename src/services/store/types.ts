@@ -4,14 +4,17 @@ import {TOrderActions} from "./order/reducers";
 import {TUserActions} from "./user/reducers";
 import {TBurgerConstructorActions} from "./burger-constructor/reducers";
 import {TBurgerIngredientsActions} from "./burger-ingredients/reducers";
-import {TOrdersActions} from "./orders/actions";
+import {TProfileOrdersActions} from "./profile-orders/actions";
+import {TFeedOrdersActions} from "./feed-orders/actions";
 
 
 export type AppActions =
   TOrderActions |
   TBurgerConstructorActions |
   TBurgerIngredientsActions |
-  TUserActions | TOrdersActions
+  TUserActions |
+  TProfileOrdersActions |
+  TFeedOrdersActions
 
 export type RootState = ReturnType<typeof store.getState>
 
