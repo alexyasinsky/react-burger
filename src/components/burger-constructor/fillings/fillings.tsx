@@ -6,7 +6,7 @@ import {JSX} from "react";
 import {TIngredient} from "../../../utils/types";
 // @ts-ignore
 import {v4 as uuid} from "uuid";
-import {useAppDispatch, useAppSelector} from "../../../services/store/types";
+import {useAppDispatch, useAppSelector} from "../../../services/store/hooks";
 
 
 type TDropCollectedProps = {

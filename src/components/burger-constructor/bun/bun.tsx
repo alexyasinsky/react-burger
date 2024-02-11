@@ -3,7 +3,7 @@ import {ConstructorElement} from "@ya.praktikum/react-developer-burger-ui-compon
 import {selectBun} from "../../../services/store/burger-constructor/reducers";
 import {forwardRef, JSX} from "react";
 import {TIngredient} from "../../../utils/types";
-import {useAppSelector} from "../../../services/store/types";
+import {useAppSelector} from "../../../services/store/hooks";
 
 
 type TBunProps = {

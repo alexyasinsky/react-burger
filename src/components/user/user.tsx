@@ -7,7 +7,7 @@ import {TMonoTypeObject, TUser} from "../../utils/types";
 import {TICons} from "@ya.praktikum/react-developer-burger-ui-components/dist/ui/icons";
 import UserFormInput from "./user-form-input/user-form-input";
 import {useInput} from "../../hooks/useInput";
-import {useAppDispatch, useAppSelector} from "../../services/store/types";
+import {useAppDispatch, useAppSelector} from "../../services/store/hooks";
 
 
 type TUserIcons = {

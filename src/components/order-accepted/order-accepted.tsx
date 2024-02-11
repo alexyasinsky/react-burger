@@ -1,7 +1,7 @@
 import styles from './order-accepted.module.scss';
 import { selectOrderNumber } from '../../services/store/order/reducers';
 import {JSX} from "react";
-import {useAppSelector} from "../../services/store/types";
+import {useAppSelector} from "../../services/store/hooks";
 
 export default function OrderAccepted(): JSX.Element {
 

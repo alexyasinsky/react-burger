@@ -5,7 +5,7 @@ import {register} from "../../services/store/user/actions";
 import {JSX, SyntheticEvent} from "react";
 import FormInput from "../../components/form/form-input/form-input";
 import {useInput} from "../../hooks/useInput";
-import {useAppDispatch} from "../../services/store/types";
+import {useAppDispatch} from "../../services/store/hooks";
 
 export default function Register(): JSX.Element {
 

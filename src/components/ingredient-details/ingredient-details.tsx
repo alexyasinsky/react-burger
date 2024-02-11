@@ -3,7 +3,7 @@ import {selectIngredients} from "../../services/store/burger-ingredients/reducer
 import {useParams} from "react-router-dom";
 import {JSX} from "react";
 import {TIngredient} from "../../utils/types";
-import {useAppSelector} from "../../services/store/types";
+import {useAppSelector} from "../../services/store/hooks";
 
 export default function IngredientDetails(): JSX.Element {
 

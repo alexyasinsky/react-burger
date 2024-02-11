@@ -4,7 +4,7 @@ import {selectIngredients} from '../../services/store/burger-ingredients/reducer
 import {JSX, MutableRefObject, useEffect, useMemo, useRef, useState} from "react";
 import BurgerIngredientsGroup from "./burger-ingredients-group/burger-ingredients-group";
 import {TIngredient} from "../../utils/types";
-import {useAppSelector} from "../../services/store/types";
+import {useAppSelector} from "../../services/store/hooks";
 
 type TIngredientGroupRef = {
   [name: string] : MutableRefObject<HTMLElement | null>

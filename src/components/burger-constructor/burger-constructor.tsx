@@ -6,7 +6,7 @@ import {useDrop} from "react-dnd";
 import {setBun} from "../../services/store/burger-constructor/reducers";
 import {JSX} from "react";
 import {TIngredient} from "../../utils/types";
-import {useAppDispatch} from "../../services/store/types";
+import {useAppDispatch} from "../../services/store/hooks";
 
 type TTopBunDropCollectedProps = {
   isTopBunHover: boolean

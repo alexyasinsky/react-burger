@@ -5,7 +5,7 @@ import {login} from "../../services/store/user/actions";
 import {JSX, SyntheticEvent} from "react";
 import {useInput} from "../../hooks/useInput";
 import FormInput from "../../components/form/form-input/form-input";
-import {useAppDispatch} from "../../services/store/types";
+import {useAppDispatch} from "../../services/store/hooks";
 
 export default function Login(): JSX.Element {
 

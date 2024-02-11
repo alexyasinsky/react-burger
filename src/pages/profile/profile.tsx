@@ -2,7 +2,7 @@ import styles from './profile.module.scss';
 import {logout} from "../../services/store/user/actions";
 import {Link, Outlet, useLocation, useNavigate} from "react-router-dom";
 import {JSX} from "react";
-import {useAppDispatch} from "../../services/store/types";
+import {useAppDispatch} from "../../services/store/hooks";
 
 
 export default function Profile(): JSX.Element {

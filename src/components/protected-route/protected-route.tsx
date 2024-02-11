@@ -1,8 +1,8 @@
 import {Navigate, useLocation} from "react-router-dom";
 import {selectIsAuthChecked, selectUser} from "../../services/store/user/reducers";
 import {JSX, ReactElement} from "react";
-import {useAppSelector} from "../../services/store/types";
 import Loader from "../loader/loader";
+import {useAppSelector} from "../../services/store/hooks";
 
 type TProtectedRouteProps = {
     onlyUnAuth?: boolean,

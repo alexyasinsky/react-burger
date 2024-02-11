@@ -9,8 +9,8 @@ import {makeOrder} from "../../../services/store/order/actions";
 import {selectUser} from "../../../services/store/user/reducers";
 import {useNavigate} from "react-router-dom";
 import {TIngredient} from "../../../utils/types";
-import {useAppDispatch, useAppSelector} from "../../../services/store/types";
 import Loader from "../../loader/loader";
+import {useAppDispatch, useAppSelector} from "../../../services/store/hooks";
 
 export default function BurgerConstructorTotal() : JSX.Element {
 

@@ -3,7 +3,7 @@ import BurgerIngredient from "../burger-ingredient/burger-ingredient";
 import {forwardRef, JSX} from "react";
 import {selectBun, selectFillings} from "../../../services/store/burger-constructor/reducers";
 import {TIngredient, TMonoTypeObject} from "../../../utils/types";
-import {useAppSelector} from "../../../services/store/types";
+import {useAppSelector} from "../../../services/store/hooks";
 
 type TBurgerIngredientGroupProps = {
   title: string,

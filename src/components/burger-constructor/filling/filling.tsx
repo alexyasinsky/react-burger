@@ -5,7 +5,7 @@ import {JSX, useRef} from "react";
 import {useDrag, useDrop} from "react-dnd";
 import {TIngredient} from "../../../utils/types";
 import {Identifier} from 'dnd-core';
-import {useAppDispatch} from "../../../services/store/types";
+import {useAppDispatch} from "../../../services/store/hooks";
 
 type TFillingProps = {
   ingredient: TIngredient;
