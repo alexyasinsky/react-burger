@@ -1,7 +1,7 @@
 import {JSX, useEffect, useMemo} from "react";
 import {BURGER_WS_API} from "../../utils/api";
 import {useAppDispatch, useAppSelector} from "../../services/store/hooks";
-import {feedOrdersConnect} from "../../services/store/feed-orders/actions";
+import {feedOrdersConnect, feedOrdersDisconnect} from "../../services/store/feed-orders/actions";
 import styles from './feed.module.scss';
 import {selectFeedOrders, selectTotal, selectTotalToday} from "../../services/store/feed-orders/reducers";
 import OrderList from "../../components/order-list/order-list";
@@ -12,6 +12,9 @@ export default function Feed(): JSX.Element {
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(feedOrdersConnect(`${BURGER_WS_API}/all`));
+    return () => {
+      dispatch(feedOrdersDisconnect());
+    }
   }, []);
 
   const orders = useAppSelector(selectFeedOrders);

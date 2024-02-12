@@ -8,7 +8,7 @@ import {TProfileOrdersActions} from "./profile-orders/actions";
 import {TFeedOrdersActions} from "./feed-orders/actions";
 
 
-export type AppActions =
+export type TAppActions =
   TOrderActions |
   TBurgerConstructorActions |
   TBurgerIngredientsActions |
@@ -18,4 +18,4 @@ export type AppActions =
 
 export type RootState = ReturnType<typeof store.getState>
 
-export type AppDispatch = ThunkDispatch<RootState, any, AppActions>
+export type AppDispatch = ThunkDispatch<RootState, any, TAppActions>
