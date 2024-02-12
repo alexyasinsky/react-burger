@@ -10,10 +10,9 @@ type TUserFormInputProps = {
     placeholder?: string;
     onClick: (event: SyntheticEvent) => void;
     icon: keyof TICons | undefined;
-
 }
 
-export default function UserFormInput({input, type='text', placeholder, onClick, icon}: TUserFormInputProps): JSX.Element {
+export default function FormInputUser({input, type='text', placeholder, onClick, icon}: TUserFormInputProps): JSX.Element {
     return (
         <Input
             name={input.name}

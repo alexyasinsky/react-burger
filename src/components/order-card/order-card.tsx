@@ -5,13 +5,13 @@ import {TIngredient, TOrder} from "../../utils/types";
 import {useAppSelector} from "../../services/store/hooks";
 import {selectIngredients} from "../../services/store/burger-ingredients/reducers";
 import {CurrencyIcon} from "@ya.praktikum/react-developer-burger-ui-components";
-// @ts-ignore
-import {v4 as uuid} from "uuid";
+import uuid from "../../utils/uuid";
 
-type TOrderCardProps = {
+type TProps = {
   order: TOrder;
+  size: 'medium' | 'large'
 }
-export default function OrderCard({order}: TOrderCardProps): JSX.Element {
+export default function OrderCard({order, size}: TProps): JSX.Element {
 
   const ingredientsFromStore: Array<TIngredient> = useAppSelector(selectIngredients);
 
@@ -22,7 +22,6 @@ export default function OrderCard({order}: TOrderCardProps): JSX.Element {
   const translatedStatus = {
     pending: 'В работе',
     done: 'Готов',
-
   }
 
   useEffect(() => {
@@ -44,7 +43,7 @@ export default function OrderCard({order}: TOrderCardProps): JSX.Element {
   }, [order]);
 
   return (
-    <article className={`${styles.card} mb-4`}>
+    <article className={`${styles.card} ${styles[size]} mb-4`}>
       <div className={`${styles.box} mb-4`}>
         <p className="text text_type_digits-default">
           {order.number}

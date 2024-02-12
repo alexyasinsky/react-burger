@@ -14,8 +14,8 @@ import IngredientDetails from "../ingredient-details/ingredient-details";
 import Modal from "../modal/modal";
 import {OnlyAuth, OnlyUnAuth} from "../protected-route/protected-route";
 import {checkUserAuth} from "../../services/store/user/actions";
-import User from "../user/user";
-import OrdersHistory from "../orders-history/orders-history";
+import ProfileUser from "../profile-user/profile-user";
+import ProfileOrderHistory from "../profile-order-history/profile-order-history";
 import Feed from "../../pages/feed/feed";
 import {useAppDispatch} from "../../services/store/hooks";
 import OrderDetails from "../order-details/order-details";
@@ -39,7 +39,7 @@ export default function App(): JSX.Element {
   return (
     <>
       <AppHeader/>
-      <main>
+      <main className='pt-10 pl-5 pr-5'>
         <Routes location={background || location}>
           <Route path="/" element={<Home/>}/>
           <Route path="/feed" element={<Feed/>}/>
@@ -48,8 +48,8 @@ export default function App(): JSX.Element {
           <Route path="/forgot-password" element={<OnlyUnAuth component={<ForgotPassword/>}/>}/>
           <Route path="/reset-password" element={<OnlyUnAuth component={<ResetPassword/>}/>}/>
           <Route path="/profile" element={<OnlyAuth component={<Profile/>}/>}>
-            <Route index element={<User/>}/>
-            <Route path='orders' element={<OrdersHistory/>}/>
+            <Route index element={<ProfileUser/>}/>
+            <Route path='orders' element={<ProfileOrderHistory/>}/>
             <Route path='*' element={<NotFound/>}/>
           </Route>
           <Route path='/feed/:id' element={<OrderDetails/>}/>

@@ -39,7 +39,7 @@ const ProtectedRoute = ({onlyUnAuth = false, component}: TProtectedRouteProps): 
     }
 
 
-    // !onlyUnAuth && user Пользователь авторизован и роут для авторизованного пользователя
+    // !onlyUnAuth && profile-user Пользователь авторизован и роут для авторизованного пользователя
     return component;
 };
 

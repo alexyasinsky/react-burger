@@ -9,31 +9,18 @@
   justify-content: start;
 }
 
-.feed {
-  width: 645px;
-  overflow: auto;
-  height: 65vh;
-}
-
-.info {
-}
-
-.ordersStatus {
+.status {
   display: flex;
 }
 
-.ordersList {
+.list {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  max-height: 325px;
-  width: 297px;
+  max-height: 165px;
+  width: 280px;
 
   .done {
     color: rgba(0, 204, 204, 1);
   }
-}
-
-.total {
-
 }

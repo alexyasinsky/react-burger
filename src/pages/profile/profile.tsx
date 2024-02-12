@@ -30,7 +30,7 @@ export default function Profile(): JSX.Element {
             </p>
           </Link>
           <Link to='orders'>
-            <p className={`${location.pathname === '/profile/profile-orders-history' ? 'text_color_primary' : 'text_color_inactive'}`}>
+            <p className={`${location.pathname === '/profile/profile-profile-order-history' ? 'text_color_primary' : 'text_color_inactive'}`}>
               История заказов
                 </p>
           </Link>

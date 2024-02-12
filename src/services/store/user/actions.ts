@@ -20,7 +20,7 @@ type TAuthResponse = {
   refreshToken: string;
 }
 
-export const register = createAsyncThunk('user/register', async (body: TAuthRequestBody) => {
+export const register = createAsyncThunk('profile-user/register', async (body: TAuthRequestBody) => {
   const response = await makeRequest<TAuthResponse>(`${BURGER_API}/auth/register`, {
     method: 'POST',
     headers: {
@@ -34,7 +34,7 @@ export const register = createAsyncThunk('user/register', async (body: TAuthRequ
 })
 
 
-export const login = createAsyncThunk('user/login', async (body: TAuthRequestBody) => {
+export const login = createAsyncThunk('profile-user/login', async (body: TAuthRequestBody) => {
   const response = await makeRequest<TAuthResponse>(`${BURGER_API}/auth/login`, {
     method: 'POST',
     headers: {
@@ -51,7 +51,7 @@ type TLogoutResponse = {
   success: boolean;
   message: string;
 }
-export const logout = createAsyncThunk('user/logout', async () => {
+export const logout = createAsyncThunk('profile-user/logout', async () => {
   const response = await makeRequest<TLogoutResponse>(`${BURGER_API}/auth/logout`, {
     method: 'POST',
     headers: {
@@ -73,7 +73,7 @@ type TUserResponse = {
     name: string;
   }
 }
-export const getUser = createAsyncThunk('user/getUser', async () => {
+export const getUser = createAsyncThunk('profile-user/getUser', async () => {
   return await makeRequestWithRefreshToken<TUserResponse>(`${BURGER_API}/auth/user`, {
     method: 'GET',
     headers: {
@@ -84,7 +84,7 @@ export const getUser = createAsyncThunk('user/getUser', async () => {
 })
 
 
-export const editUser = createAsyncThunk('user/patchUser', async (body: TMonoTypeObject<string>) => {
+export const editUser = createAsyncThunk('profile-user/patchUser', async (body: TMonoTypeObject<string>) => {
   return await makeRequestWithRefreshToken<TUserResponse>(`${BURGER_API}/auth/user`, {
     method: 'PATCH',
     headers: {

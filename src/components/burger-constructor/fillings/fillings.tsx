@@ -4,9 +4,8 @@ import Filling from "../filling/filling";
 import {addFilling, selectFillings} from "../../../services/store/burger-constructor/reducers";
 import {JSX} from "react";
 import {TIngredient} from "../../../utils/types";
-// @ts-ignore
-import {v4 as uuid} from "uuid";
 import {useAppDispatch, useAppSelector} from "../../../services/store/hooks";
+import uuid from "../../../utils/uuid";
 
 
 type TDropCollectedProps = {
