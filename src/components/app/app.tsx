@@ -36,6 +36,8 @@ export default function App(): JSX.Element {
     dispatch(checkUserAuth());
     dispatch(fetchIngredients());
   }, [dispatch])
+
+
   return (
     <>
       <AppHeader/>

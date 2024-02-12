@@ -1,0 +1,50 @@
+
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.done {
+  color: rgba(0, 204, 204, 1);
+}
+.cancelled {
+  color: rgba(229, 43, 26, 1);
+}
+
+.ingredient {
+  display: flex;
+  align-items: center;
+
+
+
+  &__box {
+    max-height: 300px;
+    overflow: auto;
+  }
+}
+
+.image {
+  height: 64px;
+  width: 64px;
+  border-radius: 50%;
+  border: 1px solid rgba(128, 26, 178, 1);
+  background-position: center;
+  background-size: 150%;
+  background-color: #1C1C21;
+  background-repeat: no-repeat;
+}
+
+.countAndPrice {
+  flex-grow: 1;
+  display: flex;
+  justify-content: right;
+}
+
+.total {
+  display: flex;
+  justify-content: space-between;
+  &__price {
+    display: flex;
+  }
+}

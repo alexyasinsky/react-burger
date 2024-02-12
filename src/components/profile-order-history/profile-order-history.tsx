@@ -17,7 +17,7 @@ export default function ProfileOrderHistory(): JSX.Element {
 
  return (
    <section className={styles.wrapper}>
-     <OrderList orders={orders} size='large' isReversed={true}/>
+     <OrderList orders={orders} size='large'/>
    </section>
 
  )

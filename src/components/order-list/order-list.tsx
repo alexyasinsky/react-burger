@@ -7,15 +7,14 @@ import styles from "./order-list.module.scss";
 type TProps = {
   orders: Array<TOrder>
   size: 'medium' | 'large',
-  isReversed?: boolean
 }
-export default function OrderList ({orders, size, isReversed = false}: TProps): JSX.Element {
+export default function OrderList ({orders, size}: TProps): JSX.Element {
   return (
-    <div className={`${styles.list} custom-scroll ${isReversed && styles.reverse}`}>
+    <div className={`${styles.list} custom-scroll`}>
       {
-        orders.map((order) => {
+        orders && orders.map((order) => {
           return (
-            <OrderCard order={order} size={size} key={uuid()}/>
+            <OrderCard order={order} size={size} key={uuid()} view="list"/>
           )
         })
       }

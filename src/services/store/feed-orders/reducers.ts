@@ -31,7 +31,6 @@ const feedOrdersSlice = createSlice({
   extraReducers: (builder) => {
     builder
     .addCase(feedOrdersWsConnecting, state => {
-      console.log("Connecting");
       state.status = 'WebsocketStatus.CONNECTING';
     })
       .addCase(feedOrdersWsOpen, state => {

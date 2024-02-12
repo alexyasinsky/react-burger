@@ -27,7 +27,6 @@ const profileOrdersSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(profileOrdersWsConnecting, state => {
-        console.log("Connecting");
         state.status = 'WebsocketStatus.CONNECTING';
       })
       .addCase(profileOrdersWsOpen, state => {
@@ -40,7 +39,7 @@ const profileOrdersSlice = createSlice({
         state.connectionError = action.payload;
       })
       .addCase(profileOrdersWsMessage, (state, action) => {
-        state.orders = action.payload.orders;
+        state.orders = action.payload.orders.reverse();
       })
   },
   selectors: {
