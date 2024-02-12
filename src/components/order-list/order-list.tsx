@@ -6,11 +6,12 @@ import styles from "./order-list.module.scss";
 
 type TProps = {
   orders: Array<TOrder>
-  size: 'medium' | 'large'
+  size: 'medium' | 'large',
+  isReversed?: boolean
 }
-export default function OrderList ({orders, size}: TProps): JSX.Element {
+export default function OrderList ({orders, size, isReversed = false}: TProps): JSX.Element {
   return (
-    <div className={`${styles.list} custom-scroll`}>
+    <div className={`${styles.list} custom-scroll ${isReversed && styles.reverse}`}>
       {
         orders.map((order) => {
           return (

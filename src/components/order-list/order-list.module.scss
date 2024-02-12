@@ -3,4 +3,10 @@
   width: fit-content;
   overflow: auto;
   height: 65vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.reverse {
+  flex-direction: column-reverse;
 }
