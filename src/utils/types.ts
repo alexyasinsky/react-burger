@@ -41,7 +41,7 @@ export type TOrder = {
     ingredients: Array<string>,
     _id: string;
     owner: TOrderOwner;
-    status: 'pending' | 'done';
+    status: 'pending' | 'done' | 'created' | 'cancelled';
     name: string;
     createdAt: string;
     updatedAt: string;

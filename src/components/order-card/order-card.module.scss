@@ -18,9 +18,12 @@
   justify-content: space-between;
 }
 
-.status {
-  color: rgba(0, 204, 204, 1);
-}
+.done {
+    color: rgba(0, 204, 204, 1);
+  }
+.cancelled {
+    color: rgba(229, 43, 26, 1);
+  }
 
 .price {
   display: flex;

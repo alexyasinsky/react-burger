@@ -11,7 +11,7 @@ export default function ProfileOrderHistory(): JSX.Element {
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(profileOrdersConnect(`${BURGER_WS_API}?token=${localStorage.getItem('accessToken')!.replace("Bearer ", "")}`));
-  }, []);
+  }, [dispatch]);
 
   const orders = useAppSelector(selectProfileOrders);
 

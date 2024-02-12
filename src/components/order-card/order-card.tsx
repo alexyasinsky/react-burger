@@ -1,4 +1,4 @@
-import {JSX, useEffect, useState} from "react";
+import {JSX, useEffect, useMemo, useState} from "react";
 
 import styles from './order-card.module.scss';
 import {TIngredient, TOrder} from "../../utils/types";
@@ -6,6 +6,8 @@ import {useAppSelector} from "../../services/store/hooks";
 import {selectIngredients} from "../../services/store/burger-ingredients/reducers";
 import {CurrencyIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import uuid from "../../utils/uuid";
+import moment from "moment";
+import 'moment/locale/ru';
 
 type TProps = {
   order: TOrder;
@@ -20,9 +22,23 @@ export default function OrderCard({order, size}: TProps): JSX.Element {
   const [orderPrice, setOrderPrice] = useState<number>(0);
 
   const translatedStatus = {
-    pending: 'В работе',
-    done: 'Готов',
+    created: 'Создан',
+    cancelled: 'Отменен',
+    pending: 'Готовится',
+    done: 'Выполнен',
   }
+
+  const id = useMemo(()=> {
+    let orderStr = String(order.number);
+    for (let i = orderStr.length; i < 6; i++) {
+      orderStr = '0' + orderStr;
+    }
+    return `#${orderStr}`
+    }, [order])
+
+  const time = useMemo(()=> {
+    return moment(order.updatedAt).locale('ru').calendar();
+  }, [order])
 
   useEffect(() => {
     const ingredients: Array<TIngredient> = [];
@@ -40,22 +56,22 @@ export default function OrderCard({order, size}: TProps): JSX.Element {
     setOrderIngredients([...ingredients]);
     setExtraIngredientsCount(count);
     setOrderPrice(price);
-  }, [order]);
+  }, [order, ingredientsFromStore]);
 
   return (
     <article className={`${styles.card} ${styles[size]} mb-4`}>
       <div className={`${styles.box} mb-4`}>
         <p className="text text_type_digits-default">
-          {order.number}
+          {id}
         </p>
         <p className="text text_type_main-default text_color_inactive">
-          {order.updatedAt}
+          {time}
         </p>
       </div>
       <h3 className="text text_type_main-medium mb-1">
         {order.name}
       </h3>
-      <p className={`${styles.status} text text_type_main-small mb-4`}>
+      <p className={`${styles[order.status]} text text_type_main-small mb-4`}>
         {translatedStatus[order.status]}
       </p>
       <div className={styles.box}>
