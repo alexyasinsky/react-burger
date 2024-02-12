@@ -7,7 +7,7 @@ import {TIngredient} from "../../../utils/types";
 import {Identifier} from 'dnd-core';
 import {useAppDispatch} from "../../../services/store/hooks";
 
-type TFillingProps = {
+type TProps = {
   ingredient: TIngredient;
   index: number;
   extraClass: string;
@@ -26,7 +26,7 @@ type TDropCollectedProps = {
   handlerId: Identifier | null
 }
 
-export default function Filling ({ingredient, index, extraClass}: TFillingProps) : JSX.Element {
+export default function Filling ({ingredient, index, extraClass}: TProps) : JSX.Element {
 
   const dispatch = useAppDispatch();
   function deleteButtonHandler(){

@@ -3,14 +3,14 @@ import {Link} from "react-router-dom";
 import {JSX} from "react";
 
 
-type FormNavigationProps = {
+type TProps = {
   links: Array<{
     href: string,
     question: string,
     title: string
   }>
 }
-export default function FormNavigation({links}: FormNavigationProps): JSX.Element{
+export default function FormNavigation({links}: TProps): JSX.Element{
 
   return (
     <div className={`${styles.wrapper} mt-20`}>

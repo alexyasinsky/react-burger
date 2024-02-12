@@ -6,12 +6,12 @@ import {TIngredient} from "../../../utils/types";
 import {useAppSelector} from "../../../services/store/hooks";
 
 
-type TBunProps = {
+type TProps = {
   viewType: 'top' | 'bottom',
   isHover: boolean
 }
 
-const Bun = forwardRef<HTMLDivElement, TBunProps>(({viewType, isHover} : TBunProps, ref) : JSX.Element => {
+const Bun = forwardRef<HTMLDivElement, TProps>(({viewType, isHover} : TProps, ref) : JSX.Element => {
 
   const bun: TIngredient | null = useAppSelector(selectBun);
 

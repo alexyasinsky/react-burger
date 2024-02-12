@@ -54,11 +54,11 @@ export default function OrderDetailsView({order, number, translatedStatus, time}
       <h4 className="text text_type_main-medium mb-4">
         Состав:
       </h4>
-      <div className={`${styles.ingredient__box} mb-8`}>
+      <div className={`${styles.ingredient__box} mb-8 custom-scroll`}>
         {
           orderIngredients.map(ingredient => {
             return (
-              <div key={uuid()} className={`${styles.ingredient} mb-2 custom-scroll`}>
+              <div key={uuid()} className={`${styles.ingredient} mb-2`}>
                 <div className={`${styles.image} mr-4`}
                      style={{backgroundImage: `url(${ingredient.image_mobile})`}}/>
                 <p className='text text_type_main-small'>

@@ -4,7 +4,7 @@ import {TICons} from "@ya.praktikum/react-developer-burger-ui-components/dist/ui
 import {Input} from "@ya.praktikum/react-developer-burger-ui-components";
 
 
-type TUserFormInputProps = {
+type TProps = {
     input: TUseInput;
     type?: "text" | "email" | "password";
     placeholder?: string;
@@ -12,7 +12,7 @@ type TUserFormInputProps = {
     icon: keyof TICons | undefined;
 }
 
-export default function FormInputUser({input, type='text', placeholder, onClick, icon}: TUserFormInputProps): JSX.Element {
+export default function FormInputUser({input, type='text', placeholder, onClick, icon}: TProps): JSX.Element {
     return (
         <Input
             name={input.name}

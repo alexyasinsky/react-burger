@@ -2,12 +2,12 @@ import styles from "./form.module.scss";
 import {Button} from "@ya.praktikum/react-developer-burger-ui-components";
 import {JSX, ReactNode, SyntheticEvent, useEffect, useRef} from "react";
 
-type TFormProps = {
+type TProps = {
     handleSubmit: (event: SyntheticEvent) => void
     submitTitle: string,
     children: ReactNode,
 }
-export default function Form({children, handleSubmit, submitTitle}: TFormProps): JSX.Element {
+export default function Form({children, handleSubmit, submitTitle}: TProps): JSX.Element {
 
     const inputRef = useRef<HTMLInputElement>(null);
 

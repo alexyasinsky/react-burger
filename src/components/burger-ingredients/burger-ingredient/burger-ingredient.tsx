@@ -8,12 +8,12 @@ import {Link, useLocation} from "react-router-dom";
 import {TIngredient} from "../../../utils/types";
 import {JSX} from "react";
 
-type TBurgerIngredientProps = {
+type TProps = {
   ingredient: TIngredient;
   count: number
 }
 
-export default function BurgerIngredient({ingredient, count}: TBurgerIngredientProps) : JSX.Element {
+export default function BurgerIngredient({ingredient, count}: TProps) : JSX.Element {
 
   const [, dragRef] = useDrag<TIngredient, unknown, unknown>({
     type: ingredient.constructorExtraType,
