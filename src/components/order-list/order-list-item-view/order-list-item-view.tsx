@@ -1,8 +1,7 @@
 
 import styles from "./order-list-item-view.module.scss";
 import {TIngredient, TOrder} from "../../../utils/types";
-import uuid from "../../../utils/uuid";
-import {CurrencyIcon} from "@ya.praktikum/react-developer-burger-ui-components";
+import {CurrencyIcon, FormattedDate} from "@ya.praktikum/react-developer-burger-ui-components";
 import {JSX, useEffect, useState} from "react";
 import {Link, useLocation} from "react-router-dom";
 import {useAppSelector} from "../../../services/store/hooks";
@@ -14,10 +13,9 @@ type TProps = {
   number: string;
   size?: 'medium' | 'large';
   translatedStatus: string;
-  time: string;
 }
 
-export default function OrderListItemView({order, number, size='medium', translatedStatus, time}: TProps): JSX.Element {
+export default function OrderListItemView({order, number, size='medium', translatedStatus}: TProps): JSX.Element {
   const location = useLocation();
 
   const ingredientsFromStore: Array<TIngredient> = useAppSelector(selectIngredients);
@@ -57,8 +55,8 @@ export default function OrderListItemView({order, number, size='medium', transla
             {number}
           </p>
           <p className="text text_type_main-default text_color_inactive">
-            {time}
-          </p>
+          <FormattedDate date={new Date(order.updatedAt)} />
+        </p>
         </div>
         <h3 className="text text_type_main-medium mb-1">
           {order.name}
