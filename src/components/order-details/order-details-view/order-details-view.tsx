@@ -1,7 +1,6 @@
 import {JSX, useEffect, useState} from "react";
 import {TIngredient, TOrder} from "../../../utils/types";
 import styles from './order-details-view.module.scss';
-import uuid from "../../../utils/uuid";
 import {useAppSelector} from "../../../services/store/hooks";
 import {selectIngredients} from "../../../services/store/burger-ingredients/reducers";
 import {TMonoTypeObject} from "../../../utils/types";
@@ -58,7 +57,7 @@ export default function OrderDetailsView({order, number, translatedStatus, time}
         {
           orderIngredients.map(ingredient => {
             return (
-              <div key={uuid()} className={`${styles.ingredient} mb-2`}>
+              <div key={ingredient._id} className={`${styles.ingredient} mb-2`}>
                 <div className={`${styles.image} mr-4`}
                      style={{backgroundImage: `url(${ingredient.image_mobile})`}}/>
                 <p className='text text_type_main-small'>

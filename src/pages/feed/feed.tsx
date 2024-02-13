@@ -5,7 +5,6 @@ import {feedOrdersConnect, feedOrdersDisconnect} from "../../services/store/feed
 import styles from './feed.module.scss';
 import {selectFeedOrders, selectTotal, selectTotalToday} from "../../services/store/feed-orders/reducers";
 import OrderList from "../../components/order-list/order-list";
-import uuid from "../../utils/uuid";
 
 export default function Feed(): JSX.Element {
 
@@ -21,16 +20,12 @@ export default function Feed(): JSX.Element {
   const total = useAppSelector(selectTotal);
   const totalToday = useAppSelector(selectTotalToday);
 
-  const doneOrders = useMemo(() => orders.map((order, ind) => {
-    if (order.status === 'done' && ind <= 9) {
-      return order.number;
-    }
-  }), [orders]);
-  const pendingOrders = useMemo(() => orders.map((order, ind) => {
-    if (order.status === 'pending' && ind <= 9) {
-      return order.number;
-    }
-  }), [orders]);
+  const doneOrders = useMemo(() => orders.filter(order => order.status === 'done'), [orders]);
+  doneOrders.splice(10);
+
+  const pendingOrders = useMemo(() => orders.filter(order => order.status === 'pending'), [orders]);
+  pendingOrders.splice(10);
+
 
   return (
     <div className={styles.wrapper}>
@@ -47,10 +42,10 @@ export default function Feed(): JSX.Element {
               </h3>
               <div className={styles.list}>
                 {
-                  doneOrders.map(order => (
-                    <div key={uuid()}>
+                  doneOrders && doneOrders.map(order => (
+                    <div key={order._id}>
                       <p className={`text text_type_digits-default mb-2 ${styles.done}`}>
-                        {order}
+                        {order.number}
                       </p>
                     </div>
                   ))
@@ -63,10 +58,10 @@ export default function Feed(): JSX.Element {
               </h3>
               <div className={styles.ordersList}>
                 {
-                  pendingOrders.map(order => (
-                    <div key={uuid()}>
+                  pendingOrders && pendingOrders.map(order => (
+                    <div key={order._id}>
                       <p className="text text_type_digits-default mb-2">
-                        {order}
+                        {order.number}
                       </p>
                     </div>
                   ))

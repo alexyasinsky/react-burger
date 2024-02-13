@@ -74,7 +74,7 @@ export default function OrderListItemView({order, number, size='medium', transla
                 transform: `translate(${-10 * ind}px)`
               }
               return (
-                <div key={uuid()} className={styles.image} style={style}/>
+                <div key={ind} className={styles.image} style={style}/>
               )
             })
             }

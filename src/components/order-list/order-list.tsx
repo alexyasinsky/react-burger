@@ -1,7 +1,6 @@
 import {TOrder} from "../../utils/types";
 import {JSX} from "react";
 import OrderCard from "../order-card/order-card";
-import uuid from "../../utils/uuid";
 import styles from "./order-list.module.scss";
 
 type TProps = {
@@ -14,7 +13,7 @@ export default function OrderList ({orders, size}: TProps): JSX.Element {
       {
         orders && orders.map((order) => {
           return (
-            <OrderCard order={order} size={size} key={uuid()} view="list"/>
+            <OrderCard order={order} size={size} key={order._id} view="list"/>
           )
         })
       }
