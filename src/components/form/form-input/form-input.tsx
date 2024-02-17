@@ -7,7 +7,7 @@ import {ChangeEvent, JSX, useState} from "react";
 type TFieldType = "text" | "email" | "password";
 type TFieldIcon = keyof TICons | undefined;
 
-type TFormInputProps = {
+type TProps = {
     input: TUseInput;
     type?: TFieldType;
     placeholder?: string;
@@ -15,7 +15,7 @@ type TFormInputProps = {
     onIconCLick?: () => void;
 }
 
-export default function FormInput({input, type = 'text', placeholder, icon, onIconCLick}: TFormInputProps): JSX.Element{
+export default function FormInput({input, type = 'text', placeholder, icon, onIconCLick}: TProps): JSX.Element{
 
     const [fieldType, setFieldType] = useState<TFieldType>(type);
     const [fieldIcon, setFieldIcon] = useState<TFieldIcon>(icon);

@@ -1,13 +1,13 @@
 import styles from './profile.module.scss';
-import {useDispatch} from "react-redux";
 import {logout} from "../../services/store/user/actions";
 import {Link, Outlet, useLocation, useNavigate} from "react-router-dom";
 import {JSX} from "react";
+import {useAppDispatch} from "../../services/store/hooks";
 
 
 export default function Profile(): JSX.Element {
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const navigate = useNavigate();
 

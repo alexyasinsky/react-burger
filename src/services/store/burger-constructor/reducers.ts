@@ -1,7 +1,19 @@
-import {createSlice} from "@reduxjs/toolkit";
-import {v4 as uuid} from "uuid";
+import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {TIngredient} from "../../../utils/types";
 
-const initialState = {
+
+type TInitialState = {
+  bun: TIngredient | null;
+  fillings: Array<TIngredient>
+}
+
+type TSortFillingActionPayload = {
+  from: number;
+  to: number;
+  item: TIngredient;
+}
+
+const initialState: TInitialState = {
   bun: null,
   fillings: []
 }
@@ -10,22 +22,21 @@ const burgerConstructorSlice = createSlice({
   name: 'burgerConstructor',
   initialState: initialState,
   reducers: {
-    setBun: (state, action) => {
+    setBun: (state, action: PayloadAction<TIngredient>) => {
       state.bun = action.payload;
     },
-    addFilling: (state, action) => {
+    addFilling: (state, action: PayloadAction<TIngredient>) => {
       const fillingItem = {...action.payload};
-      fillingItem.constructorId = uuid();
       state.fillings.push(fillingItem);
     },
-    removeFilling: (state, action) => {
+    removeFilling: (state, action: PayloadAction<number>) => {
       state.fillings.splice(action.payload, 1);
     },
     clearConstructorState: (state) => {
       state.bun = null;
       state.fillings = [];
     },
-    sortFilling: (state, action) => {
+    sortFilling: (state, action: PayloadAction<TSortFillingActionPayload>) => {
       state.fillings.splice(action.payload.from, 1);
       state.fillings.splice(action.payload.to, 0, action.payload.item);
     }
@@ -41,3 +52,7 @@ const {reducer, selectors, actions} = burgerConstructorSlice;
 export const {setBun, addFilling, removeFilling, clearConstructorState, sortFilling} = actions;
 export const {selectBun, selectFillings} = selectors;
 export default reducer;
+
+type TBurgerConstructorActionCreators = typeof burgerConstructorSlice.actions;
+
+export type TBurgerConstructorActions = ReturnType<TBurgerConstructorActionCreators[keyof TBurgerConstructorActionCreators]>

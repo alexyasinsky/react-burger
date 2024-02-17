@@ -1,10 +1,10 @@
 import styles from './burger-ingredients.module.scss';
 import {Tab} from '@ya.praktikum/react-developer-burger-ui-components';
 import {selectIngredients} from '../../services/store/burger-ingredients/reducers';
-import {useSelector} from 'react-redux';
 import {JSX, MutableRefObject, useEffect, useMemo, useRef, useState} from "react";
 import BurgerIngredientsGroup from "./burger-ingredients-group/burger-ingredients-group";
 import {TIngredient} from "../../utils/types";
+import {useAppSelector} from "../../services/store/hooks";
 
 type TIngredientGroupRef = {
   [name: string] : MutableRefObject<HTMLElement | null>
@@ -12,7 +12,7 @@ type TIngredientGroupRef = {
 
 export default function BurgerIngredients() : JSX.Element {
 
-  const list: Array<TIngredient> = useSelector(selectIngredients);
+  const list: Array<TIngredient> = useAppSelector(selectIngredients);
 
   const buns = useMemo(
     () => list.filter((item) => item.type === 'bun'),
@@ -57,8 +57,7 @@ export default function BurgerIngredients() : JSX.Element {
   }, []);
 
   return (
-    <section className={`${styles.wrapper}`}>
-      <h1 className="text text_type_main-large pb-5">Соберите бургер</h1>
+    <section className={`${styles.wrapper} pt-5`}>
       <div className={`${styles.tabs} pb-5`} ref={tabsRef}>
         <Tab value="buns" active={currentTab === 'buns'} onClick={saucesTabClickHandler}>
           Булки
@@ -70,7 +69,7 @@ export default function BurgerIngredients() : JSX.Element {
           Начинки
         </Tab>
       </div>
-      <div className={`${styles.list} custom-scroll`} onScroll={scrollHandler}>
+        <div className={`${styles.list} custom-scroll`} onScroll={scrollHandler}>
         <BurgerIngredientsGroup title='Булки' ingredients={buns} ref={ingredientsGroupRef.buns}/>
         <BurgerIngredientsGroup title='Соусы' ingredients={sauces} ref={ingredientsGroupRef.sauces}/>
         <BurgerIngredientsGroup title='Начинки' ingredients={main} ref={ingredientsGroupRef.main}/>

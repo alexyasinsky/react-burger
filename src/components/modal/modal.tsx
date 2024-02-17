@@ -4,11 +4,11 @@ import styles from './modal.module.scss';
 import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import {JSX, ReactNode, useEffect} from 'react';
 
-type TModalProps = {
+type TProps = {
   children: ReactNode,
   onClose: () => void
 }
-export default function Modal({ children, onClose } : TModalProps) : JSX.Element {
+export default function Modal({ children, onClose } : TProps) : JSX.Element {
 
   const modalRoot = document.getElementById('react-modals')!;
   function escapeHandler(event: KeyboardEvent) {

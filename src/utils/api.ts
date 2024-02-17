@@ -3,7 +3,7 @@ type TFetchOptions = {
     headers: {
         [name: string]: string,
     };
-    body: string;
+    body?: string;
 } | undefined
 
 type TRefreshData = {
@@ -13,6 +13,8 @@ type TRefreshData = {
 }
 
 export const  BURGER_API = 'https://norma.nomoreparties.space/api';
+
+export const BURGER_WS_API = 'wss://norma.nomoreparties.space/orders';
 
 const checkResponse = <T>(res: Response): Promise<T> => {
     return res.ok ? res.json() as Promise<T> : res.json().then(res => Promise.reject(res.message));
@@ -40,9 +42,13 @@ export const makeRequestWithRefreshToken = async <T>(url: string, options: TFetc
         return await makeRequest<T>(url, options);
     } catch (err) {
         if (err === "jwt expired" && options) {
-            const refreshData= await refreshToken();
-            if (!refreshData.success) {
-                return Promise.reject(refreshData);
+            let refreshData: TRefreshData;
+            try {
+                refreshData = await refreshToken();
+            } catch(err) {
+                localStorage.removeItem("accessToken");
+                localStorage.removeItem("refreshToken");
+                return Promise.reject(err);
             }
             localStorage.setItem("refreshToken", refreshData.refreshToken);
             localStorage.setItem("accessToken", refreshData.accessToken);

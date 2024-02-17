@@ -2,11 +2,11 @@ import BurgerConstructorTotal from './burger-constructor-total/burger-constructo
 
 import Fillings from "./fillings/fillings";
 import Bun from "./bun/bun";
-import {useDispatch} from "react-redux";
 import {useDrop} from "react-dnd";
 import {setBun} from "../../services/store/burger-constructor/reducers";
 import {JSX} from "react";
 import {TIngredient} from "../../utils/types";
+import {useAppDispatch} from "../../services/store/hooks";
 
 type TTopBunDropCollectedProps = {
   isTopBunHover: boolean
@@ -17,7 +17,7 @@ type TBottomBunDropCollectedProps = {
 }
 export default function BurgerConstructor(): JSX.Element {
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const [{isTopBunHover}, topBunDropTarget] = useDrop<TIngredient, unknown, TTopBunDropCollectedProps>({
     accept: "bun",
@@ -45,7 +45,7 @@ export default function BurgerConstructor(): JSX.Element {
   const isBunHover = isTopBunHover || isBottomBunHover;
 
   return (
-    <section className="pt-10">
+    <section>
       <Bun viewType="top" ref={topBunDropTarget} isHover={isBunHover}/>
       <Fillings/>
       <Bun viewType="bottom" ref={bottomBunDropTarget} isHover={isBunHover}/>
