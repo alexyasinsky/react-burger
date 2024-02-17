@@ -14,7 +14,7 @@ export default function Feed(): JSX.Element {
     return () => {
       dispatch(feedOrdersDisconnect());
     }
-  }, []);
+  }, [dispatch]);
 
   const orders = useAppSelector(selectFeedOrders);
   const total = useAppSelector(selectTotal);

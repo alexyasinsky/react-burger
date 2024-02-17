@@ -19,7 +19,7 @@ export default function OrderDetails(): JSX.Element {
       .then(res => {
         setOrder(res.orders[0]);
       });
-  }, []);
+  }, [id]);
 
   return (
     <>
