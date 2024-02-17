@@ -1,11 +1,11 @@
 import styles from './order-accepted.module.scss';
-import { useSelector } from 'react-redux';
 import { selectOrderNumber } from '../../services/store/order/reducers';
 import {JSX} from "react";
+import {useAppSelector} from "../../services/store/hooks";
 
 export default function OrderAccepted(): JSX.Element {
 
-  const number = useSelector(selectOrderNumber);
+  const number = useAppSelector(selectOrderNumber);
   
   return (
     <div className={styles.wrapper}>

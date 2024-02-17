@@ -2,14 +2,11 @@ import styles from "./fillings.module.scss";
 import {useDrop} from "react-dnd";
 import Filling from "../filling/filling";
 import {addFilling, selectFillings} from "../../../services/store/burger-constructor/reducers";
-import {useDispatch, useSelector} from "react-redux";
 import {JSX} from "react";
 import {TIngredient} from "../../../utils/types";
+import {useAppDispatch, useAppSelector} from "../../../services/store/hooks";
+import uuid from "../../../utils/uuid";
 
-
-type TFillingIngredient = TIngredient & {
-  constructorId: number;
-}
 
 type TDropCollectedProps = {
   isFillingHover: boolean
@@ -17,13 +14,13 @@ type TDropCollectedProps = {
 
 export default function Fillings() : JSX.Element {
 
-  const fillings: Array<TFillingIngredient> = useSelector(selectFillings);
+  const fillings: Array< TIngredient> = useAppSelector(selectFillings);
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
-  const [{isFillingHover}, dropFillingTarget] = useDrop<TFillingIngredient, unknown, TDropCollectedProps>({
+  const [{isFillingHover}, dropFillingTarget] = useDrop<TIngredient, unknown, TDropCollectedProps>({
     accept: 'filling',
-    drop(ingredient:TIngredient) {
+    drop(ingredient: TIngredient) {
       onFillingDropHandler(ingredient);
     },
     collect: monitor => ({
@@ -49,9 +46,9 @@ export default function Fillings() : JSX.Element {
             className={`${styles.filling} custom-scroll pr-2`}
             ref={dropFillingTarget}
           >
-            {fillings.map((item:TFillingIngredient, index) => {
+            {fillings.map((item:TIngredient, index) => {
               return (
-                <Filling ingredient={item} key={item.constructorId} index={index} extraClass={fillingExtraClass}/>
+                <Filling ingredient={item} key={uuid()} index={index} extraClass={fillingExtraClass}/>
               );
             })}
           </div>

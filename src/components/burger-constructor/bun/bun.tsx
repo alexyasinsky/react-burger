@@ -1,19 +1,19 @@
 import styles from './bun.module.scss';
 import {ConstructorElement} from "@ya.praktikum/react-developer-burger-ui-components";
-import {useSelector} from "react-redux";
 import {selectBun} from "../../../services/store/burger-constructor/reducers";
 import {forwardRef, JSX} from "react";
 import {TIngredient} from "../../../utils/types";
+import {useAppSelector} from "../../../services/store/hooks";
 
 
-type TBunProps = {
+type TProps = {
   viewType: 'top' | 'bottom',
   isHover: boolean
 }
 
-const Bun = forwardRef<HTMLDivElement, TBunProps>(({viewType, isHover} : TBunProps, ref) : JSX.Element => {
+const Bun = forwardRef<HTMLDivElement, TProps>(({viewType, isHover} : TProps, ref) : JSX.Element => {
 
-  const bun: TIngredient | null = useSelector(selectBun);
+  const bun: TIngredient | null = useAppSelector(selectBun);
 
   const hoverClass = isHover ? styles.ingredient_hovered : styles.ingredient;
 

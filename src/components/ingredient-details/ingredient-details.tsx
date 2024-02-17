@@ -1,13 +1,13 @@
 import styles from './ingredient-details.module.scss';
-import {useSelector} from "react-redux";
 import {selectIngredients} from "../../services/store/burger-ingredients/reducers";
 import {useParams} from "react-router-dom";
 import {JSX} from "react";
 import {TIngredient} from "../../utils/types";
+import {useAppSelector} from "../../services/store/hooks";
 
 export default function IngredientDetails(): JSX.Element {
 
-    const ingredients: Array<TIngredient> = useSelector(selectIngredients);
+    const ingredients: Array<TIngredient> = useAppSelector(selectIngredients);
 
     const {id} = useParams();
 

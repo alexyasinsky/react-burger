@@ -1,29 +1,29 @@
-import styles from "./user.module.scss";
-import {useDispatch, useSelector} from "react-redux";
+import styles from "./profile-user.module.scss";
 import {JSX, SyntheticEvent, useEffect, useState} from "react";
 import {editUser, getUser} from "../../services/store/user/actions";
 import {selectUser} from "../../services/store/user/reducers";
 import {Button} from "@ya.praktikum/react-developer-burger-ui-components";
 import {TMonoTypeObject, TUser} from "../../utils/types";
 import {TICons} from "@ya.praktikum/react-developer-burger-ui-components/dist/ui/icons";
-import UserFormInput from "./user-form-input/user-form-input";
+import FormInputUser from "../form/form-input-user/form-input-user";
 import {useInput} from "../../hooks/useInput";
+import {useAppDispatch, useAppSelector} from "../../services/store/hooks";
 
 
 type TUserIcons = {
   [name: string] : keyof TICons | undefined
 }
 
-export default function User(): JSX.Element {
+export default function ProfileUser(): JSX.Element {
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     // @ts-ignore
     dispatch(getUser());
   }, [dispatch]);
 
-  const user: TUser | null = useSelector(selectUser);
+  const user: TUser | null = useAppSelector(selectUser);
 
   const name = useInput({
     name: 'name',
@@ -95,9 +95,9 @@ export default function User(): JSX.Element {
   return (
     <>
       <form className={styles.form}>
-        <UserFormInput input={name} placeholder='Имя' onClick={startEditingPersonalData}  icon={icons.name}/>
-        <UserFormInput input={email} placeholder='Логин' onClick={startEditingPersonalData}  icon={icons.email}/>
-        <UserFormInput input={password} placeholder='Пароль' onClick={startEditingPersonalData}  icon={icons.password}/>
+        <FormInputUser input={name} placeholder='Имя' onClick={startEditingPersonalData} icon={icons.name}/>
+        <FormInputUser input={email} placeholder='Логин' onClick={startEditingPersonalData} icon={icons.email}/>
+        <FormInputUser input={password} placeholder='Пароль' onClick={startEditingPersonalData} icon={icons.password}/>
         {
           isEditButtonsShown && (
             <div className={styles.buttonsWrapper}>

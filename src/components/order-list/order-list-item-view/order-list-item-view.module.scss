@@ -1,0 +1,62 @@
+
+.wrapper {
+  background-color: rgba(28, 28, 33, 1);
+  border-radius: 40px;
+  padding: 24px;
+}
+
+.medium {
+  width: 640px;
+}
+
+.large {
+  width: 700px;
+}
+
+.box {
+  display: flex;
+  justify-content: space-between;
+}
+
+.done {
+    color: rgba(0, 204, 204, 1);
+  }
+.cancelled {
+    color: rgba(229, 43, 26, 1);
+  }
+
+.price {
+  display: flex;
+  align-items: center;
+}
+
+.ingredients {
+  display: flex;
+
+  .image {
+    height: 64px;
+    width: 64px;
+    border-radius: 50%;
+    border: 1px solid rgba(128, 26, 178, 1);
+    background-position: center;
+    background-size: 150%;
+    background-color: #1C1C21;
+    background-repeat: no-repeat;
+  }
+
+  .extra {
+    height: 64px;
+    width: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.link {
+  color: var(--text-primary-light-standart-text, #F2F2F3);
+}
+
+
+
+

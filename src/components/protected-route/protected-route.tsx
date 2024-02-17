@@ -1,8 +1,8 @@
-import {useSelector} from "react-redux";
 import {Navigate, useLocation} from "react-router-dom";
 import {selectIsAuthChecked, selectUser} from "../../services/store/user/reducers";
 import {JSX, ReactElement} from "react";
-import {PacmanLoader} from "react-spinners";
+import Loader from "../loader/loader";
+import {useAppSelector} from "../../services/store/hooks";
 
 type TProtectedRouteProps = {
     onlyUnAuth?: boolean,
@@ -15,20 +15,15 @@ const ProtectedRoute = ({onlyUnAuth = false, component}: TProtectedRouteProps): 
     // isAuthChecked это флаг, показывающий, что проверка токена произведена.
     // при этом результат этой проверки не имеет значения, важно только,
     // что сам факт проверки имел место.
-    const isAuthChecked = useSelector(selectIsAuthChecked);
-    const user = useSelector(selectUser);
+    const isAuthChecked = useAppSelector(selectIsAuthChecked);
+    const user = useAppSelector(selectUser);
     const location = useLocation();
 
     if (!isAuthChecked) {
         // Запрос еще выполняется
         // Выводим прелоадер в ПР
         return (
-            <PacmanLoader
-                loading={true}
-                color="#F2F2F3"
-                size={100}
-                aria-label="Loading Spinner"
-            />
+           <Loader/>
         );
     }
 
@@ -44,7 +39,7 @@ const ProtectedRoute = ({onlyUnAuth = false, component}: TProtectedRouteProps): 
     }
 
 
-    // !onlyUnAuth && user Пользователь авторизован и роут для авторизованного пользователя
+    // !onlyUnAuth && profile-user Пользователь авторизован и роут для авторизованного пользователя
     return component;
 };
 

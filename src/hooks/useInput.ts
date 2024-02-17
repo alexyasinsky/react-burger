@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 
 
-type TUseInputProps = {
+type TProps = {
     name: string;
     defaultValue?: string;
 }
@@ -12,7 +12,7 @@ export type TUseInput = {
     setValue: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export function useInput(input: TUseInputProps): TUseInput {
+export function useInput(input: TProps): TUseInput {
     const [value, setValue] = useState<string>(input.defaultValue || '');
 
     return {
