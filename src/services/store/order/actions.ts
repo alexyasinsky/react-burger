@@ -6,7 +6,7 @@ type TOrderFromApi = {
   order: TOrder;
 }
 export const makeOrder = createAsyncThunk(
-  'burger-ingredients/makeOrder',
+  'order/makeOrder',
   async (ingredientsIds: Array<string>) => makeRequest<TOrderFromApi>(`${BURGER_API}/orders`, {
     method: 'POST',
     headers: {

@@ -13,7 +13,7 @@ type TSortFillingActionPayload = {
   item: TIngredient;
 }
 
-const initialState: TInitialState = {
+export const initialState: TInitialState = {
   bun: null,
   fillings: []
 }

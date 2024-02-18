@@ -30,21 +30,12 @@ export type TMonoTypeObject<T> = {
     [name: string]: T
 }
 
-type TOrderOwner = {
-    name: string;
-    email: string;
-    createdAt: string;
-    updatedAt: string;
-}
-
 export type TOrder = {
     ingredients: Array<string>,
     _id: string;
-    owner: TOrderOwner;
     status: 'pending' | 'done' | 'created' | 'cancelled';
     name: string;
     createdAt: string;
     updatedAt: string;
     number: number;
-    price: number;
 }

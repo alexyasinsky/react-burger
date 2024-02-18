@@ -8,7 +8,7 @@ type TInitialState = {
   ingredients: Array<TIngredient>
 }
 
-const initialState: TInitialState = {
+export const initialState: TInitialState = {
   loading: false,
   error: null,
   ingredients: [],

@@ -15,7 +15,7 @@ type TInitialState = {
   connectionError: string;
 }
 
-const initialState: TInitialState = {
+export const initialState: TInitialState = {
   status: 'OFFLINE',
   orders: [],
   connectionError: ""

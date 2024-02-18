@@ -84,7 +84,7 @@ export const getUser = createAsyncThunk('profile-user/getUser', async () => {
 })
 
 
-export const editUser = createAsyncThunk('profile-user/patchUser', async (body: TMonoTypeObject<string>) => {
+export const editUser = createAsyncThunk('profile-user/editUser', async (body: TMonoTypeObject<string>) => {
   return await makeRequestWithRefreshToken<TUserResponse>(`${BURGER_API}/auth/user`, {
     method: 'PATCH',
     headers: {

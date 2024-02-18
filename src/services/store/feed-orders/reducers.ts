@@ -16,7 +16,7 @@ type TInitialState = {
   total: number
 }
 
-const initialState: TInitialState = {
+export const initialState: TInitialState = {
   status: 'OFFLINE',
   orders: [],
   connectionError: "",
@@ -30,9 +30,9 @@ const feedOrdersSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-    .addCase(feedOrdersWsConnecting, state => {
-      state.status = 'WebsocketStatus.CONNECTING';
-    })
+      .addCase(feedOrdersWsConnecting, state => {
+        state.status = 'WebsocketStatus.CONNECTING';
+      })
       .addCase(feedOrdersWsOpen, state => {
         state.status = 'WebsocketStatus.ONLINE';
       })
