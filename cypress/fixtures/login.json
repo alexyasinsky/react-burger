@@ -1,0 +1,9 @@
+{
+  "success": true,
+  "accessToken": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1OTZiMTcxODc4OTljMDAxYjgyNzA2YyIsImlhdCI6MTcwODM2NTkwMywiZXhwIjoxNzA4MzY3MTAzfQ.6TnnQgpAnzt7fqbPe3FmnAfkjU1krzLJHwcNYJq0qgg",
+  "refreshToken": "850962841fcdbbe6b5ac0999b6a54693a74607c6b95275fca6d8e469529fcb0fe83562622c51984f",
+  "user": {
+  "email": "cool.towelie@yandex.ru",
+    "name": "Алексей"
+}
+}

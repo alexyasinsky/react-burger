@@ -22,7 +22,7 @@ export default function Modal({ children, onClose } : TProps) : JSX.Element {
   })
 
   return createPortal(
-   (<div className={styles.wrapper} >
+   (<div className={styles.wrapper} data-test-comp='modal'>
      <div className={`${styles.modal} p-10`}>
        <div className={styles.close}>
          <CloseIcon type="primary" onClick={onClose}/>

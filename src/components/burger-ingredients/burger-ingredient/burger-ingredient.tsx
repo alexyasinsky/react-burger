@@ -28,6 +28,7 @@ export default function BurgerIngredient({ingredient, count}: TProps) : JSX.Elem
       to={`/ingredients/${ingredient._id}`}
       state={{ background: location }}
       className={styles.link}
+      data-test-ingredient={ingredient._id}
     >
       <figure className={`${styles.card} mb-8`}>
         {count && (

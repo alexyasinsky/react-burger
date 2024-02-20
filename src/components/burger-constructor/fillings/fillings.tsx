@@ -38,17 +38,22 @@ export default function Fillings() : JSX.Element {
     <>
       {fillings.length === 0 ?
         (
-          <div className={`${styles.empty} ${fillingExtraClass} ml-8 mt-2 mb-2`} ref={dropFillingTarget}>
+          <div
+            className={`${styles.empty} ${fillingExtraClass} ml-8 mt-2 mb-2`}
+            ref={dropFillingTarget}
+            data-test-drop='filling'
+          >
             <p className="text text_type_main-default">Выберите начинку</p>
           </div>
         ) : (
           <div
             className={`${styles.filling} custom-scroll pr-2`}
             ref={dropFillingTarget}
+            data-test-drop='filling'
           >
             {fillings.map((item:TIngredient, index) => {
               return (
-                <Filling ingredient={item} key={uuid()} index={index} extraClass={fillingExtraClass}/>
+                <Filling ingredient={item} data-test-dropped-ingredient={item._id} key={uuid()} index={index} extraClass={fillingExtraClass}/>
               );
             })}
           </div>

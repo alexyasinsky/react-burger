@@ -13,9 +13,10 @@ type TProps = {
     placeholder?: string;
     icon?: TFieldIcon;
     onIconCLick?: () => void;
+    testId?: string;
 }
 
-export default function FormInput({input, type = 'text', placeholder, icon, onIconCLick}: TProps): JSX.Element{
+export default function FormInput({input, type = 'text', placeholder, icon, onIconCLick, testId}: TProps): JSX.Element{
 
     const [fieldType, setFieldType] = useState<TFieldType>(type);
     const [fieldIcon, setFieldIcon] = useState<TFieldIcon>(icon);
@@ -33,6 +34,7 @@ export default function FormInput({input, type = 'text', placeholder, icon, onIc
             extraClass='mb-6'
             icon={fieldIcon}
             onIconClick={onIconClickHandler}
+            data-testid={testId}
         />
     )
 }
