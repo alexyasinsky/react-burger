@@ -28,7 +28,6 @@ export default function BurgerIngredient({ingredient, count}: TProps) : JSX.Elem
       to={`/ingredients/${ingredient._id}`}
       state={{ background: location }}
       className={styles.link}
-      data-test-ingredient={ingredient._id}
     >
       <figure className={`${styles.card} mb-8`}>
         {count && (
@@ -39,6 +38,7 @@ export default function BurgerIngredient({ingredient, count}: TProps) : JSX.Elem
           src={ingredient.image}
           alt={ingredient.name}
           ref={dragRef}
+          data-test-ingredient={ingredient._id}
         />
         <div className={styles.price}>
           <p className="text text_type_digits-default mb-4">

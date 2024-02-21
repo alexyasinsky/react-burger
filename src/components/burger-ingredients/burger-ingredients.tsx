@@ -59,15 +59,38 @@ export default function BurgerIngredients() : JSX.Element {
   return (
     <section className={`${styles.wrapper} pt-5`}>
       <div className={`${styles.tabs} pb-5`} ref={tabsRef}>
-        <Tab value="buns" active={currentTab === 'buns'} onClick={saucesTabClickHandler}>
-          Булки
-        </Tab>
-        <Tab value="sauces" active={currentTab === 'sauces'} onClick={saucesTabClickHandler}>
-          Соусы
-        </Tab>
-        <Tab value="main" active={currentTab === 'main'} onClick={saucesTabClickHandler}>
-          Начинки
-        </Tab>
+        <div
+          data-test-ingredients-menu-tab='buns'
+        >
+          <Tab
+            value="buns"
+            active={currentTab === 'buns'}
+            onClick={saucesTabClickHandler}
+          >
+            Булки
+          </Tab>
+        </div>
+
+        <div data-test-ingredients-menu-tab='sauces'>
+          <Tab
+            value="sauces"
+            active={currentTab === 'sauces'}
+            onClick={saucesTabClickHandler}
+          >
+            Соусы
+          </Tab>
+        </div>
+        <div  data-test-ingredients-menu-tab='main'>
+          <Tab
+            value="main"
+            active={currentTab === 'main'}
+            onClick={saucesTabClickHandler}
+
+          >
+            Начинки
+          </Tab>
+        </div>
+
       </div>
         <div className={`${styles.list} custom-scroll`} onScroll={scrollHandler}>
         <BurgerIngredientsGroup title='Булки' ingredients={buns} ref={ingredientsGroupRef.buns}/>

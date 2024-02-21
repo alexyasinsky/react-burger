@@ -83,7 +83,9 @@ export default function Filling ({ingredient, index, extraClass}: TProps) : JSX.
   return (
     <div
       className={styles.item}
-      style={{ opacity }} data-handler-id={handlerId}
+      style={{ opacity }}
+      data-handler-id={handlerId}
+      data-test-filling-id={ingredient._id}
     >
       <div ref={ref}>
         <DragIcon type="primary"/>

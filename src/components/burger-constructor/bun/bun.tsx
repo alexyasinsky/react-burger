@@ -22,12 +22,18 @@ const Bun = forwardRef<HTMLDivElement, TProps>(({viewType, isHover} : TProps, re
   return (
     <>
       {bun === null ?
-        (<div className={`${styles.empty} ${borderClass} ${hoverClass} ml-8 mr-4`} ref={ref}>
+        (<div
+          className={`${styles.empty} ${borderClass} ${hoverClass} ml-8 mr-4`}
+          ref={ref}
+          data-test-drop='bun'
+        >
           <p className="text text_type_main-default">Выберите булку</p>
         </div>)
         :
         (<div
           ref={ref}
+          data-test-drop='bun'
+          data-test-bun-id={bun._id}
         >
           <ConstructorElement
             type={viewType}

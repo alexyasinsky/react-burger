@@ -8,7 +8,7 @@ export default function OrderAccepted(): JSX.Element {
   const number = useAppSelector(selectOrderNumber);
   
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.wrapper} data-test-order-number={number}>
       <p className={`${styles.number} text text_type_digits-large mb-8 mt-10`}>{number}</p>
       <p className="text text_type_main-medium">
         идентификатор заказа
