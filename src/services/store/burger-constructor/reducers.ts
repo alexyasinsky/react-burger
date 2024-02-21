@@ -1,16 +1,19 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {TIngredient} from "../../../utils/types";
+import {TFillingIngredient, TIngredient} from "../../../utils/types";
+//
+// @ts-ignore
+import {v4 as uuid} from "uuid";
 
 
 type TInitialState = {
   bun: TIngredient | null;
-  fillings: Array<TIngredient>
+  fillings: Array<TFillingIngredient>
 }
 
 type TSortFillingActionPayload = {
   from: number;
   to: number;
-  item: TIngredient;
+  item: TFillingIngredient;
 }
 
 export const initialState: TInitialState = {
@@ -25,8 +28,9 @@ const burgerConstructorSlice = createSlice({
     setBun: (state, action: PayloadAction<TIngredient>) => {
       state.bun = action.payload;
     },
-    addFilling: (state, action: PayloadAction<TIngredient>) => {
+    addFilling: (state, action: PayloadAction<TFillingIngredient>) => {
       const fillingItem = {...action.payload};
+      fillingItem.constructorId = uuid();
       state.fillings.push(fillingItem);
     },
     removeFilling: (state, action: PayloadAction<number>) => {

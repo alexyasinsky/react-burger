@@ -9,6 +9,8 @@ describe('testing constructor page', () => {
     cy.get('[data-test-modal=close]').click()
   })
 
+  const DROP_BUN_SELECTOR = '[data-test-drop=bun]';
+  const DROP_FILLING_SELECTOR = '[data-test-drop=filling]';
 
   it('drag and drop ingredients from list to constructor', () => {
     cy.prepare('1@1.com', '123');
@@ -16,13 +18,13 @@ describe('testing constructor page', () => {
     const mainId = '643d69a5c3f7b9001cfa0941';
     const sauceId = "643d69a5c3f7b9001cfa0943";
     cy.get("[data-test-ingredients-menu-tab='buns']").click();
-    cy.get(`[data-test-ingredient=${bunId}]`).drag('[data-test-drop=bun]');
+    cy.get(`[data-test-ingredient=${bunId}]`).drag(DROP_BUN_SELECTOR);
     cy.get(`[data-test-bun-id=${bunId}]`).should('exist');
     cy.get("[data-test-ingredients-menu-tab='main']").click();
-    cy.get(`[data-test-ingredient=${mainId}]`).drag('[data-test-drop=filling]');
+    cy.get(`[data-test-ingredient=${mainId}]`).drag(DROP_FILLING_SELECTOR);
     cy.get(`[data-test-filling-id=${mainId}]`).should('exist');
     cy.get("[data-test-ingredients-menu-tab='sauces']").click();
-    cy.get(`[data-test-ingredient=${sauceId}]`).drag('[data-test-drop=filling]').first();
+    cy.get(`[data-test-ingredient=${sauceId}]`).drag(DROP_FILLING_SELECTOR).first();
     cy.get(`[data-test-filling-id=${sauceId}]`).should('exist');
   })
 
@@ -34,13 +36,13 @@ describe('testing constructor page', () => {
     const mainId = '643d69a5c3f7b9001cfa0941';
     const sauceId = "643d69a5c3f7b9001cfa0943";
     cy.get("[data-test-ingredients-menu-tab='buns']").click();
-    cy.get(`[data-test-ingredient=${bunId}]`).drag('[data-test-drop=bun]');
+    cy.get(`[data-test-ingredient=${bunId}]`).drag(DROP_BUN_SELECTOR);
     cy.get(`[data-test-bun-id=${bunId}]`).should('exist');
     cy.get("[data-test-ingredients-menu-tab='main']").click();
-    cy.get(`[data-test-ingredient=${mainId}]`).drag('[data-test-drop=filling]');
+    cy.get(`[data-test-ingredient=${mainId}]`).drag(DROP_FILLING_SELECTOR);
     cy.get(`[data-test-filling-id=${mainId}]`).should('exist');
     cy.get("[data-test-ingredients-menu-tab='sauces']").click();
-    cy.get(`[data-test-ingredient=${sauceId}]`).drag('[data-test-drop=filling]').first();
+    cy.get(`[data-test-ingredient=${sauceId}]`).drag(DROP_FILLING_SELECTOR).first();
     cy.get(`[data-test-filling-id=${sauceId}]`).should('exist');
     cy.get('[data-test-button=makeOrder]').click();
     cy.get('[data-test-order-number=34571]').should('exist');

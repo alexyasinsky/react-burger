@@ -1,8 +1,9 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import {BURGER_API, makeRequest, makeRequestWithRefreshToken} from "../../../utils/api";
+import {makeRequest, makeRequestWithRefreshToken} from "../../../utils/api";
 import {setAuthChecked} from "./reducers";
 import {TMonoTypeObject} from "../../../utils/types";
 import {AppDispatch} from "../types";
+import {BURGER_API} from "../../../utils/constants";
 
 type TAuthRequestBody = {
   email: string;

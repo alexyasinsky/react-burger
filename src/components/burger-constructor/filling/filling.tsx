@@ -3,18 +3,18 @@ import {ConstructorElement, DragIcon} from "@ya.praktikum/react-developer-burger
 import {removeFilling, sortFilling} from "../../../services/store/burger-constructor/reducers";
 import {JSX, useRef} from "react";
 import {useDrag, useDrop} from "react-dnd";
-import {TIngredient} from "../../../utils/types";
+import {TFillingIngredient} from "../../../utils/types";
 import {Identifier} from 'dnd-core';
 import {useAppDispatch} from "../../../services/store/hooks";
 
 type TProps = {
-  ingredient: TIngredient;
+  ingredient: TFillingIngredient;
   index: number;
   extraClass: string;
 }
 
 type TDnDDragObject = {
-  ingredient: TIngredient;
+  ingredient: TFillingIngredient;
   index: number;
 }
 
