@@ -38,6 +38,7 @@ export default function BurgerIngredient({ingredient, count}: TProps) : JSX.Elem
           src={ingredient.image}
           alt={ingredient.name}
           ref={dragRef}
+          data-test-ingredient={ingredient._id}
         />
         <div className={styles.price}>
           <p className="text text_type_digits-default mb-4">

@@ -1,12 +1,13 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import {makeRequest, BURGER_API} from "../../../utils/api";
+import {makeRequest} from "../../../utils/api";
 import {TOrder} from "../../../utils/types";
+import {BURGER_API} from "../../../utils/constants";
 
 type TOrderFromApi = {
   order: TOrder;
 }
 export const makeOrder = createAsyncThunk(
-  'burger-ingredients/makeOrder',
+  'order/makeOrder',
   async (ingredientsIds: Array<string>) => makeRequest<TOrderFromApi>(`${BURGER_API}/orders`, {
     method: 'POST',
     headers: {

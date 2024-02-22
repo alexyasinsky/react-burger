@@ -3,9 +3,10 @@ import {useDrop} from "react-dnd";
 import Filling from "../filling/filling";
 import {addFilling, selectFillings} from "../../../services/store/burger-constructor/reducers";
 import {JSX} from "react";
-import {TIngredient} from "../../../utils/types";
+import {TFillingIngredient} from "../../../utils/types";
 import {useAppDispatch, useAppSelector} from "../../../services/store/hooks";
-import uuid from "../../../utils/uuid";
+// @ts-ignore
+import {v4 as uuid} from "uuid";
 
 
 type TDropCollectedProps = {
@@ -14,13 +15,13 @@ type TDropCollectedProps = {
 
 export default function Fillings() : JSX.Element {
 
-  const fillings: Array< TIngredient> = useAppSelector(selectFillings);
+  const fillings: Array< TFillingIngredient> = useAppSelector(selectFillings);
 
   const dispatch = useAppDispatch();
 
-  const [{isFillingHover}, dropFillingTarget] = useDrop<TIngredient, unknown, TDropCollectedProps>({
+  const [{isFillingHover}, dropFillingTarget] = useDrop<TFillingIngredient, unknown, TDropCollectedProps>({
     accept: 'filling',
-    drop(ingredient: TIngredient) {
+    drop(ingredient: TFillingIngredient) {
       onFillingDropHandler(ingredient);
     },
     collect: monitor => ({
@@ -28,8 +29,8 @@ export default function Fillings() : JSX.Element {
     })
   });
 
-  function onFillingDropHandler(ingredient: TIngredient) {
-    dispatch(addFilling(ingredient));
+  function onFillingDropHandler(ingredient: TFillingIngredient) {
+    dispatch(addFilling({...ingredient, constructorId: uuid()}));
   }
 
   const fillingExtraClass = isFillingHover ? styles.ingredient_hovered : styles.ingredient;
@@ -38,17 +39,22 @@ export default function Fillings() : JSX.Element {
     <>
       {fillings.length === 0 ?
         (
-          <div className={`${styles.empty} ${fillingExtraClass} ml-8 mt-2 mb-2`} ref={dropFillingTarget}>
+          <div
+            className={`${styles.empty} ${fillingExtraClass} ml-8 mt-2 mb-2`}
+            ref={dropFillingTarget}
+            data-test-drop='filling'
+          >
             <p className="text text_type_main-default">Выберите начинку</p>
           </div>
         ) : (
           <div
             className={`${styles.filling} custom-scroll pr-2`}
             ref={dropFillingTarget}
+            data-test-drop='filling'
           >
-            {fillings.map((item:TIngredient, index) => {
+            {fillings.map((item:TFillingIngredient, index) => {
               return (
-                <Filling ingredient={item} key={uuid()} index={index} extraClass={fillingExtraClass}/>
+                <Filling ingredient={item} data-test-dropped-ingredient={item._id} key={item.constructorId} index={index} extraClass={fillingExtraClass}/>
               );
             })}
           </div>

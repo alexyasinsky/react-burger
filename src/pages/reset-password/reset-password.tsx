@@ -1,11 +1,12 @@
 import Form from "../../components/form/form";
 import styles from './reset-password.module.scss';
 import FormNavigation from "../../components/form/form-navigation/form-navigation";
-import {makeRequest, BURGER_API} from "../../utils/api";
+import {makeRequest} from "../../utils/api";
 import { Navigate, useLocation} from "react-router-dom";
 import {JSX, SyntheticEvent} from "react";
 import FormInput from "../../components/form/form-input/form-input";
 import {useInput} from "../../hooks/useInput";
+import {BURGER_API} from "../../utils/constants";
 
 type TSetNewPasswordRequestBody = {
   password: string;

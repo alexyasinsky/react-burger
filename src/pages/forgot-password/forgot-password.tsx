@@ -1,11 +1,12 @@
 import Form from "../../components/form/form";
 import styles from './forgot-password.module.scss';
 import FormNavigation from "../../components/form/form-navigation/form-navigation";
-import {makeRequest, BURGER_API} from "../../utils/api";
+import {makeRequest} from "../../utils/api";
 import {useLocation, useNavigate} from "react-router-dom";
 import {JSX, SyntheticEvent} from "react";
 import {useInput} from "../../hooks/useInput";
 import FormInput from "../../components/form/form-input/form-input";
+import {BURGER_API} from "../../utils/constants";
 
 type TResetPasswordRequestBody = {
   email: string;

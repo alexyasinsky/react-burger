@@ -67,7 +67,8 @@ export default function BurgerConstructorTotal() : JSX.Element {
           htmlType="button"
           type="primary"
           size="large"
-          extraClass="ml-10" 
+          extraClass="ml-10"
+          data-test-button='makeOrder'
         >
           Оформить заказ
         </Button>

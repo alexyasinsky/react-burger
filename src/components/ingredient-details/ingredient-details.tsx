@@ -21,7 +21,10 @@ export default function IngredientDetails(): JSX.Element {
             </header>
             {
                 ingredient && (
-                    <article className={styles.card}>
+                    <article
+                      className={styles.card}
+                      data-test-modal-ingredient={ingredient._id}
+                    >
                         <img src={ingredient.image} alt={ingredient.name}/>
                         <h3 className="text text_type_main-medium mt-4 mb-8">
                             {ingredient.name}

@@ -1,3 +1,5 @@
+import {BURGER_API} from "./constants";
+
 type TFetchOptions = {
     method: string;
     headers: {
@@ -11,10 +13,6 @@ type TRefreshData = {
     refreshToken: string;
     accessToken: string;
 }
-
-export const  BURGER_API = 'https://norma.nomoreparties.space/api';
-
-export const BURGER_WS_API = 'wss://norma.nomoreparties.space/orders';
 
 const checkResponse = <T>(res: Response): Promise<T> => {
     return res.ok ? res.json() as Promise<T> : res.json().then(res => Promise.reject(res.message));

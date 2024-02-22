@@ -54,11 +54,13 @@ export default function Login(): JSX.Element {
                 <FormInput
                     input={email}
                     placeholder='E-mail'
+                    testId='email-input'
                 />
                 <FormInput input={password}
                            placeholder='Пароль'
                            type='password'
                            icon='ShowIcon'
+                           testId='password-input'
                 />
             </Form>
             <FormNavigation

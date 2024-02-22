@@ -1,10 +1,10 @@
 import {JSX, useEffect, useMemo} from "react";
-import {BURGER_WS_API} from "../../utils/api";
 import {useAppDispatch, useAppSelector} from "../../services/store/hooks";
 import {feedOrdersConnect, feedOrdersDisconnect} from "../../services/store/feed-orders/actions";
 import styles from './feed.module.scss';
 import {selectFeedOrders, selectTotal, selectTotalToday} from "../../services/store/feed-orders/reducers";
 import OrderList from "../../components/order-list/order-list";
+import {BURGER_WS_API} from "../../utils/constants";
 
 export default function Feed(): JSX.Element {
 

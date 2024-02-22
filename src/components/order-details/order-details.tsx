@@ -1,8 +1,9 @@
 import {JSX, useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
-import {BURGER_API, makeRequest} from "../../utils/api";
+import {makeRequest} from "../../utils/api";
 import {TOrder} from "../../utils/types";
 import OrderCard from "../order-card/order-card";
+import {BURGER_API} from "../../utils/constants";
 
 type TResponse = {
   success: boolean,

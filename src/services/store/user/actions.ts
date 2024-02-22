@@ -1,8 +1,9 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import {BURGER_API, makeRequest, makeRequestWithRefreshToken} from "../../../utils/api";
+import {makeRequest, makeRequestWithRefreshToken} from "../../../utils/api";
 import {setAuthChecked} from "./reducers";
 import {TMonoTypeObject} from "../../../utils/types";
 import {AppDispatch} from "../types";
+import {BURGER_API} from "../../../utils/constants";
 
 type TAuthRequestBody = {
   email: string;
@@ -84,7 +85,7 @@ export const getUser = createAsyncThunk('profile-user/getUser', async () => {
 })
 
 
-export const editUser = createAsyncThunk('profile-user/patchUser', async (body: TMonoTypeObject<string>) => {
+export const editUser = createAsyncThunk('profile-user/editUser', async (body: TMonoTypeObject<string>) => {
   return await makeRequestWithRefreshToken<TUserResponse>(`${BURGER_API}/auth/user`, {
     method: 'PATCH',
     headers: {

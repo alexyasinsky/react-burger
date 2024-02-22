@@ -1,10 +1,10 @@
 import {JSX, useEffect} from "react";
-import {BURGER_WS_API} from "../../utils/api";
 import {useAppDispatch, useAppSelector} from "../../services/store/hooks";
 import {profileOrdersConnect, profileOrdersDisconnect} from "../../services/store/profile-orders/actions";
 import {selectProfileOrders} from "../../services/store/profile-orders/reducers";
 import OrderList from "../order-list/order-list";
 import styles from './profile-order-history.module.scss';
+import {BURGER_WS_API} from "../../utils/constants";
 
 export default function ProfileOrderHistory(): JSX.Element {
 

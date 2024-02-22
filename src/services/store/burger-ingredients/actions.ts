@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import {BURGER_API, makeRequest} from "../../../utils/api";
+import {makeRequest} from "../../../utils/api";
 import {TIngredient} from "../../../utils/types";
+import {BURGER_API} from "../../../utils/constants";
 
 type TIngredientsFromApi = {
   data: Array<TIngredient>
