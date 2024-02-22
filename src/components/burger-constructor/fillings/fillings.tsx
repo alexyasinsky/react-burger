@@ -5,6 +5,8 @@ import {addFilling, selectFillings} from "../../../services/store/burger-constru
 import {JSX} from "react";
 import {TFillingIngredient} from "../../../utils/types";
 import {useAppDispatch, useAppSelector} from "../../../services/store/hooks";
+// @ts-ignore
+import {v4 as uuid} from "uuid";
 
 
 type TDropCollectedProps = {
@@ -28,7 +30,7 @@ export default function Fillings() : JSX.Element {
   });
 
   function onFillingDropHandler(ingredient: TFillingIngredient) {
-    dispatch(addFilling(ingredient));
+    dispatch(addFilling({...ingredient, constructorId: uuid()}));
   }
 
   const fillingExtraClass = isFillingHover ? styles.ingredient_hovered : styles.ingredient;

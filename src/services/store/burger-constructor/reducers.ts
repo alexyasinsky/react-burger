@@ -30,7 +30,6 @@ const burgerConstructorSlice = createSlice({
     },
     addFilling: (state, action: PayloadAction<TFillingIngredient>) => {
       const fillingItem = {...action.payload};
-      fillingItem.constructorId = uuid();
       state.fillings.push(fillingItem);
     },
     removeFilling: (state, action: PayloadAction<number>) => {

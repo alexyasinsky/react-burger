@@ -33,6 +33,7 @@ describe('testing burger-constructor reducer', () => {
     image_mobile: 'https://code.s3.yandex.net/react/code/meat-01-mobile.png',
     image_large: 'https://code.s3.yandex.net/react/code/meat-01-large.png',
     __v: '0',
+    constructorId: "ff6888b8-4808-4773-b279-03aadb2e4796",
     constructorExtraType: 'filling'
   }
 
